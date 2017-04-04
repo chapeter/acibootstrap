@@ -1,0 +1,6 @@
+[apic]
+10.94.238.68
+
+[all:vars]
+user = admin
+pass = cisco123

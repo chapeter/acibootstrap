@@ -1,0 +1,444 @@
+{
+  "totalCount": "1",
+  "imdata": [
+    {
+      "fvTenant": {
+        "attributes": {
+          "descr": "{{ descr }}",
+          "dn": "uni/tn-{{ tenant.name }}-L3",
+          "name": "{{ tenant.name }}-L3",
+          "nameAlias": "",
+          "ownerKey": "",
+          "ownerTag": "",
+          "status":"{{ status }}"
+        },
+        "children": [
+          {
+            "vzBrCP": {
+              "attributes": {
+                "descr": "{{ descr }}",
+                "name": "POC-WEB",
+                "nameAlias": "",
+                "ownerKey": "",
+                "ownerTag": "",
+                "prio": "unspecified",
+                "scope": "context",
+                "targetDscp": "unspecified"
+              },
+              "children": [
+                {
+                  "vzSubj": {
+                    "attributes": {
+                      "consMatchT": "AtleastOne",
+                      "descr": "{{ descr }}",
+                      "name": "POC-WEB-OPEN",
+                      "nameAlias": "",
+                      "prio": "unspecified",
+                      "provMatchT": "AtleastOne",
+                      "revFltPorts": "yes",
+                      "targetDscp": "unspecified"
+                    },
+                    "children": [
+                      {
+                        "vzRsSubjFiltAtt": {
+                          "attributes": {
+                            "directives": "",
+                            "tnVzFilterName": "ALLOW_ALL"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "vzBrCP": {
+              "attributes": {
+                "descr": "{{ descr }}",
+                "name": "POC-APP",
+                "nameAlias": "",
+                "ownerKey": "",
+                "ownerTag": "",
+                "prio": "unspecified",
+                "scope": "context",
+                "targetDscp": "unspecified"
+              },
+              "children": [
+                {
+                  "vzSubj": {
+                    "attributes": {
+                      "consMatchT": "AtleastOne",
+                      "descr": "{{ descr }}",
+                      "name": "POC-APP-OPEN",
+                      "nameAlias": "",
+                      "prio": "unspecified",
+                      "provMatchT": "AtleastOne",
+                      "revFltPorts": "yes",
+                      "targetDscp": "unspecified"
+                    },
+                    "children": [
+                      {
+                        "vzRsSubjFiltAtt": {
+                          "attributes": {
+                            "directives": "",
+                            "tnVzFilterName": "ALLOW_ALL"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "vzBrCP": {
+              "attributes": {
+                "descr": "{{ descr }}",
+                "name": "POC-DB",
+                "nameAlias": "",
+                "ownerKey": "",
+                "ownerTag": "",
+                "prio": "unspecified",
+                "scope": "context",
+                "targetDscp": "unspecified"
+              },
+              "children": [
+                {
+                  "vzSubj": {
+                    "attributes": {
+                      "consMatchT": "AtleastOne",
+                      "descr": "{{ descr }}",
+                      "name": "POC-DB-OPEN",
+                      "nameAlias": "",
+                      "prio": "unspecified",
+                      "provMatchT": "AtleastOne",
+                      "revFltPorts": "yes",
+                      "targetDscp": "unspecified"
+                    },
+                    "children": [
+                      {
+                        "vzRsSubjFiltAtt": {
+                          "attributes": {
+                            "directives": "",
+                            "tnVzFilterName": "ALLOW_ALL"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "vnsSvcCont": {
+              "attributes": {}
+            }
+          },
+          {
+            "fvCtx": {
+              "attributes": {
+                "descr": "{{ descr }}",
+                "knwMcastAct": "permit",
+                "name": "default",
+                "nameAlias": "",
+                "ownerKey": "",
+                "ownerTag": "",
+                "pcEnfDir": "ingress",
+                "pcEnfPref": "enforced"
+              },
+              "children": [
+                {
+                  "vzAny": {
+                    "attributes": {
+                      "descr": "{{ descr }}",
+                      "matchT": "AtleastOne",
+                      "name": "",
+                      "nameAlias": "",
+                      "prefGrMemb": "disabled"
+                    }
+                  }
+                },
+                {
+                  "fvRsOspfCtxPol": {
+                    "attributes": {
+                      "tnOspfCtxPolName": ""
+                    }
+                  }
+                },
+                {
+                  "fvRsCtxToEpRet": {
+                    "attributes": {
+                      "tnFvEpRetPolName": ""
+                    }
+                  }
+                },
+                {
+                  "fvRsCtxToExtRouteTagPol": {
+                    "attributes": {
+                      "tnL3extRouteTagPolName": ""
+                    }
+                  }
+                },
+                {
+                  "fvRsBgpCtxPol": {
+                    "attributes": {
+                      "tnBgpCtxPolName": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "fvBD": {
+              "attributes": {
+                "arpFlood": "no",
+                "descr": "{{ descr }}",
+                "epMoveDetectMode": "",
+                "ipLearning": "yes",
+                "limitIpLearnToSubnets": "no",
+                "llAddr": "::",
+                "mcastAllow": "no",
+                "multiDstPktAct": "bd-flood",
+                "name": "BACK-END",
+                "nameAlias": "",
+                "ownerKey": "",
+                "ownerTag": "",
+                "type": "regular",
+                "unicastRoute": "yes",
+                "unkMacUcastAct": "proxy",
+                "unkMcastAct": "flood",
+                "vmac": "not-applicable"
+              },
+              "children": [
+                {
+                  "fvRsIgmpsn": {
+                    "attributes": {
+                      "tnIgmpSnoopPolName": ""
+                    }
+                  }
+                },
+                {
+                  "fvRsCtx": {
+                    "attributes": {
+                      "tnFvCtxName": "default"
+                    }
+                  }
+                },
+                {
+                  "fvRsBdToEpRet": {
+                    "attributes": {
+                      "resolveAct": "resolve",
+                      "tnFvEpRetPolName": ""
+                    }
+                  }
+                },
+                {
+                  "fvRsBDToNdP": {
+                    "attributes": {
+                      "tnNdIfPolName": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "fvBD": {
+              "attributes": {
+                "arpFlood": "no",
+                "descr": "",
+                "epMoveDetectMode": "",
+                "ipLearning": "yes",
+                "limitIpLearnToSubnets": "no",
+                "llAddr": "::",
+                "mcastAllow": "no",
+                "multiDstPktAct": "bd-flood",
+                "name": "FRONT-END",
+                "nameAlias": "",
+                "ownerKey": "",
+                "ownerTag": "",
+                "type": "regular",
+                "unicastRoute": "yes",
+                "unkMacUcastAct": "proxy",
+                "unkMcastAct": "flood",
+                "vmac": "not-applicable"
+              },
+              "children": [
+                {
+                  "fvRsIgmpsn": {
+                    "attributes": {
+                      "tnIgmpSnoopPolName": ""
+                    }
+                  }
+                },
+                {
+                  "fvRsCtx": {
+                    "attributes": {
+                      "tnFvCtxName": "default"
+                    }
+                  }
+                },
+                {
+                  "fvRsBdToEpRet": {
+                    "attributes": {
+                      "resolveAct": "resolve",
+                      "tnFvEpRetPolName": ""
+                    }
+                  }
+                },
+                {
+                  "fvRsBDToNdP": {
+                    "attributes": {
+                      "tnNdIfPolName": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "fvRsTenantMonPol": {
+              "attributes": {
+                "tnMonEPGPolName": ""
+              }
+            }
+          },
+          {
+            "fvAp": {
+              "attributes": {
+                "descr": "",
+                "name": "POC-3tier",
+                "nameAlias": "",
+                "ownerKey": "",
+                "ownerTag": "",
+                "prio": "unspecified"
+              },
+              "children": [
+                {
+                  "fvAEPg": {
+                    "attributes": {
+                      "descr": "",
+                      "fwdCtrl": "",
+                      "isAttrBasedEPg": "no",
+                      "matchT": "AtleastOne",
+                      "name": "DB",
+                      "nameAlias": "",
+                      "pcEnfPref": "unenforced",
+                      "prefGrMemb": "exclude",
+                      "prio": "unspecified"
+                    },
+                    "children": [
+                      {
+                        "fvRsProv": {
+                          "attributes": {
+                            "matchT": "AtleastOne",
+                            "prio": "unspecified",
+                            "tnVzBrCPName": "POC-DB"
+                          }
+                        }
+                      },
+                      {
+                        "fvRsBd": {
+                          "attributes": {
+                            "tnFvBDName": "BACK-END"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "fvAEPg": {
+                    "attributes": {
+                      "descr": "",
+                      "fwdCtrl": "",
+                      "isAttrBasedEPg": "no",
+                      "matchT": "AtleastOne",
+                      "name": "APP",
+                      "nameAlias": "",
+                      "pcEnfPref": "unenforced",
+                      "prefGrMemb": "exclude",
+                      "prio": "unspecified"
+                    },
+                    "children": [
+                      {
+                        "fvRsProv": {
+                          "attributes": {
+                            "matchT": "AtleastOne",
+                            "prio": "unspecified",
+                            "tnVzBrCPName": "POC-APP"
+                          }
+                        }
+                      },
+                      {
+                        "fvRsCons": {
+                          "attributes": {
+                            "prio": "unspecified",
+                            "tnVzBrCPName": "POC-DB"
+                          }
+                        }
+                      },
+                      {
+                        "fvRsBd": {
+                          "attributes": {
+                            "tnFvBDName": "BACK-END"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "fvAEPg": {
+                    "attributes": {
+                      "descr": "",
+                      "fwdCtrl": "",
+                      "isAttrBasedEPg": "no",
+                      "matchT": "AtleastOne",
+                      "name": "WEB",
+                      "nameAlias": "",
+                      "pcEnfPref": "unenforced",
+                      "prefGrMemb": "exclude",
+                      "prio": "unspecified"
+                    },
+                    "children": [
+                      {
+                        "fvRsProv": {
+                          "attributes": {
+                            "matchT": "AtleastOne",
+                            "prio": "unspecified",
+                            "tnVzBrCPName": "POC-WEB"
+                          }
+                        }
+                      },
+                      {
+                        "fvRsCons": {
+                          "attributes": {
+                            "prio": "unspecified",
+                            "tnVzBrCPName": "POC-APP"
+                          }
+                        }
+                      },
+                      {
+                        "fvRsBd": {
+                          "attributes": {
+                            "tnFvBDName": "FRONT-END"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

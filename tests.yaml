@@ -1,0 +1,22 @@
+- name: ACIBOOTSTRAP Tests
+  hosts: apic
+  connection: local
+  gather_facts: yes
+
+  tasks:
+    - name: Leafs
+      aci_leaf: host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      register: leafs
+
+    - name: debug
+      debug: var=leafs.response
+
+    - name: spines
+      aci_query: uri=/api/node/class/fabricNode.json?query-target-filter=and(eq(fabricNode.role,"spine")) host={{ inventory_hostname }} username={{ user }} password ={{ pass }}
+      register: spines
+
+    - name: spine debug
+      debug: var=spines.response
+
+    - name: test
+      getSpineID: data={{vars.spines.response}}

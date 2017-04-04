@@ -1,0 +1,20 @@
+def main():
+
+    module = AnsibleModule(
+        argument_spec=dict(
+            data=dict(type='str')
+        ),
+        supports_check_mode=False
+    )
+
+    data = module.params['data']
+    response = data
+    results = {}
+    #results['status'] = status
+    results['response'] = response
+    #results['changed'] = changed
+
+    module.exit_json(**results)
+
+from ansible.module_utils.basic import *
+main()
