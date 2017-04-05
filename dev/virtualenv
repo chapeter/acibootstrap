@@ -1,0 +1,4 @@
+#!/bin/bash
+
+source ../../../../virtualenv/acibootstrap/bin/activate
+python ../acibootstrap/importvars.py

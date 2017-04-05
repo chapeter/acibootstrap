@@ -1,0 +1,16 @@
+Variable: Value
+bgp_as: 100
+dns: 171.70.168.183
+domain: cisco.com
+ntp: 10.50.171.9
+tenant:
+  external_subnets:
+  - name: 6
+    subnet: 1.1.1.1/24
+  internal_subnets:
+  - name: 7
+    subnet: 2.2.2.2/24
+  - name: 8
+    subnet: 3.3.3.3/24
+  name: POC-3tier
+tz: n300_America-Chicago

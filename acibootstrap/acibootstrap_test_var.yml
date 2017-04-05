@@ -1,0 +1,6 @@
+Variable: Value
+bgp as: 100
+dns server: 171.70.168.183
+domain name: cisco.com
+ntp server: 10.50.171.9
+timezone: n300_America-Chicago

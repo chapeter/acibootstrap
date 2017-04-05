@@ -1,0 +1,14 @@
+#static variables
+status: "created,modified"
+dynamic: acibootstrap/files/configs/dynamic
+templates: acibootstrap/files/configs/templates
+static: acibootstrap/files/configs/static
+descr: "installed by ACIBOOTSTRAP"
+vrf_name: "default"
+speeds:
+  - 10G
+  - 1G
+  - 100M
+stp_bpdu:
+  - bpdu-filter
+  - bpdu-guard

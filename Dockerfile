@@ -1,8 +1,12 @@
-FROM ubuntu
-RUN apt-get update && apt-get upgrade
+FROM python:2
+RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get -y install ansible
-RUN pip install wiper
+RUN apt-get -y install vim
 
-COPY . /opt
+COPY . /opt/acibootstrap
 
 WORKDIR /opt/acibootstrap
+
+RUN pip install -r requirements.txt
+
+CMD acibootstrap.sh
