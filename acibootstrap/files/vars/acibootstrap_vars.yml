@@ -1,5 +1,5 @@
 Variable: Value
-bgp_as: 100
+bgp_as: 18
 dns: 171.70.168.183
 domain: cisco.com
 ntp: 10.50.171.9

@@ -9,4 +9,4 @@ WORKDIR /opt/acibootstrap
 
 RUN pip install -r requirements.txt
 
-CMD acibootstrap.sh
+CMD ./webstartup.sh

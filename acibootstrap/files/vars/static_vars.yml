@@ -12,3 +12,4 @@ speeds:
 stp_bpdu:
   - bpdu-filter
   - bpdu-guard
+protocol: 'https'

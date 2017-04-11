@@ -1,22 +1,28 @@
 - name: ACIBOOTSTRAP Tests
   hosts: apic
   connection: local
-  gather_facts: yes
+  gather_facts: no
 
   tasks:
-    - name: Leafs
-      aci_leaf: host={{ inventory_hostname }} username={{ user }} password={{ pass }}
-      register: leafs
+  #  - name: Leafs
+#      aci_leaf: host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+#      register: leafs#
+#
+#    - name: debug
+  #    debug: var=leafs.response
 
-    - name: debug
-      debug: var=leafs.response
+    #- name: spines
+  #    aci_query: uri=/api/node/class/fabricNode.json?query-target-filter=and(eq(fabricNode.role,"spine")) host={{ #inventory_hostname }} username={{ user }} password ={{ pass }}
+#      register: spines
 
-    - name: spines
-      aci_query: uri=/api/node/class/fabricNode.json?query-target-filter=and(eq(fabricNode.role,"spine")) host={{ inventory_hostname }} username={{ user }} password ={{ pass }}
-      register: spines
+#    - name: spine debug
+#      debug: var=spines.response
 
-    - name: spine debug
-      debug: var=spines.response
+#    - name: test
+#      getSpineID: data={{vars.spines.response}}
 
-    - name: test
-      getSpineID: data={{vars.spines.response}}
+#    - name: debug
+#      debug: msg="{{ vars }}"
+
+    - name: enable http
+      aci_rest: action=post uri=api/mo/uni.json config_file=acibootstrap/files/configs/static/comm-default.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol='https'

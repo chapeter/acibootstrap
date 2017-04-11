@@ -1,1 +1,1 @@
-{"lldpIfPol":{"attributes":{"adminRxSt":"enabled","adminTxSt":"enabled","descr":"created by ACIBOOTSTRAP","dn":"uni/infra/lldpIfP-LLDP_ENABLE","name":"LLDP_ENABLE","nameAlias":"","ownerKey":"","ownerTag":"","status":"deleted"}}}
+{"lldpIfPol":{"attributes":{"adminRxSt":"enabled","adminTxSt":"enabled","descr":"created by ACIBOOTSTRAP","dn":"uni/infra/lldpIfP-LLDP_ENABLE","name":"LLDP_ENABLE","ownerKey":"","ownerTag":"","status":"deleted"}}}

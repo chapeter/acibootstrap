@@ -7,7 +7,7 @@
           "descr": "{{ descr }}",
           "dn": "uni/tn-{{ tenant.name }}-L3",
           "name": "{{ tenant.name }}-L3",
-          "nameAlias": "",
+
           "ownerKey": "",
           "ownerTag": "",
           "status":"{{ status }}"
@@ -18,7 +18,7 @@
               "attributes": {
                 "descr": "{{ descr }}",
                 "name": "POC-WEB",
-                "nameAlias": "",
+
                 "ownerKey": "",
                 "ownerTag": "",
                 "prio": "unspecified",
@@ -32,7 +32,7 @@
                       "consMatchT": "AtleastOne",
                       "descr": "{{ descr }}",
                       "name": "POC-WEB-OPEN",
-                      "nameAlias": "",
+
                       "prio": "unspecified",
                       "provMatchT": "AtleastOne",
                       "revFltPorts": "yes",
@@ -58,7 +58,7 @@
               "attributes": {
                 "descr": "{{ descr }}",
                 "name": "POC-APP",
-                "nameAlias": "",
+
                 "ownerKey": "",
                 "ownerTag": "",
                 "prio": "unspecified",
@@ -72,7 +72,7 @@
                       "consMatchT": "AtleastOne",
                       "descr": "{{ descr }}",
                       "name": "POC-APP-OPEN",
-                      "nameAlias": "",
+
                       "prio": "unspecified",
                       "provMatchT": "AtleastOne",
                       "revFltPorts": "yes",
@@ -98,7 +98,7 @@
               "attributes": {
                 "descr": "{{ descr }}",
                 "name": "POC-DB",
-                "nameAlias": "",
+
                 "ownerKey": "",
                 "ownerTag": "",
                 "prio": "unspecified",
@@ -112,7 +112,7 @@
                       "consMatchT": "AtleastOne",
                       "descr": "{{ descr }}",
                       "name": "POC-DB-OPEN",
-                      "nameAlias": "",
+
                       "prio": "unspecified",
                       "provMatchT": "AtleastOne",
                       "revFltPorts": "yes",
@@ -144,7 +144,7 @@
                 "descr": "{{ descr }}",
                 "knwMcastAct": "permit",
                 "name": "default",
-                "nameAlias": "",
+
                 "ownerKey": "",
                 "ownerTag": "",
                 "pcEnfDir": "ingress",
@@ -156,9 +156,7 @@
                     "attributes": {
                       "descr": "{{ descr }}",
                       "matchT": "AtleastOne",
-                      "name": "",
-                      "nameAlias": "",
-                      "prefGrMemb": "disabled"
+                      "name": ""
                     }
                   }
                 },
@@ -205,7 +203,7 @@
                 "mcastAllow": "no",
                 "multiDstPktAct": "bd-flood",
                 "name": "BACK-END",
-                "nameAlias": "",
+
                 "ownerKey": "",
                 "ownerTag": "",
                 "type": "regular",
@@ -259,7 +257,7 @@
                 "mcastAllow": "no",
                 "multiDstPktAct": "bd-flood",
                 "name": "FRONT-END",
-                "nameAlias": "",
+
                 "ownerKey": "",
                 "ownerTag": "",
                 "type": "regular",
@@ -313,7 +311,7 @@
               "attributes": {
                 "descr": "",
                 "name": "POC-3tier",
-                "nameAlias": "",
+
                 "ownerKey": "",
                 "ownerTag": "",
                 "prio": "unspecified"
@@ -323,13 +321,12 @@
                   "fvAEPg": {
                     "attributes": {
                       "descr": "",
-                      "fwdCtrl": "",
+                    
                       "isAttrBasedEPg": "no",
                       "matchT": "AtleastOne",
                       "name": "DB",
-                      "nameAlias": "",
+
                       "pcEnfPref": "unenforced",
-                      "prefGrMemb": "exclude",
                       "prio": "unspecified"
                     },
                     "children": [
@@ -356,13 +353,12 @@
                   "fvAEPg": {
                     "attributes": {
                       "descr": "",
-                      "fwdCtrl": "",
+
                       "isAttrBasedEPg": "no",
                       "matchT": "AtleastOne",
                       "name": "APP",
-                      "nameAlias": "",
+
                       "pcEnfPref": "unenforced",
-                      "prefGrMemb": "exclude",
                       "prio": "unspecified"
                     },
                     "children": [
@@ -397,13 +393,12 @@
                   "fvAEPg": {
                     "attributes": {
                       "descr": "",
-                      "fwdCtrl": "",
+
                       "isAttrBasedEPg": "no",
                       "matchT": "AtleastOne",
                       "name": "WEB",
-                      "nameAlias": "",
+
                       "pcEnfPref": "unenforced",
-                      "prefGrMemb": "exclude",
                       "prio": "unspecified"
                     },
                     "children": [

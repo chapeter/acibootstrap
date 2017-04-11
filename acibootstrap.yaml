@@ -36,84 +36,85 @@
   tasks:
     - name: debug
       debug: msg="{{ vars }}"
+
     #This section focuses on Interface Policies that should exist and can be consumed elsewhere
     - name: install CDP_ENABLE
-      aci_rest: action=post uri=/api/mo/uni.json config_file=acibootstrap/files/configs/static/cdpIfP-CDP_ENABLE.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=/api/mo/uni.json config_file=acibootstrap/files/configs/static/cdpIfP-CDP_ENABLE.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
     - name: install CDP_DISABLE
-      aci_rest: action=post uri=api/mo/uni.json config_file=acibootstrap/files/configs/static/cdpIfP-CDP_DISABLE.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=api/mo/uni.json config_file=acibootstrap/files/configs/static/cdpIfP-CDP_DISABLE.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
     - name: install LLDP_ENABLE
-      aci_rest: action=post uri=api/mo/uni.json config_file=acibootstrap/files/configs/static/lldpIfP-LLDP_ENABLE.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=api/mo/uni.json config_file=acibootstrap/files/configs/static/lldpIfP-LLDP_ENABLE.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
     - name: install LLDP_DISABLE
-      aci_rest: action=post uri=api/mo/uni.json config_file=acibootstrap/files/configs/static/lldpIfP-LLDP_DISABLE.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=api/mo/uni.json config_file=acibootstrap/files/configs/static/lldpIfP-LLDP_DISABLE.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
     - name: install Port Channel LACP_ACTIVE
-      aci_rest: action=post uri=api/mo/uni.json config_file=acibootstrap/files/configs/static/lacplagp-LACP_ACTIVE.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=api/mo/uni.json config_file=acibootstrap/files/configs/static/lacplagp-LACP_ACTIVE.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
     - name: install Port Channel MAC_PINNING
-      aci_rest: action=post uri=api/mo/uni.json config_file=acibootstrap/files/configs/static/lacplagp-MAC_PINNING.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=api/mo/uni.json config_file=acibootstrap/files/configs/static/lacplagp-MAC_PINNING.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
     - name: create Port Channel Mode On
       template: src=acibootstrap/files/configs/templates/lacplagp-MODE_ON.j2 dest=acibootstrap/files/configs/dynamic/lacplagp-MODE_ON.json
     - name: install Port Channel Mode On
-      aci_rest: action=post uri=/api/mo/uni.json config_file=acibootstrap/files/configs/dynamic/lacplagp-MODE_ON.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=/api/mo/uni.json config_file=acibootstrap/files/configs/dynamic/lacplagp-MODE_ON.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
     - name: create Link Level policies
       template: src=acibootstrap/files/configs/templates/hintfpol-.j2 dest=acibootstrap/files/configs/custom/hintfpol-{{ item }}.json
       with_items: "{{ speeds }}"
 
     - name: install Link Level policies
-      aci_rest: action=post uri=api/mo/uni.json config_file=acibootstrap/files/configs/custom/hintfpol-{{ item }}.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=api/mo/uni.json config_file=acibootstrap/files/configs/custom/hintfpol-{{ item }}.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
       with_items: "{{ speeds }}"
 
     - name: create STP BPDU policies
       template: src=acibootstrap/files/configs/templates/ifPol-bpdu-.j2 dest=acibootstrap/files/configs/dynamic/ifPol-{{ item }}_ON.json
       with_items: "{{ stp_bpdu }}"
     - name: install STP BPDU policies
-      aci_rest: action=post uri=api/mo/uni.json config_file=acibootstrap/files/configs/dynamic/ifPol-{{ item }}_ON.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=api/mo/uni.json config_file=acibootstrap/files/configs/dynamic/ifPol-{{ item }}_ON.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
       with_items: "{{ stp_bpdu }}"
 
 
     - name: create STP ON policy
       template: src=acibootstrap/files/configs/templates/ifPol-stp-ON.j2 dest=acibootstrap/files/configs/dynamic/ifPol-stp-ON.json
     - name: install STP ON policy
-      aci_rest: action=post uri=api/mo/uni.json config_file=acibootstrap/files/configs/dynamic/ifPol-stp-ON.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=api/mo/uni.json config_file=acibootstrap/files/configs/dynamic/ifPol-stp-ON.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
     - name: create date/time default
       template: src=acibootstrap/files/configs/templates/format-default.j2 dest=acibootstrap/files/configs/dynamic/format-default.json
     - name: install date/time default (setting tz)
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/format-default.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/format-default.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
     - name: create time default policy
       template: src={{ templates }}/time-default.j2 dest={{ dynamic }}/time-default.json
     - name: install time default policy
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/time-default.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/time-default.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
     - name: create dns domain policy
       template: src={{ templates }}/dom-.j2 dest={{ dynamic }}/dom-{{ domain }}.json
     - name: install dns domain policy
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/dom-{{ domain }}.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/dom-{{ domain }}.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
     - name: create dns provider policy
       template: src={{ templates }}/prov-.j2 dest={{ dynamic }}/prov-{{dns}}.json
     - name: install dns provider policy
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/prov-{{dns}}.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/prov-{{dns}}.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
     - name: set dns default policy to use oob-default
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/dnsp-default.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/dnsp-default.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
     - name: set Fabric L2 MTU policy to 9000
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/l2pol-default.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/l2pol-default.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
     # Install Common Contracts and Filters
     - name: create ALLOW_ALL filter
       template: src={{ templates }}/flt-ALLOW_ALL.j2 dest={{ dynamic }}/flt-ALLOW_ALL.json
     - name: install ALLOW_ALL filter
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/flt-ALLOW_ALL.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/flt-ALLOW_ALL.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
     - name: create web filter
       template: src={{ templates }}/flt-web.j2 dest={{ dynamic }}/flt-web.json
     - name: install web filter
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/flt-web.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/flt-web.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
 
 
@@ -121,20 +122,20 @@
     - name: create {{ tenant.name }}-POC tenant
       template: src={{ templates }}/tn-poc-L3.j2 dest={{ dynamic }}/tn-{{ tenant.name }}-POC.json
     - name: install {{ tenant.name }}-POC tenant
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/tn-{{tenant.name}}-POC.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/tn-{{tenant.name}}-POC.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
     - name: create External subnets for {{ tenant.name }}-POC
       template: src={{ templates }}/subnet-POC-external.j2 dest={{ dynamic }}/subnet-{{ item.name }}-external.json
       with_items: "{{ tenant.external_subnets }}"
     - name: install External subnets
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/subnet-{{ item.name }}-external.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/subnet-{{ item.name }}-external.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
       with_items: "{{ tenant.external_subnets }}"
 
     - name: create Internal subnets for {{ tenant.name }}-POC
       template: src={{ templates }}/subnet-POC-private.j2 dest={{ dynamic }}/subnet-{{ item.name }}-internal.json
       with_items: "{{ tenant.private_subnets }}"
     - name: install Internal subnets
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/subnet-{{ item.name }}-internal.json host={{ inventory_hostname }} username={{ user }} password={{ pass }}
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/subnet-{{ item.name }}-internal.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
       with_items: "{{ tenant.private_subnets}}"
 
 
