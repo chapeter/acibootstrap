@@ -37,8 +37,7 @@ def index():
          <input type=submit value=Upload>
     </form>
     <p>%s</p>
-    <iframe src="http://0.0.0.0:5001"></iframe>
-
+    <iframe src="http://0.0.0.0:5001" width="300" height="25"></iframe>
     <iframe src="http://0.0.0.0:8001" width="1200" height="650"></iframe>
     """ % "<br>".join(os.listdir(app.config['UPLOAD_FOLDER'],))
 

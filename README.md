@@ -53,5 +53,7 @@ Before running ACIBOOTSTRAP, the user must ensure that the APIC controllers have
 * [ ] Create XLSX to YAML variable import for user defined criteria
 * [x] Streatch [Flask web upload](http://flask.pocoo.org/docs/0.12/patterns/fileuploads/)
 * [ ] Tail logs for online viewing of scripts
+* [ ] VLAN pool for VMM domain
+* [ ] Download file section
 
 ## Manual Work that needs to be done AFTER acibootstrap

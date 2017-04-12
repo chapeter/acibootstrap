@@ -1,9 +1,0 @@
-[apic]
-10.94.238.5
-
-[all:vars]
-user = admin
-pass = cisco123
-
-[apicssh]
-admin@10.94.238.5 ansible_user=admin ansible_pass=cisco123

@@ -74,6 +74,23 @@
       with_items: "{{ stp_bpdu }}"
 
 
+    # Obtain a list of ACI Spines, then install BGP RRs
+    - name: Get list of ACI Spines
+      aci_spine_id.py: host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      register: spines
+
+    - name: Ensure we got spine list (for debugging only)
+      debug: var=spines.response
+
+    - name: Create Fabric BGP RR policy
+      template: src={{ templates }}/bgpInstP-default.j2 dest={{ dynamic }}/bgpInstP-default-{{ item }}.json
+      with_items: "{{ spines.response }}"
+
+    - name: Install Fabric BGP RR policy
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/bgpInstP-default-{{ item }}.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      with_items: "{{ spines.response }}"
+
+
     - name: create STP ON policy
       template: src=acibootstrap/files/configs/templates/ifPol-stp-ON.j2 dest=acibootstrap/files/configs/dynamic/ifPol-stp-ON.json
     - name: install STP ON policy
@@ -115,6 +132,9 @@
       template: src={{ templates }}/flt-web.j2 dest={{ dynamic }}/flt-web.json
     - name: install web filter
       aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/flt-web.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+
+
+
 
 
 
