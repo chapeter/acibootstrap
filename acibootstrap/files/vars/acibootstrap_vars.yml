@@ -14,3 +14,6 @@ tenant:
   - address: 3.3.3.3/24
     name: 8
 tz: n300_America-Chicago
+apic_ip:
+apic_user:
+apic_pass:
