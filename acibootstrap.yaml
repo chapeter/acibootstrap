@@ -37,6 +37,17 @@
     - name: debug
       debug: msg="{{ vars }}"
 
+    - name: Gather Controller ID's
+      aci_fabricNodeID.py: host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }} role="controller"
+      register: controllers
+
+    - name: Gather Leaf ID's
+      aci_fabricNodeID.py: host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }} role="leaf"
+
+    - name: Get list of Spine ID's
+      aci_spine_id.py: host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      register: spines
+
     #This section focuses on Interface Policies that should exist and can be consumed elsewhere
     - name: install CDP_ENABLE
       aci_rest: action=post uri=/api/mo/uni.json config_file=acibootstrap/files/configs/static/cdpIfP-CDP_ENABLE.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
@@ -75,9 +86,7 @@
 
 
     # Obtain a list of ACI Spines, then install BGP RRs
-    - name: Get list of ACI Spines
-      aci_spine_id.py: host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
-      register: spines
+
 
     - name: Ensure we got spine list (for debugging only)
       debug: var=spines.response
@@ -122,6 +131,11 @@
     - name: set Fabric L2 MTU policy to 9000
       aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/l2pol-default.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
+    - name: install VPC policy
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/protpol.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+
+
+
     # Install Common Contracts and Filters
     - name: create ALLOW_ALL filter
       template: src={{ templates }}/flt-ALLOW_ALL.j2 dest={{ dynamic }}/flt-ALLOW_ALL.json
@@ -134,8 +148,45 @@
       aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/flt-web.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
 
+    # Setup VMM integration
+    - name: create vmm pool
+      template: src={{ templates}}/vlans-dynamic.j2 dest={{ dynamic}}/vlans-{{ vmmpool }}-dynamic.json
+    - name: install vmm pool
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/vlans-{{ vmmpool }}-dynamic.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
 
+
+    # Setup Physical interfaces
+    # Setup UCS FI Shared objects
+    - name: install svr bm vlan pool
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/vlanns-[svr-bm-vlans]-dynamic.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: install ucs physical domain
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/phys-svr.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: install ucs attachable entity profile
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/attentp-svr.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    # Setup FI A
+    - name: install VPC interface policy group for UCS FI A
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/accbundle-ucs-fi-a.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: install interface policy for E1/1 (UCS FI A)
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/accportprof-e1-1.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+
+    # Create and Install L3-router
+    - name: install L3-router-out vlan pool
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/vlanns-[L3-router-out]-dynamic.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: install L3 router Physical Domain
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/phys-router.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: install L3 router Attachable Entity Profile
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/attentp-router.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: create interface policy group for L3 router
+      template: src={{ templates }}/accportgrp-L3-router-out.j2 dest={{ dynamic }}/accportgrp-L3-router-out.json
+    - name: install interface policy group for L3 router
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/accportgrp-L3-router-out.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: install interface policy for E1/30 (L3 router)
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/accportprof-e1-30.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+
+    # Create and install switches and ports to those switches
+    - name: install VPC switch pair profile with interfaces
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/nprof-leaf_101_102.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
 
     # Install L3 POC tenant.name
@@ -159,7 +210,15 @@
       with_items: "{{ tenant.private_subnets}}"
 
 
-
+    # Setup MGMT tenant with OOB stuff
+    - name: create mgmt oob pool
+      template: src={{ templates }}/addrinst-oobaddr.j2 dest={{ dynamic }}/addrinst-oobaddr.json
+    - name: install mgmt oob pool
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/addrinst-oobaddr.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: install mgmt Node Management Addresses
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/mgmtnodegrp-switch-oob.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: install mgmt Managed Node Connectivity Group
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/grp-switch-oob.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
 
 #- name: ACIBOOTSTRAP Local Cleanup

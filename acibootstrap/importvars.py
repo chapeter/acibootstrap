@@ -10,7 +10,9 @@ workbook = openpyxl.load_workbook("acibootstrap/files/vars/acibootstrap.xlsx", d
 print(workbook.sheetnames)
 
 fabric_pol = workbook["fabric_pol"]
+vcenter = workbook["vcenter"]
 poc_tenant = workbook["poc_tenant"]
+mgmt = workbook["mgmt"]
 
 
 def getFabricPolicyVariables():
@@ -18,6 +20,25 @@ def getFabricPolicyVariables():
     for row in fabric_pol.rows:
         fabric_pol_vars[row[0].value] = row[1].value
     return fabric_pol_vars
+
+def getVMMVars():
+    vmm_vars = {}
+    vmm_vars['vmmpool'] = 'vmmpool'
+    vmm_vars['vmmpool_start'] = vcenter['A3'].value
+    vmm_vars['vmmpool_end'] = vcenter['B3'].value
+
+    return vmm_vars
+
+def getMGMTVars():
+    mgmt_vars = {}
+    mgmt_vars['oob_from'] = mgmt['B3'].value
+    mgmt_vars['oob_to'] = mgmt['C3'].value
+    mgmt_vars['oob_gw'] = mgmt['D3'].value
+
+
+
+
+    return mgmt_vars
 
 def getPocTenantVariables():
     tenant_name = poc_tenant['B2'].value
@@ -50,5 +71,12 @@ def mergeDicts(x, y):
 
 fabric_pol_vars = getFabricPolicyVariables()
 poc_tenant_vars = getPocTenantVariables()
+vmm_vars = getVMMVars()
+mgmt_vars = getMGMTVars()
 
-saveYAML(mergeDicts(fabric_pol_vars, poc_tenant_vars))
+a = mergeDicts(fabric_pol_vars, poc_tenant_vars)
+b = mergeDicts(a, vmm_vars)
+c = mergeDicts(b, mgmt_vars)
+
+
+saveYAML(c)

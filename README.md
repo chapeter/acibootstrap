@@ -1,10 +1,30 @@
 # ACIBOOTSTRAP
 
 ## Overview
-ACIBOOTSTRAP is an application designed to help speed up ACI deployments by automating the common configuration elements of setting up ACI.
+ACIBOOTSTRAP is an application designed to help speed up ACI deployments by automating the common configuration elements of setting up ACI and building out a standardized port map for the fabric
 
 ## Prerequisites
-Before running ACIBOOTSTRAP, the user must ensure that the APIC controllers have been setup through their initial setup wizard.  After than ACIBOOTSTRAP can be used.
+Before running ACIBOOTSTRAP, the user must ensure that the APIC controllers have been setup through their initial setup wizard.  
+
+Users need to fill the acibootstrap Excel sheet here: [acibootstrap/files/vars/acibootstrap.xlsx](acibootstrap/files/vars/acibootstrap.xlsx)
+
+
+
+
+
+## To Do
+* [ ] Fabric Discovery
+* [ ] Set OOB for switches
+* [ ] Setup VMM integration for VMware
+* [ ] Create XLSX to YAML variable import for user defined criteria
+* [x] [Flask web upload](http://flask.pocoo.org/docs/0.12/patterns/fileuploads/)
+* [x] Tail logs for online viewing of scripts
+* [ ] VLAN pool for VMM domain
+* [ ] Download file section
+
+
+## Manual Work that needs to be done AFTER acibootstrap
+
 
 
 ## Directory Structure
@@ -45,15 +65,3 @@ Before running ACIBOOTSTRAP, the user must ensure that the APIC controllers have
     * ```dynamic/```: files built from template files go here.  They will be converted into .json with real values and placed here
     * ```custom/```: depricated.
     * ```static/```: files not needed to be templitized and dynamically created
-
-## To Do
-* [ ] Fabric Discovery
-* [ ] Set OOB for switches
-* [ ] Setup VMM integration for VMware
-* [ ] Create XLSX to YAML variable import for user defined criteria
-* [x] Streatch [Flask web upload](http://flask.pocoo.org/docs/0.12/patterns/fileuploads/)
-* [ ] Tail logs for online viewing of scripts
-* [ ] VLAN pool for VMM domain
-* [ ] Download file section
-
-## Manual Work that needs to be done AFTER acibootstrap

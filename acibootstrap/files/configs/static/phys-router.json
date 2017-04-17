@@ -1,0 +1,19 @@
+{
+  "physDomP": {
+    "attributes": {
+      "dn": "uni/phys-router",
+      "name": "router",
+      "ownerKey": "",
+      "ownerTag": ""
+    },
+    "children": [
+      {
+        "infraRsVlanNs": {
+          "attributes": {
+            "tDn": "uni/infra/vlanns-[L3-router-out]-dynamic"
+          }
+        }
+      }
+    ]
+  }
+}

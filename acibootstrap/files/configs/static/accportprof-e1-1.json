@@ -1,0 +1,46 @@
+{
+  "infraAccPortP": {
+    "attributes": {
+      "descr": "installed by ACIBOOTSTRAP",
+      "dn": "uni/infra/accportprof-e1-1",
+      "name": "e1-1",
+      "ownerKey": "",
+      "ownerTag": ""
+    },
+    "children": [
+      {
+        "infraHPortS": {
+          "attributes": {
+            "descr": "installed by ACIBOOTSTRAP",
+            "name": "e1-1",
+            "ownerKey": "",
+            "ownerTag": "",
+            "type": "range"
+          },
+          "children": [
+            {
+              "infraRsAccBaseGrp": {
+                "attributes": {
+                  "fexId": "101",
+                  "tDn": "uni/infra/funcprof/accbundle-ucs-fi-a"
+                }
+              }
+            },
+            {
+              "infraPortBlk": {
+                "attributes": {
+                  "descr": "installed by ACIBOOTSTRAP",
+                  "fromCard": "1",
+                  "fromPort": "1",
+                  "name": "block2",
+                  "toCard": "1",
+                  "toPort": "1"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

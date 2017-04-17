@@ -1,0 +1,25 @@
+{
+  "fvnsVlanInstP": {
+    "attributes": {
+      "allocMode": "dynamic",
+      "descr": "installed by ACIBOOTSTRAP",
+      "dn": "uni/infra/vlanns-[{{ vmmpool }}]-dynamic",
+      "name": "{{ vmmpool }}",
+      "ownerKey": "",
+      "ownerTag": ""
+    },
+    "children": [
+      {
+        "fvnsEncapBlk": {
+          "attributes": {
+            "allocMode": "inherit",
+            "descr": "",
+            "from": "vlan-{{ vmmpool_start }}",
+            "name": "",
+            "to": "vlan-{{ vmmpool_end }}"
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "fabricProtPol": {
+    "attributes": {
+      "descr": "",
+      "dn": "uni/fabric/protpol",
+      "name": "default",
+      "ownerKey": "",
+      "ownerTag": "",
+      "pairT": "explicit"
+    },
+    "children": [
+      {
+        "fabricExplicitGEp": {
+          "attributes": {
+            "id": "1",
+            "name": "vpc-group-1"
+          },
+          "children": [
+            {
+              "fabricRsVpcInstPol": {
+                "attributes": {
+                  "tnVpcInstPolName": "default"
+                }
+              }
+            },
+            {
+              "fabricNodePEp": {
+                "attributes": {
+                  "descr": "installed by ACIBOOTSTRAP",
+                  "id": "101",
+                  "name": "",
+                  "podId": "1"
+                }
+              }
+            },
+            {
+              "fabricNodePEp": {
+                "attributes": {
+                  "descr": "installed by ACIBOOTSTRAP",
+                  "id": "102",
+                  "name": "",
+                  "podId": "1"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

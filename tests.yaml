@@ -2,6 +2,9 @@
   hosts: apic
   connection: local
   gather_facts: no
+  vars_files:
+    - acibootstrap/files/vars/acibootstrap_vars.yml
+    - acibootstrap/files/vars/static_vars.yml
 
   tasks:
   #  - name: Leafs
@@ -21,3 +24,17 @@
 
     - name: debug
       debug: msg="{{ vars }}"
+
+    - name: leafs
+      aci_leaf_id.py: host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      register: leafs
+
+    - name: leafs debug
+      debug: var=leafs.response
+
+    - name: controllers
+      aci_fabricNodeID.py: host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }} role="controller"
+      register: controllers
+
+    - name: controllers debug
+      debug: var=controllers.response

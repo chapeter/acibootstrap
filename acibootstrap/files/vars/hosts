@@ -1,6 +1,8 @@
-[apic]
-10.94.238.5
 
-[all:vars]
-user = admin
-pass = cisco123
+    [apic]
+    None
+
+    [all:vars]
+    user = None
+    pass = None
+    

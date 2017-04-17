@@ -1,0 +1,20 @@
+{
+  "infraAttEntityP": {
+    "attributes": {
+      "descr": "installed by ACIBOOTSTRAP",
+      "dn": "uni/infra/attentp-svr",
+      "name": "svr",
+      "ownerKey": "",
+      "ownerTag": ""
+    },
+    "children": [
+      {
+        "infraRsDomP": {
+          "attributes": {
+            "tDn": "uni/phys-svr"
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "fvnsVlanInstP": {
+    "attributes": {
+      "allocMode": "dynamic",
+      "descr": "installed by ACIBOOTSTRAP",
+      "dn": "uni/infra/vlanns-[svr-bm-vlans]-dynamic",
+      "name": "svr-bm-vlans",
+      "ownerKey": "",
+      "ownerTag": ""
+    },
+    "children": [
+      {
+        "fvnsEncapBlk": {
+          "attributes": {
+            "allocMode": "inherit",
+            "descr": "installed by ACIBOOTSTRAP",
+            "from": "vlan-2100",
+            "name": "",
+            "to": "vlan-2109"
+          }
+        }
+      }
+    ]
+  }
+}

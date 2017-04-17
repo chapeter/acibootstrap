@@ -1,0 +1,31 @@
+{
+  "mgmtNodeGrp": {
+    "attributes": {
+      "descr": "installed by ACIBOOTSTRAP",
+      "dn": "uni/infra/mgmtnodegrp-switch-oob",
+      "name": "switch-oob",
+      "ownerKey": "",
+      "ownerTag": "",
+      "type": "range"
+    },
+    "children": [
+      {
+        "mgmtRsGrp": {
+          "attributes": {
+            "tDn": "uni/infra/funcprof/grp-switch-oob"
+          }
+        }
+      },
+      {
+        "infraNodeBlk": {
+          "attributes": {
+            "descr": "installed by ACIBOOTSTRAP",
+            "from_": "100",
+            "name": "522465ee97056bdb",
+            "to_": "299"
+          }
+        }
+      }
+    ]
+  }
+}

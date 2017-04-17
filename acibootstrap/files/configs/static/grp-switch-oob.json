@@ -1,0 +1,1 @@
+{"mgmtGrp":{"attributes":{"dn":"uni/infra/funcprof/grp-switch-oob","name":"switch-oob"},"children":[{"mgmtOoBZone":{"attributes":{"descr":"installed by ACIBOOTSTRAP","name":""},"children":[{"mgmtRsAddrInst":{"attributes":{"tDn":"uni/tn-mgmt/addrinst-switch-ooboobaddr"}}},{"mgmtRsOoB":{"attributes":{"tDn":"uni/tn-mgmt/mgmtp-default/oob-default"}}}]}}]}}

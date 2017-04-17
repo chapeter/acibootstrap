@@ -1,0 +1,25 @@
+{
+  "fvnsVlanInstP": {
+    "attributes": {
+      "allocMode": "dynamic",
+      "descr": "installed by ACIBOOTSTRAP",
+      "dn": "uni/infra/vlanns-[L3-router-out]-dynamic",
+      "name": "L3-router-out",
+      "ownerKey": "",
+      "ownerTag": ""
+    },
+    "children": [
+      {
+        "fvnsEncapBlk": {
+          "attributes": {
+            "allocMode": "inherit",
+            "descr": "installed by ACIBOOTSTRAP",
+            "from": "vlan-2110",
+            "name": "",
+            "to": "vlan-2119"
+          }
+        }
+      }
+    ]
+  }
+}

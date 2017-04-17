@@ -1,0 +1,52 @@
+{
+  "infraNodeP": {
+    "attributes": {
+      "descr": "installed by ACIBOOTSTRAP",
+      "dn": "uni/infra/nprof-leaf_101_102",
+      "name": "leaf_101_102",
+      "ownerKey": "",
+      "ownerTag": ""
+    },
+    "children": [
+      {
+        "infraRsAccPortP": {
+          "attributes": {
+            "dn": "uni/infra/nprof-leaf_101_102/rsaccPortP-[uni/infra/accportprof-e1-1]",
+            "tDn": "uni/infra/accportprof-e1-1"
+          }
+        }
+      },
+      {
+        "infraRsAccPortP": {
+          "attributes": {
+            "dn": "uni/infra/nprof-leaf_101_102/rsaccPortP-[uni/infra/accportprof-e1-30]",
+            "tDn": "uni/infra/accportprof-e1-30"
+          }
+        }
+      },
+      {
+        "infraLeafS": {
+          "attributes": {
+            "descr": "installed by ACIBOOTSTRAP",
+            "name": "101_102",
+            "ownerKey": "",
+            "ownerTag": "",
+            "type": "range"
+          },
+          "children": [
+            {
+              "infraNodeBlk": {
+                "attributes": {
+                  "descr": "installed by ACIBOOTSTRAP",
+                  "from_": "101",
+                  "name": "leaf101and102",
+                  "to_": "102"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "physDomP": {
+    "attributes": {
+      "dn": "uni/phys-svr",
+      "name": "svr",
+      "ownerKey": "",
+      "ownerTag": ""
+    },
+    "children": [
+      {
+        "infraRsVlanNs": {
+          "attributes": {
+            "tDn": "uni/infra/vlanns-[svr-bm-vlans]-dynamic"
+          }
+        }
+      }
+    ]
+  }
+}

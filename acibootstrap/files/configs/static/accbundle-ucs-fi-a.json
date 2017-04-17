@@ -1,0 +1,133 @@
+{
+  "infraAccBndlGrp": {
+    "attributes": {
+      "descr": "",
+      "dn": "uni/infra/funcprof/accbundle-ucs-fi-a",
+      "lagT": "node",
+      "name": "ucs-fi-a",
+      "ownerKey": "",
+      "ownerTag": ""
+    },
+    "children": [
+      {
+        "infraRsStpIfPol": {
+          "attributes": {
+            "tnStpIfPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsQosIngressDppIfPol": {
+          "attributes": {
+            "tnQosDppPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsStormctrlIfPol": {
+          "attributes": {
+            "tnStormctrlIfPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsQosEgressDppIfPol": {
+          "attributes": {
+            "tnQosDppPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsQosDppIfPol": {
+          "attributes": {
+            "tnQosDppPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsQosSdIfPol": {
+          "attributes": {
+            "tnQosSdIfPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsAttEntP": {
+          "attributes": {
+            "tDn": "uni/infra/attentp-svr"
+          }
+        }
+      },
+      {
+        "infraRsMcpIfPol": {
+          "attributes": {
+            "tnMcpIfPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsCdpIfPol": {
+          "attributes": {
+            "tnCdpIfPolName": "CDP_ENABLE"
+          }
+        }
+      },
+      {
+        "infraRsL2IfPol": {
+          "attributes": {
+            "tnL2IfPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsQosPfcIfPol": {
+          "attributes": {
+            "tnQosPfcIfPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsHIfPol": {
+          "attributes": {
+            "tnFabricHIfPolName": "10G-auto"
+          }
+        }
+      },
+      {
+        "infraRsL2PortSecurityPol": {
+          "attributes": {
+            "tnL2PortSecurityPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsLacpPol": {
+          "attributes": {
+            "tnLacpLagPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsFcIfPol": {
+          "attributes": {
+            "tnFcIfPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsLldpIfPol": {
+          "attributes": {
+            "tnLldpIfPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsMonIfInfraPol": {
+          "attributes": {
+            "tnMonInfraPolName": ""
+          }
+        }
+      }
+    ]
+  }
+}

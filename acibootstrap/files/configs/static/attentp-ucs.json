@@ -1,0 +1,20 @@
+{
+  "infraAttEntityP": {
+    "attributes": {
+      "descr": "installed by ACIBOOTSTRAP",
+      "dn": "uni/infra/attentp-ucs",
+      "name": "ucs",
+      "ownerKey": "",
+      "ownerTag": ""
+    },
+    "children": [
+      {
+        "infraRsDomP": {
+          "attributes": {
+            "tDn": "uni/phys-ucs"
+          }
+        }
+      }
+    ]
+  }
+}
