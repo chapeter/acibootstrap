@@ -1,8 +1,15 @@
 Variable: Value
-bgp_as: 18
+apic_ip: 10.94.238.5
+apic_pass: cisco123
+apic_user: admin
+bgp_as: 100
 dns: 171.70.168.183
 domain: cisco.com
 ntp: 10.50.171.9
+oob_from: 10.94.238.100
+oob_gw: 10.94.238.1/24
+oob_to: 10.94.238.104
+router_speed: 10G-auto
 tenant:
   external_subnets:
   - address: 1.1.1.1/24
@@ -13,7 +20,9 @@ tenant:
     name: 7
   - address: 3.3.3.3/24
     name: 8
-tz: n300_America-Chicago
-apic_ip:
-apic_user:
-apic_pass:
+  - address: 4.4.4.4/24
+    name: 9
+tz: n240_America-New_York
+vmmpool: vmmpool
+vmmpool_end: 2099
+vmmpool_start: 2000

@@ -1,0 +1,32 @@
+{
+  "infraInfra": {
+    "attributes": {
+      "dn": "uni/infra",
+      "status": "created,modified"
+    },
+    "children": [
+      {
+        "lacpLagPol": {
+          "attributes": {
+            "dn": "uni/infra/lacplagp-aci-poc-vds_lacpLagPol",
+            "name": "aci-poc-vds_lacpLagPol",
+            "status": "created,modified",
+            "mode": "mac-pin"
+          },
+          "children": []
+        }
+      },
+      {
+        "cdpIfPol": {
+          "attributes": {
+            "dn": "uni/infra/cdpIfP-aci-poc-vds_cdpIfPol",
+            "name": "aci-poc-vds_cdpIfPol",
+            "status": "created,modified",
+            "adminSt": "enabled"
+          },
+          "children": []
+        }
+      }
+    ]
+  }
+}

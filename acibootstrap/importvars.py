@@ -26,6 +26,10 @@ def getVMMVars():
     vmm_vars['vmmpool'] = 'vmmpool'
     vmm_vars['vmmpool_start'] = vcenter['A3'].value
     vmm_vars['vmmpool_end'] = vcenter['B3'].value
+    vmm_vars['vcenter_ip'] = vcenter['B6'].value
+    vmm_vars['vcenter_dc'] = vcenter['B7'].value
+    vmm_vars['vcenter_user'] = vcenter['B8'].value
+    vmm_vars['vcenter_pass'] = vcenter['B9'].value
 
     return vmm_vars
 

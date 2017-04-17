@@ -1,0 +1,86 @@
+{
+  "vmmDomP": {
+    "attributes": {
+      "dn": "uni/vmmp-VMware/dom-aci-poc-vds",
+      "name": "aci-poc-vds",
+      "rn": "dom-aci-poc-vds",
+      "status": "created,modified"
+    },
+    "children": [
+      {
+        "vmmCtrlrP": {
+          "attributes": {
+            "dn": "uni/vmmp-VMware/dom-aci-poc-vds/ctrlr-aci-poc-vcenter",
+            "name": "aci-poc-vcenter",
+            "hostOrIp": "{{ vcenter_ip }}",
+            "rootContName": "{{ vcenter_dc }}",
+            "rn": "ctrlr-aci-poc-vcenter",
+            "status": "created,modified"
+          },
+          "children": [
+            {
+              "vmmRsAcc": {
+                "attributes": {
+                  "tDn": "uni/vmmp-VMware/dom-aci-poc-vds/usracc-aci-poc-vcenter",
+                  "status": "created,modified"
+                },
+                "children": []
+              }
+            }
+          ]
+        }
+      },
+      {
+        "infraRsVlanNs": {
+          "attributes": {
+            "tDn": "uni/infra/vlanns-[vmmpool]-dynamic",
+            "status": "created,modified"
+          },
+          "children": []
+        }
+      },
+      {
+        "vmmUsrAccP": {
+          "attributes": {
+            "dn": "uni/vmmp-VMware/dom-aci-poc-vds/usracc-aci-poc-vcenter",
+            "name": "aci-poc-vcenter",
+            "usr": "{{ vcenter_user }}",
+            "descr": "installed by ACIBOOTSTRAP",
+            "pwd": "{{ vcenter_pass}}",
+            "rn": "usracc-aci-poc-vcenter",
+            "status": "created,modified"
+          },
+          "children": []
+        }
+      },
+      {
+        "vmmVSwitchPolicyCont": {
+          "attributes": {
+            "dn": "uni/vmmp-VMware/dom-aci-poc-vds/vswitchpolcont",
+            "status": "created,modified"
+          },
+          "children": [
+            {
+              "vmmRsVswitchOverrideCdpIfPol": {
+                "attributes": {
+                  "tDn": "uni/infra/cdpIfP-aci-poc-vds_cdpIfPol",
+                  "status": "created,modified"
+                },
+                "children": []
+              }
+            },
+            {
+              "vmmRsVswitchOverrideLacpPol": {
+                "attributes": {
+                  "tDn": "uni/infra/lacplagp-aci-poc-vds_lacpLagPol",
+                  "status": "created,modified"
+                },
+                "children": []
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

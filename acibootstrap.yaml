@@ -189,6 +189,30 @@
       aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/nprof-leaf_101_102.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
 
+
+
+    # Setup MGMT tenant with OOB stuff
+    - name: create mgmt oob pool
+      template: src={{ templates }}/addrinst-oobaddr.j2 dest={{ dynamic }}/addrinst-oobaddr.json
+    - name: install mgmt oob pool
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/addrinst-oobaddr.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: install mgmt Node Management Addresses
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/mgmtnodegrp-switch-oob.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: install mgmt Managed Node Connectivity Group
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/grp-switch-oob.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+
+    # Setup VMware VMM Domain
+    - name: install VMM LACP policy
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/create_vmm_lacp.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: Create VMM Domain Policy
+      template: src={{ templates }}/create_vmm_domain.j2 dest={{ dynamic }}/create_vmm_domain.json
+    - name: Install VMM domain Policy
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/create_vmm_domain.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: Attach VMM to AEP
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/attach_vmm_to_aep.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+
+
+
     # Install L3 POC tenant.name
     - name: create {{ tenant.name }}-POC tenant
       template: src={{ templates }}/tn-poc-L3.j2 dest={{ dynamic }}/tn-{{ tenant.name }}-POC.json
@@ -208,18 +232,6 @@
     - name: install Internal subnets
       aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/subnet-{{ item.name }}-internal.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
       with_items: "{{ tenant.private_subnets}}"
-
-
-    # Setup MGMT tenant with OOB stuff
-    - name: create mgmt oob pool
-      template: src={{ templates }}/addrinst-oobaddr.j2 dest={{ dynamic }}/addrinst-oobaddr.json
-    - name: install mgmt oob pool
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/addrinst-oobaddr.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
-    - name: install mgmt Node Management Addresses
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/mgmtnodegrp-switch-oob.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
-    - name: install mgmt Managed Node Connectivity Group
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/grp-switch-oob.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
-
 
 #- name: ACIBOOTSTRAP Local Cleanup
 #  hosts: localhost

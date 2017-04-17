@@ -1,0 +1,16 @@
+
+      {
+        "compRsDomP": {
+          "attributes": {
+            "childAction": "",
+            "rType": "mo",
+            "rn": "rsdomP",
+            "state": "formed",
+            "stateQual": "none",
+            "status": "",
+            "tCl": "vmmDomP",
+            "tDn": "uni/vmmp-VMware/dom-aci-poc-vds",
+            "tType": "mo"
+          }
+        }
+      }
