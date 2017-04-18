@@ -1,26 +1,5 @@
 ---
-#- name: ACIBOOTSTRAP Get APIC Creds
-#  hosts: localhost
-#  gather_facts: no
-#  vars_prompt:
-#    - name: apic_ip
-#      prompt: "Enter APIC IP"
-#      private: no
-#      required: yes
-#
-#    - name: user
-#      prompt: "Enter APIC Username"
-#      private: no
-#      default: "admin"
-#      prompt: "Enter APIC Password"
-#      private: no
-#
-#  tasks:
-#    - add_host:
-#        name: "{{ apic_ip }}"
-#        groups: apic
-#    - set_fact:
-#        user: "{{ user }}"
+
 
 - name: ACIBOOTSTRAP Fabric Entities
   hosts: apic
@@ -84,6 +63,10 @@
       aci_rest: action=post uri=api/mo/uni.json config_file=acibootstrap/files/configs/dynamic/ifPol-{{ item }}_ON.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
       with_items: "{{ stp_bpdu }}"
 
+    - name: create STP ON policy
+      template: src=acibootstrap/files/configs/templates/ifPol-stp-ON.j2 dest=acibootstrap/files/configs/dynamic/ifPol-stp-ON.json
+    - name: install STP ON policy
+      aci_rest: action=post uri=api/mo/uni.json config_file=acibootstrap/files/configs/dynamic/ifPol-stp-ON.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
     # Obtain a list of ACI Spines, then install BGP RRs
 
@@ -100,10 +83,7 @@
       with_items: "{{ spines.response }}"
 
 
-    - name: create STP ON policy
-      template: src=acibootstrap/files/configs/templates/ifPol-stp-ON.j2 dest=acibootstrap/files/configs/dynamic/ifPol-stp-ON.json
-    - name: install STP ON policy
-      aci_rest: action=post uri=api/mo/uni.json config_file=acibootstrap/files/configs/dynamic/ifPol-stp-ON.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+
 
     - name: create date/time default
       template: src=acibootstrap/files/configs/templates/format-default.j2 dest=acibootstrap/files/configs/dynamic/format-default.json
