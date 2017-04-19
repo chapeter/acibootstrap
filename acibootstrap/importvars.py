@@ -58,6 +58,8 @@ def getPocTenantVariables():
             'static':{}
             }}
 
+            
+
 
     counter = 0
     for row in poc_tenant.rows:
