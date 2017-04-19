@@ -2,8 +2,8 @@
   "infraAccPortP": {
     "attributes": {
       "descr": "installed by ACIBOOTSTRAP",
-      "dn": "uni/infra/accportprof-e1-1",
-      "name": "e1-1",
+      "dn": "uni/infra/accportprof-L2-out-switch",
+      "name": "L2-out-switch",
       "ownerKey": "",
       "ownerTag": ""
     },
@@ -22,7 +22,7 @@
               "infraRsAccBaseGrp": {
                 "attributes": {
                   "fexId": "101",
-                  "tDn": "uni/infra/funcprof/accbundle-ucs-fi-a"
+                  "tDn": "uni/infra/funcprof/accportgrp-L2-out-switch"
                 }
               }
             },

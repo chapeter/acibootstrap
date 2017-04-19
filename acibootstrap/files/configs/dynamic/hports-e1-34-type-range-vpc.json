@@ -1,0 +1,34 @@
+{
+  "infraHPortS": {
+    "attributes": {
+      "descr": "installed by ACIBOOTSTRAP",
+      "dn": "uni/infra/accportprof-rack_server_block/hports-e1-34-typ-range",
+      "name": "e1-34",
+      "ownerKey": "",
+      "ownerTag": "",
+      "type": "range"
+    },
+    "children": [
+      {
+        "infraRsAccBaseGrp": {
+          "attributes": {
+            "fexId": "101",
+            "tDn": "uni/infra/funcprof/accbundle-vpc-34"
+          }
+        }
+      },
+      {
+        "infraPortBlk": {
+          "attributes": {
+            "descr": "",
+            "fromCard": "1",
+            "fromPort": "34",
+            "name": "block2",
+            "toCard": "1",
+            "toPort": "34"
+          }
+        }
+      }
+    ]
+  }
+}

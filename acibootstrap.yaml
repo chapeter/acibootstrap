@@ -144,25 +144,106 @@
       aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/phys-svr.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
     - name: install ucs attachable entity profile
       aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/attentp-svr.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+
     # Setup FI A
     - name: install VPC interface policy group for UCS FI A
       aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/accbundle-ucs-fi-a.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
-    - name: install interface policy for E1/1 (UCS FI A)
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/accportprof-e1-1.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+
+    - name: install interface policy for UCS-FI-A
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/accportprof-ucs-fi-a.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+
+
+    # Setup FI B
+
+    - name: install VPC interface policy group for UCS FI B
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/accbundle-ucs-fi-b.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+
+    - name: install interface policy for UCS-FI-B
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/accportprof-ucs-fi-b.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+
+
+    # Push interfaces into policies
+    - name: create interface selectors for UCS-FI-A and UCS-FI-B
+      template: src={{ templates }}/hports-e1-port-typ-range-temp.j2 dest={{ dynamic }}/hports-e1-port-typ-range-temp.json
+      with_items: "{{ ucs_fi }}"
+    - name: install interface selectors for UCS-FI-A and UCS-FI-B
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/hports-e1-port-typ-range-temp.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      with_items: "{{ ucs_fi }}"
+
 
     # Create and Install L3-router
     - name: install L3-router-out vlan pool
       aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/vlanns-[L3-router-out]-dynamic.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
-    - name: install L3 router Physical Domain
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/phys-router.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+#    - name: install L3 router Physical Domain
+#      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/phys-router.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: install L3 router L3 Domain
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/l3dom-router.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
     - name: install L3 router Attachable Entity Profile
       aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/attentp-router.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
     - name: create interface policy group for L3 router
       template: src={{ templates }}/accportgrp-L3-router-out.j2 dest={{ dynamic }}/accportgrp-L3-router-out.json
     - name: install interface policy group for L3 router
       aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/accportgrp-L3-router-out.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
-    - name: install interface policy for E1/30 (L3 router)
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/accportprof-e1-30.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: install interface policy for E1/2 (L3 router)
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/accportprof-e1-2.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+
+    # Create and Install VLAN Pools
+    - name: create L2-out vlan pool
+      template: src={{ templates }}/vlans-pool.j2 dest={{ dynamic }}/vlans-pool-{{ item.name }}.json
+      with_items: "{{ vlan_pools }}"
+    - name: install L2-out vlan pool
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/vlans-pool-{{ item.name }}.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      with_items: "{{ vlan_pools }}"
+
+    # Create and install L2 out device
+#    - name: install L2-out switch Physical Domain
+#      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/phys-l2-out-switch.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: install L2-out switch Bridged Domain
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/l2dom-l2-out-switch.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: install L2-out switch Attachable Entity profile
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/attentp-l2-out-switch.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: create interface policy group for L2-out switch
+      template: src={{ templates }}/accportgrp-L2-out-switch.j2 dest={{ dynamic }}/accportgrp-L2-out-switch.json
+    - name: install interface policy group for L2-out switch
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/accportgrp-L2-out-switch.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: install interface policy for E1/1 (L2-out-switch)
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/accportprof-e1-1.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+
+
+    # Create and install Rack Servers
+    # Install non-VPC Servers
+    - name: create interface policy groups for each speed of server
+      template: src={{ templates }}/accportgrp-speed-server.j2 dest={{ dynamic }}/accportgrp-{{ item }}-server.json
+      with_items: "{{ speeds }}"
+    - name: install interface policy groups for each speed of server
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/accportgrp-{{ item }}-server.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      with_items: "{{ speeds }}"
+
+    - name: install rack server block interface profile
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/accportprof-rack_server_block.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+
+    - name: create rack server interface selectors
+      template: src={{ templates }}/hports-e1-port-type-range.j2 dest={{ dynamic }}/hports-e1-{{ item.port }}-type-range.json
+      with_items: "{{ rack_servers }}"
+    - name: install rack server interface selectors
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/hports-e1-{{ item.port }}-type-range.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      with_items: "{{ rack_servers }}"
+
+    # Install VPC Servers
+    - name: Create interface policy groups for each vpc
+      template: src={{ templates }}/accbundle-vpc-port.j2 dest={{ dynamic }}/accbundle-vpc-{{ item.port }}.json
+      with_items: "{{ rack_servers_vpc }}"
+    - name: install interface policy groups for each vpc
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/accbundle-vpc-{{ item.port }}.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      with_items: "{{ rack_servers_vpc }}"
+
+    - name: create rack server vpc interface selectors
+      template: src={{ templates }}/hports-e1-port-typ-range-vpc.j2 dest={{ dynamic }}/hports-e1-{{ item.port }}-type-range-vpc.json
+      with_items: "{{ rack_servers_vpc }}"
+    - name: install rack server vpc interface selectors
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/hports-e1-{{ item.port }}-type-range-vpc.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      with_items: "{{ rack_servers_vpc }}"
+
 
     # Create and install switches and ports to those switches
     - name: install VPC switch pair profile with interfaces
@@ -212,6 +293,8 @@
     - name: install Internal subnets
       aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/subnet-{{ item.name }}-internal.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
       with_items: "{{ tenant.private_subnets}}"
+
+
 
 #- name: ACIBOOTSTRAP Local Cleanup
 #  hosts: localhost

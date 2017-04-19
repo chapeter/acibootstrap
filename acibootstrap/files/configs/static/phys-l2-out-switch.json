@@ -1,0 +1,19 @@
+{
+  "physDomP": {
+    "attributes": {
+      "dn": "uni/phys-l2-out-switch",
+      "name": "l2-out-switch",
+      "ownerKey": "",
+      "ownerTag": ""
+    },
+    "children": [
+      {
+        "infraRsVlanNs": {
+          "attributes": {
+            "tDn": "uni/infra/vlanns-[common-l2-out]-dynamic"
+          }
+        }
+      }
+    ]
+  }
+}

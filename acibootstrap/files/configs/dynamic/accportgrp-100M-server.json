@@ -1,46 +1,52 @@
 {
-  "infraAccBndlGrp": {
+  "infraAccPortGrp": {
     "attributes": {
-      "descr": "",
-      "dn": "uni/infra/funcprof/accbundle-ucs-fi-a",
-      "lagT": "node",
-      "name": "ucs-fi-a",
+      "descr": "installed by ACIBOOTSTRAP",
+      "dn": "uni/infra/funcprof/accportgrp-100M-server",
+      "name": "100M-server",
       "ownerKey": "",
       "ownerTag": ""
     },
     "children": [
       {
+        "infraRsL2IfPol": {
+          "attributes": {
+            "tnL2IfPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsQosPfcIfPol": {
+          "attributes": {
+            "tnQosPfcIfPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsHIfPol": {
+          "attributes": {
+            "tnFabricHIfPolName": "100M-auto"
+          }
+        }
+      },
+      {
+        "infraRsL2PortSecurityPol": {
+          "attributes": {
+            "tnL2PortSecurityPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsMonIfInfraPol": {
+          "attributes": {
+            "tnMonInfraPolName": ""
+          }
+        }
+      },
+      {
         "infraRsStpIfPol": {
           "attributes": {
-            "tnStpIfPolName": ""
-          }
-        }
-      },
-      {
-        "infraRsQosIngressDppIfPol": {
-          "attributes": {
-            "tnQosDppPolName": ""
-          }
-        }
-      },
-      {
-        "infraRsStormctrlIfPol": {
-          "attributes": {
-            "tnStormctrlIfPolName": ""
-          }
-        }
-      },
-      {
-        "infraRsQosEgressDppIfPol": {
-          "attributes": {
-            "tnQosDppPolName": ""
-          }
-        }
-      },
-      {
-        "infraRsQosDppIfPol": {
-          "attributes": {
-            "tnQosDppPolName": ""
+            "tnStpIfPolName": "bpdu-guard-ON"
           }
         }
       },
@@ -66,44 +72,30 @@
         }
       },
       {
-        "infraRsCdpIfPol": {
+        "infraRsQosDppIfPol": {
           "attributes": {
-            "tnCdpIfPolName": "CDP_ENABLE"
+            "tnQosDppPolName": ""
           }
         }
       },
       {
-        "infraRsL2IfPol": {
+        "infraRsQosIngressDppIfPol": {
           "attributes": {
-            "tnL2IfPolName": ""
+            "tnQosDppPolName": ""
           }
         }
       },
       {
-        "infraRsQosPfcIfPol": {
+        "infraRsStormctrlIfPol": {
           "attributes": {
-            "tnQosPfcIfPolName": ""
+            "tnStormctrlIfPolName": ""
           }
         }
       },
       {
-        "infraRsHIfPol": {
+        "infraRsQosEgressDppIfPol": {
           "attributes": {
-            "tnFabricHIfPolName": "10G-auto"
-          }
-        }
-      },
-      {
-        "infraRsL2PortSecurityPol": {
-          "attributes": {
-            "tnL2PortSecurityPolName": ""
-          }
-        }
-      },
-      {
-        "infraRsLacpPol": {
-          "attributes": {
-            "tnLacpLagPolName": "LACP_ACTIVE"
+            "tnQosDppPolName": ""
           }
         }
       },
@@ -117,14 +109,14 @@
       {
         "infraRsLldpIfPol": {
           "attributes": {
-            "tnLldpIfPolName": ""
+            "tnLldpIfPolName": "LLDP_ENABLE"
           }
         }
       },
       {
-        "infraRsMonIfInfraPol": {
+        "infraRsCdpIfPol": {
           "attributes": {
-            "tnMonInfraPolName": ""
+            "tnCdpIfPolName": "CDP_ENABLE"
           }
         }
       }

@@ -1,17 +1,16 @@
 {
-  "infraAttEntityP": {
+  "l3extDomP": {
     "attributes": {
-      "descr": "installed by ACIBOOTSTRAP",
-      "dn": "uni/infra/attentp-router",
+      "dn": "uni/l3dom-router",
       "name": "router",
       "ownerKey": "",
       "ownerTag": ""
     },
     "children": [
       {
-        "infraRsDomP": {
+        "infraRsVlanNs": {
           "attributes": {
-            "tDn": "uni/l3dom-router"
+            "tDn": "uni/infra/vlanns-[L3-router-out]-dynamic"
           }
         }
       }

@@ -1,0 +1,25 @@
+{
+  "fvnsVlanInstP": {
+    "attributes": {
+      "allocMode": "dynamic",
+      "descr": "installed by ACIBOOTSTRAP",
+      "dn": "uni/infra/vlanns-[common-l2-out]-dynamic",
+      "name": "common-l2-out",
+      "ownerKey": "",
+      "ownerTag": ""
+    },
+    "children": [
+      {
+        "fvnsEncapBlk": {
+          "attributes": {
+            "allocMode": "inherit",
+            "descr": "",
+            "from": "vlan-2120",
+            "name": "",
+            "to": "vlan-2129"
+          }
+        }
+      }
+    ]
+  }
+}

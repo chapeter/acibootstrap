@@ -9,11 +9,7 @@
   tasks:
     - name: debug
       debug: msg="{{ vars }}"
-    - name: install VMM LACP policy
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/create_vmm_lacp.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
-    - name: Create VMM Domain Policy
-      template: src={{ templates }}/create_vmm_domain.j2 dest={{ dynamic }}/create_vmm_domain.json
-    - name: Install VMM domain Policy
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/create_vmm_domain.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
-    - name: Attach VMM to AEP
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/attach_vmm_to_aep.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: create {{ tenant.name }} routed out
+      template: src={{ templates }}/out-tenant-routed-out.j2 dest={{ dynamic }}/out-{{ tenant.name }}-routed-out.json
+    - name: install {{ tenant.name }} routed out
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/out-{{ enant.name }}-routed-out.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}

@@ -1,0 +1,26 @@
+{
+  "fvnsAddrInst": {
+    "attributes": {
+      "addr": "10.94.238.1/24",
+      "addrType": "regular",
+      "descr": "installed by ACIBOOTSTRAP",
+      "dn": "uni/tn-mgmt/addrinst-switch-ooboobaddr",
+      "name": "switch-ooboobaddr",
+      "ownerKey": "",
+      "ownerTag": "",
+      "skipGwVal": "no"
+    },
+    "children": [
+      {
+        "fvnsUcastAddrBlk": {
+          "attributes": {
+            "descr": "installed by ACIBOOTSTRAP",
+            "from": "10.94.238.100",
+            "name": "",
+            "to": "10.94.238.104"
+          }
+        }
+      }
+    ]
+  }
+}

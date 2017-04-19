@@ -50,7 +50,13 @@ def getPocTenantVariables():
         'tenant': {
             'name':tenant_name,
             'external_subnets':[],
-            'private_subnets':[]}}
+            'private_subnets':[],
+            '101':{},
+            '102':{},
+            'ospf':{},
+            'eigrp':{},
+            'static':{}
+            }}
 
 
     counter = 0
@@ -62,6 +68,21 @@ def getPocTenantVariables():
             else:
                 poc_tenant_vars['tenant']['private_subnets'].append(subnet)
         counter += 1
+
+    poc_tenant_vars['tenant']['protocol'] = poc_tenant['B15'].value
+    poc_tenant_vars['tenant']['101']['router_id'] = poc_tenant['B16'].value
+    poc_tenant_vars['tenant']['102']['router_id'] = poc_tenant['B21'].value
+    poc_tenant_vars['tenant']['101']['r_address'] = poc_tenant['B17'].value
+    poc_tenant_vars['tenant']['102']['r_address'] = poc_tenant['B22'].value
+    poc_tenant_vars['tenant']['101']['encap'] = poc_tenant['B18'].value
+    poc_tenant_vars['tenant']['102']['encap'] = poc_tenant['B23'].value
+
+
+
+    if poc_tenant_vars['tenant']['protocol'] == 'OSPF':
+        poc_tenant_vars['tenant']['ospf']['area_id'] = poc_tenant['B28'].value
+        poc_tenant_vars['tenant']['ospf']['area_type'] = poc_tenant['B29'].value
+
     return poc_tenant_vars
 
 def saveYAML(var):

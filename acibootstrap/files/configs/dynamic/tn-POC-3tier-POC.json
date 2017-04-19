@@ -7,7 +7,7 @@
           "descr": "installed by ACIBOOTSTRAP",
           "dn": "uni/tn-POC-3tier-L3",
           "name": "POC-3tier-L3",
-          
+
           "ownerKey": "",
           "ownerTag": "",
           "status":"created,modified"
@@ -18,7 +18,7 @@
               "attributes": {
                 "descr": "installed by ACIBOOTSTRAP",
                 "name": "POC-WEB",
-                
+
                 "ownerKey": "",
                 "ownerTag": "",
                 "prio": "unspecified",
@@ -32,7 +32,7 @@
                       "consMatchT": "AtleastOne",
                       "descr": "installed by ACIBOOTSTRAP",
                       "name": "POC-WEB-OPEN",
-                      
+
                       "prio": "unspecified",
                       "provMatchT": "AtleastOne",
                       "revFltPorts": "yes",
@@ -58,7 +58,7 @@
               "attributes": {
                 "descr": "installed by ACIBOOTSTRAP",
                 "name": "POC-APP",
-                
+
                 "ownerKey": "",
                 "ownerTag": "",
                 "prio": "unspecified",
@@ -72,7 +72,7 @@
                       "consMatchT": "AtleastOne",
                       "descr": "installed by ACIBOOTSTRAP",
                       "name": "POC-APP-OPEN",
-                      
+
                       "prio": "unspecified",
                       "provMatchT": "AtleastOne",
                       "revFltPorts": "yes",
@@ -98,7 +98,7 @@
               "attributes": {
                 "descr": "installed by ACIBOOTSTRAP",
                 "name": "POC-DB",
-                
+
                 "ownerKey": "",
                 "ownerTag": "",
                 "prio": "unspecified",
@@ -112,7 +112,7 @@
                       "consMatchT": "AtleastOne",
                       "descr": "installed by ACIBOOTSTRAP",
                       "name": "POC-DB-OPEN",
-                      
+
                       "prio": "unspecified",
                       "provMatchT": "AtleastOne",
                       "revFltPorts": "yes",
@@ -144,7 +144,7 @@
                 "descr": "installed by ACIBOOTSTRAP",
                 "knwMcastAct": "permit",
                 "name": "default",
-                
+
                 "ownerKey": "",
                 "ownerTag": "",
                 "pcEnfDir": "ingress",
@@ -156,9 +156,7 @@
                     "attributes": {
                       "descr": "installed by ACIBOOTSTRAP",
                       "matchT": "AtleastOne",
-                      "name": "",
-                      
-                      "prefGrMemb": "disabled"
+                      "name": ""
                     }
                   }
                 },
@@ -205,7 +203,7 @@
                 "mcastAllow": "no",
                 "multiDstPktAct": "bd-flood",
                 "name": "BACK-END",
-                
+
                 "ownerKey": "",
                 "ownerTag": "",
                 "type": "regular",
@@ -259,7 +257,7 @@
                 "mcastAllow": "no",
                 "multiDstPktAct": "bd-flood",
                 "name": "FRONT-END",
-                
+
                 "ownerKey": "",
                 "ownerTag": "",
                 "type": "regular",
@@ -313,7 +311,7 @@
               "attributes": {
                 "descr": "",
                 "name": "POC-3tier",
-                
+
                 "ownerKey": "",
                 "ownerTag": "",
                 "prio": "unspecified"
@@ -323,13 +321,12 @@
                   "fvAEPg": {
                     "attributes": {
                       "descr": "",
-                      "fwdCtrl": "",
+                    
                       "isAttrBasedEPg": "no",
                       "matchT": "AtleastOne",
                       "name": "DB",
-                      
+
                       "pcEnfPref": "unenforced",
-                      "prefGrMemb": "exclude",
                       "prio": "unspecified"
                     },
                     "children": [
@@ -356,13 +353,12 @@
                   "fvAEPg": {
                     "attributes": {
                       "descr": "",
-                      "fwdCtrl": "",
+
                       "isAttrBasedEPg": "no",
                       "matchT": "AtleastOne",
                       "name": "APP",
-                      
+
                       "pcEnfPref": "unenforced",
-                      "prefGrMemb": "exclude",
                       "prio": "unspecified"
                     },
                     "children": [
@@ -397,13 +393,12 @@
                   "fvAEPg": {
                     "attributes": {
                       "descr": "",
-                      "fwdCtrl": "",
+
                       "isAttrBasedEPg": "no",
                       "matchT": "AtleastOne",
                       "name": "WEB",
-                      
+
                       "pcEnfPref": "unenforced",
-                      "prefGrMemb": "exclude",
                       "prio": "unspecified"
                     },
                     "children": [
