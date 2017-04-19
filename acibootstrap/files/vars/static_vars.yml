@@ -13,3 +13,57 @@ stp_bpdu:
   - bpdu-filter
   - bpdu-guard
 protocol: 'https'
+
+vlan_pools:
+  - name: 'common-l2-out'
+    start: '2120'
+    end: '2129'
+  - name: 'L3-router-out'
+    start: '2110'
+    end: '2119'
+
+#Port mappings
+rack_servers:
+  - port: '39'
+    speed: '10G'
+  - port: '40'
+    speed: '10G'
+  - port: '41'
+    speed: '10G'
+  - port: '42'
+    speed: '1G'
+  - port: '43'
+    speed: '1G'
+  - port: '44'
+    speed: '1G'
+  - port: '45'
+    speed: '1G'
+rack_servers_vpc:
+  - port: '30'
+    speed: '10G'
+  - port: '31'
+    speed: '10G'
+  - port: '32'
+    speed: '10G'
+  - port: '33'
+    speed: '10G'
+  - port: '34'
+    speed: '1G'
+  - port: '35'
+    speed: '1G'
+  - port: '36'
+    speed: '1G'
+  - port: '37'
+    speed: '1G'
+  - port: '38'
+    speed: '1G'
+
+ucs_fi:
+  - name: 'ucs-fi-a'
+    port: '20'
+  - name: 'ucs-fi-a'
+    port: '21'
+  - name: 'ucs-fi-b'
+    port: '22'
+  - name: 'ucs-fi-b'
+    port: '23'

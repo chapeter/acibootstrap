@@ -11,19 +11,51 @@
       {
         "infraRsAccPortP": {
           "attributes": {
-            "dn": "uni/infra/nprof-leaf_101_102/rsaccPortP-[uni/infra/accportprof-e1-1]",
-            "tDn": "uni/infra/accportprof-e1-1"
+            "dn": "uni/infra/nprof-leaf_101_102/rsaccPortP-[uni/infra/accportprof-e1-2]",
+            "tDn": "uni/infra/accportprof-e1-2"
           }
         }
       },
       {
         "infraRsAccPortP": {
           "attributes": {
-            "dn": "uni/infra/nprof-leaf_101_102/rsaccPortP-[uni/infra/accportprof-e1-30]",
-            "tDn": "uni/infra/accportprof-e1-30"
+            "dn": "uni/infra/nprof-leaf_101_102/rsaccPortP-[uni/infra/accportprof-e1-20]",
+            "tDn": "uni/infra/accportprof-e1-20"
           }
         }
       },
+      {
+        "infraRsAccPortP": {
+          "attributes": {
+            "dn": "uni/infra/nprof-leaf_101_102/rsaccPortP-[uni/infra/accportprof-e1-21]",
+            "tDn": "uni/infra/accportprof-e1-21"
+          }
+        }
+      },
+      {
+        "infraRsAccPortP": {
+          "attributes": {
+            "dn": "uni/infra/nprof-leaf_101_102/rsaccPortP-[uni/infra/accportprof-e1-22]",
+            "tDn": "uni/infra/accportprof-e1-22"
+          }
+        }
+      },
+      {
+        "infraRsAccPortP": {
+          "attributes": {
+            "dn": "uni/infra/nprof-leaf_101_102/rsaccPortP-[uni/infra/accportprof-e1-23]",
+            "tDn": "uni/infra/accportprof-e1-23"
+          }
+        }
+      },
+      {
+        "infraRsAccPortP": {
+        "attributes": {
+          "dn": "uni/infra/nprof-leaf_101_102/rsaccPortP-[uni/infra/accportprof-rack_server_block]",
+          "tDn": "uni/infra/accportprof-rack_server_block"
+        }
+      }
+    },
       {
         "infraLeafS": {
           "attributes": {

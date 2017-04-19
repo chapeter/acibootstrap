@@ -2,8 +2,8 @@
   "infraAccPortP": {
     "attributes": {
       "descr": "installed by ACIBOOTSTRAP",
-      "dn": "uni/infra/accportprof-e1-2",
-      "name": "e1-2",
+      "dn": "uni/infra/accportprof-L3-router-out",
+      "name": "L3-router-out",
       "ownerKey": "",
       "ownerTag": ""
     },
@@ -21,8 +21,8 @@
             {
               "infraRsAccBaseGrp": {
                 "attributes": {
-                  "fexId": "102",
-                  "tDn": "uni/infra/funcprof/accbundle-ucs-fi-b"
+                  "fexId": "101",
+                  "tDn": "uni/infra/funcprof/accportgrp-L3-router-out"
                 }
               }
             },
@@ -31,8 +31,8 @@
                 "attributes": {
                   "descr": "installed by ACIBOOTSTRAP",
                   "fromCard": "1",
-                  "fromPort": "1",
-                  "name": "block3",
+                  "fromPort": "2",
+                  "name": "block2",
                   "toCard": "1",
                   "toPort": "2"
                 }

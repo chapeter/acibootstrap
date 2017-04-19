@@ -1,0 +1,14 @@
+{
+  "infraAccPortP": {
+    "attributes": {
+      "descr": "installed by ACIBOOTSTRAP",
+      "dn": "uni/infra/accportprof-ucs-fi-a",
+      "name": "ucs-fi-a",
+      "ownerKey": "",
+      "ownerTag": ""
+    },
+    "children": [
+
+    ]
+  }
+}

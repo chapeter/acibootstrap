@@ -2,8 +2,8 @@
   "infraAttEntityP": {
     "attributes": {
       "descr": "installed by ACIBOOTSTRAP",
-      "dn": "uni/infra/attentp-router",
-      "name": "router",
+      "dn": "uni/infra/attentp-l2-out-switch",
+      "name": "l2-out-switch",
       "ownerKey": "",
       "ownerTag": ""
     },
@@ -11,7 +11,7 @@
       {
         "infraRsDomP": {
           "attributes": {
-            "tDn": "uni/l3dom-router"
+            "tDn": "uni/l2dom-l2-out-switch"
           }
         }
       }

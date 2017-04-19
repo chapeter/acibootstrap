@@ -2,9 +2,9 @@
   "infraAccBndlGrp": {
     "attributes": {
       "descr": "",
-      "dn": "uni/infra/funcprof/accbundle-ucs-fi-a",
+      "dn": "uni/infra/funcprof/accbundle-ucs-fi-b",
       "lagT": "node",
-      "name": "ucs-fi-a",
+      "name": "ucs-fi-b",
       "ownerKey": "",
       "ownerTag": ""
     },

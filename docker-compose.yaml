@@ -1,0 +1,11 @@
+version: '2'
+services:
+  acibootstrap:
+    image: chapeter/acibootstrap-dev
+    build: .
+    volumes:
+      - ./:/opt/acibootstrap
+    ports:
+      - 5000:5000
+      - 5001:5001
+      - 8001:8001
