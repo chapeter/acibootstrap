@@ -10,17 +10,54 @@ Users need to fill the acibootstrap Excel sheet here: [acibootstrap/files/vars/a
 
 
 
+## Using acibootstrap
+1. Cable and connect switches and APICs to each other
+2. Connect Switches and APICs to OOB network
+3. Fill out the acibootstrap Excel workbook: [acibootstrap.xlsx](acibootstrap/files/vars/acibootstrap.xlsx)
+4. Run acibootstrap
+5. Upload Excel workbook to acibootstrap
+6. Run
+
+
+## Port map
+| port | device | info | related info |
+|:---:|---|---| --- |
+| 1 | l2-out| |
+| 2 | L3-out| Speed Defined in XLSX|
+| 20 | UCS-FI A| vpc-1 |
+| 21 | UCS-FI A| vpc-1 |
+| 22 | UCS-FI B| vpc-2 |
+| 23 | UCS-FI B| vpc-2|
+| 30 | Rack Servers | 10g vpc |
+| 31 | Rack Servers | 10g vpc |
+| 32 | Rack Servers | 10g vpc |
+| 33 | Rack Servers | 10g vpc |
+| 34 | Rack Servers | 1g vpc |
+| 35 | Rack Servers | 1g vpc |
+| 36 | Rack Servers | 1g vpc |
+| 37 | Rack Servers | 1g vpc |
+| 38 | Rack Servers | 1g vpc |
+| 39 | Rack Servers | 10g |
+| 40 | Rack Servers | 10g |
+| 41 | Rack Servers | 10g |
+| 42 | Rack Servers | 1g |
+| 43 | Rack Servers | 1g |
+| 44 | Rack Servers | 1g |
+| 45 | Rack Servers | 1g |
+| 46 | apic3 | 1g |
+| 47 | apic2 | 1g |
+| 48 | apic1 | 1g |
+
+
 
 
 ## To Do
 * [ ] Fabric Discovery
-* [ ] Set OOB for switches
-* [ ] Setup VMM integration for VMware
-* [ ] Create XLSX to YAML variable import for user defined criteria
-* [x] [Flask web upload](http://flask.pocoo.org/docs/0.12/patterns/fileuploads/)
-* [x] Tail logs for online viewing of scripts
-* [ ] VLAN pool for VMM domain
 * [ ] Download file section
+* [ ] Routed out selection for demo tenant
+* [ ] Delivery packaging
+* [ ] VMM attachment to EPG
+
 
 
 ## Manual Work that needs to be done AFTER acibootstrap

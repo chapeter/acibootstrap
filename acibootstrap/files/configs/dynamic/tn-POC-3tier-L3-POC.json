@@ -5,8 +5,8 @@
       "fvTenant": {
         "attributes": {
           "descr": "installed by ACIBOOTSTRAP",
-          "dn": "uni/tn-POC-3tier",
-          "name": "POC-3tier",
+          "dn": "uni/tn-POC-3tier-L3",
+          "name": "POC-3tier-L3",
 
           "ownerKey": "",
           "ownerTag": "",

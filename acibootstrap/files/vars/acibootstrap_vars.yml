@@ -10,24 +10,26 @@ ntp: 10.50.171.9
 oob_from: 10.94.238.100
 oob_gw: 10.94.238.1/24
 oob_to: 10.94.238.104
-router_speed: 10G-auto
+router_speed: 1G-auto
 tenant:
-  '101':
+  101:
     encap: 2110
     r_address: 10.10.10.1/30
     router_id: 1.101.1.2
-  '102':
+    static_nexthop: 10.10.10.2
+    static_prefix: 0.0.0.0/0
+  102:
     encap: 2110
     r_address: 10.10.11.1/30
     router_id: 1.102.1.2
+    static_nexthop: 10.10.11.2
+    static_prefix: 0.0.0.0/0
   eigrp: {}
   external_subnets:
   - address: 1.1.1.1/24
     name: 6
-  name: POC-3tier
-  ospf:
-    area_id: 0.0.0.2
-    area_type: nssa
+  name: POC-3tier-L3
+  ospf: {}
   private_subnets:
   - address: 2.2.2.2/24
     name: 7
@@ -35,7 +37,7 @@ tenant:
     name: 8
   - address: 4.4.4.4/24
     name: 9
-  protocol: OSPF
+  protocol: Static
   static: {}
 tz: n240_America-New_York
 vcenter_dc: aci-poc

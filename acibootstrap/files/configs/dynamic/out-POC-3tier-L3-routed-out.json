@@ -1,0 +1,213 @@
+{
+  "l3extOut": {
+    "attributes": {
+      "descr": "installed by ACIBOOTSTRAP",
+      "dn": "uni/tn-POC-3tier-L3/out-POC-3tier-L3-routed-out",
+      "enforceRtctrl": "export",
+      "name": "POC-3tier-L3-routed-out",
+      "ownerKey": "",
+      "ownerTag": "",
+      "targetDscp": "unspecified"
+    },
+    "children": [
+      {
+        "l3extRsEctx": {
+          "attributes": {
+            "tnFvCtxName": "default"
+          }
+        }
+      },
+      {
+        "l3extLNodeP": {
+          "attributes": {
+            "configIssues": "",
+            "descr": "installed by ACIBOOTSTRAP",
+            "name": "POC-3tier-L3-border-leaf",
+            "ownerKey": "",
+            "ownerTag": "",
+            "tag": "yellow-green",
+            "targetDscp": "unspecified"
+          },
+          "children": [
+            {
+              "l3extRsNodeL3OutAtt": {
+                "attributes": {
+                  "rtrId": "1.101.1.2",
+                  "rtrIdLoopBack": "yes",
+                  "tDn": "topology/pod-1/node-101"
+                },
+                "children": [
+                  {
+                    "ipRouteP": {
+                      "attributes": {
+                        "aggregate": "no",
+                        "descr": "installed by ACIBOOTSTRAP",
+                        "ip": "0.0.0.0/0",
+                        "name": "",
+                        "pref": "1",
+                        "rtCtrl": ""
+                      },
+                      "children": [
+                        {
+                          "ipNexthopP": {
+                            "attributes": {
+                              "descr": "installed by ACIBOOTSTRAP",
+                              "name": "",
+                              "nhAddr": "10.10.10.2",
+                              "pref": "unspecified",
+                              "type": "prefix"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "l3extRsNodeL3OutAtt": {
+                "attributes": {
+                  "rtrId": "1.102.1.2",
+                  "rtrIdLoopBack": "yes",
+                  "tDn": "topology/pod-1/node-102"
+                },
+                "children": [
+                  {
+                    "ipRouteP": {
+                      "attributes": {
+                        "aggregate": "no",
+                        "descr": "installed by ACIBOOTSTRAP",
+                        "ip": "0.0.0.0/0",
+                        "name": "",
+                        "pref": "1",
+                        "rtCtrl": ""
+                      },
+                      "children": [
+                        {
+                          "ipNexthopP": {
+                            "attributes": {
+                              "descr": "installed by ACIBOOTSTRAP",
+                              "name": "",
+                              "nhAddr": "10.10.11.2",
+                              "pref": "unspecified",
+                              "type": "prefix"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "l3extLIfP": {
+                "attributes": {
+                  "descr": "installed by ACIBOOTSTRAP",
+                  "name": "POC-3tier-L3-routed-interfaces",
+                  "ownerKey": "",
+                  "ownerTag": "",
+                  "tag": "yellow-green"
+                },
+                "children": [
+                  {
+                    "l3extRsNdIfPol": {
+                      "attributes": {
+                        "tnNdIfPolName": ""
+                      }
+                    }
+                  },
+                  {
+                    "l3extRsIngressQosDppPol": {
+                      "attributes": {
+                        "tnQosDppPolName": ""
+                      }
+                    }
+                  },
+                  {
+                    "l3extRsEgressQosDppPol": {
+                      "attributes": {
+                        "tnQosDppPolName": ""
+                      }
+                    }
+                  },
+                  {
+                    "l3extRsPathL3OutAtt": {
+                      "attributes": {
+                        "addr": "10.10.11.1/30",
+                        "descr": "installed by ACIBOOTSTRAP",
+                        "encap": "vlan-2110",
+                        "encapScope": "local",
+                        "ifInstT": "sub-interface",
+                        "llAddr": "::",
+                        "mode": "regular",
+                        "mtu": "inherit",
+                        "tDn": "topology/pod-1/paths-102/pathep-[eth1/2]",
+                        "targetDscp": "unspecified"
+                      }
+                    }
+                  },
+                  {
+                    "l3extRsPathL3OutAtt": {
+                      "attributes": {
+                        "addr": "10.10.10.1/30",
+                        "descr": "installed by ACIBOOTSTRAP",
+                        "encap": "vlan-2110",
+                        "encapScope": "local",
+                        "ifInstT": "sub-interface",
+                        "llAddr": "::",
+                        "mode": "regular",
+                        "mtu": "inherit",
+                        "tDn": "topology/pod-1/paths-101/pathep-[eth1/2]",
+                        "targetDscp": "unspecified"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "l3extRsL3DomAtt": {
+          "attributes": {
+            "tDn": "uni/l3dom-router"
+          }
+        }
+      },
+      {
+        "l3extInstP": {
+          "attributes": {
+            "descr": "installed by ACIBOOTSTRAP",
+            "matchT": "AtleastOne",
+            "name": "CATCH_ALL",
+            "prio": "unspecified",
+            "targetDscp": "unspecified"
+          },
+          "children": [
+            {
+              "l3extSubnet": {
+                "attributes": {
+                  "aggregate": "",
+                  "descr": "installed by ACIBOOTSTRAP",
+                  "ip": "0.0.0.0/0",
+                  "name": "",
+                  "scope": "import-security"
+                }
+              }
+            },
+            {
+              "fvRsCustQosPol": {
+                "attributes": {
+                  "tnQosCustomPolName": ""
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

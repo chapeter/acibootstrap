@@ -11,21 +11,9 @@
     },
     "children": [
       {
-        "ospfExtP": {
-          "attributes": {
-            "areaCost": "1",
-            "areaCtrl": "redistribute,summary",
-            "areaId": "{{ ospf.areaId }}",
-            "areaType": "nssa",
-            "descr": "installed by ACIBOOTSTRAP",
-            "nameAlias": ""
-          }
-        }
-      },
-      {
         "l3extRsL3DomAtt": {
           "attributes": {
-            "tDn": "uni/l3dom-routert"
+            "tDn": "uni/l3dom-router"
           }
         }
       },
@@ -44,25 +32,30 @@
             "name": "{{ tenant.name }}-border-leaf",
             "ownerKey": "",
             "ownerTag": "",
+            "tag": "yellow-green",
             "targetDscp": "unspecified"
           },
           "children": [
             {
               "l3extRsNodeL3OutAtt": {
                 "attributes": {
-                  "rtrId": "{{ 101.router_id }}",
+                  "rtrId": "{{ tenant.102.router_id }}",
                   "rtrIdLoopBack": "yes",
-                  "tDn": "topology/pod-1/node-101"
-                }
+                  "tDn": "topology/pod-1/node-102"
+                },
+                "children": [
+                ]
               }
             },
             {
               "l3extRsNodeL3OutAtt": {
                 "attributes": {
-                  "rtrId": "{{ 102.router_id }}",
+                  "rtrId": "{{ tenant.101.router_id }}",
                   "rtrIdLoopBack": "yes",
-                  "tDn": "topology/pod-1/node-102"
-                }
+                  "tDn": "topology/pod-1/node-101"
+                },
+                "children": [
+                ]
               }
             },
             {
@@ -72,39 +65,20 @@
                   "name": "{{ tenant.name }}-routed-interfaces",
                   "ownerKey": "",
                   "ownerTag": "",
+                  "tag": "yellow-green"
                 },
                 "children": [
                   {
-                    "ospfIfP": {
-                      "attributes": {
-                        "authKeyId": "1",
-                        "authType": "none",
-                        "descr": "installed by ACIBOOTSTRAP",
-                        "name": "",
-                      },
-                      "children": [
-                        {
-                          "ospfRsIfPol": {
-                            "attributes": {
-                              "tnOspfIfPolName": "ospf-policy-p2p"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  },
-                  {
                     "l3extRsPathL3OutAtt": {
                       "attributes": {
-                        "addr": "{{ 102.r_address }}",
+                        "addr": "{{ tenant.102.r_address }}",
                         "descr": "installed by ACIBOOTSTRAP",
-                        "encap": "vlan-{{ 102.encap }}",
+                        "encap": "vlan-{{ tenant.102.encap }}",
                         "encapScope": "local",
                         "ifInstT": "sub-interface",
                         "llAddr": "::",
-                        "mac": "00:22:BD:F8:19:FF",
                         "mode": "regular",
-                        "mtu": "1500",
+                        "mtu": "inherit",
                         "tDn": "topology/pod-1/paths-102/pathep-[eth1/2]",
                         "targetDscp": "unspecified"
                       }
@@ -113,15 +87,14 @@
                   {
                     "l3extRsPathL3OutAtt": {
                       "attributes": {
-                        "addr": "{{ 101.r_address}}",
+                        "addr": "{{ tenant.101.r_address }}",
                         "descr": "installed by ACIBOOTSTRAP",
-                        "encap": "vlan-{{ 101.encap }}",
+                        "encap": "vlan-{{ tenant.101.encap }}",
                         "encapScope": "local",
                         "ifInstT": "sub-interface",
                         "llAddr": "::",
-                        "mac": "00:22:BD:F8:19:FF",
                         "mode": "regular",
-                        "mtu": "1500",
+                        "mtu": "inherit",
                         "tDn": "topology/pod-1/paths-101/pathep-[eth1/2]",
                         "targetDscp": "unspecified"
                       }
@@ -154,27 +127,16 @@
           ]
         }
       },
-
       {
         "l3extInstP": {
           "attributes": {
             "descr": "installed by ACIBOOTSTRAP",
             "matchT": "AtleastOne",
             "name": "CATCH_ALL",
-            "prefGrMemb": "exclude",
             "prio": "unspecified",
             "targetDscp": "unspecified"
           },
           "children": [
-            {
-              "fvRsProv": {
-                "attributes": {
-                  "matchT": "AtleastOne",
-                  "prio": "unspecified",
-                  "tnVzBrCPName": "ALLOW_ALL"
-                }
-              }
-            },
             {
               "l3extSubnet": {
                 "attributes": {
@@ -192,16 +154,16 @@
                   "tnQosCustomPolName": ""
                 }
               }
-            },
-            {
-              "fvRsCons": {
-                "attributes": {
-                  "prio": "unspecified",
-                  "tnVzBrCPName": "ALLOW_ALL"
-                }
-              }
             }
           ]
+        }
+      },
+      {
+        "eigrpExtP": {
+          "attributes": {
+            "asn": "{{ tenant.eigrp.as }}",
+            "descr": "installed by ACIBOOTSTRAP"
+          }
         }
       }
     ]

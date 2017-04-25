@@ -9,7 +9,29 @@
   tasks:
     - name: debug
       debug: msg="{{ vars }}"
-    - name: create {{ tenant.name }} routed out
-      template: src={{ templates }}/out-tenant-routed-out.j2 dest={{ dynamic }}/out-{{ tenant.name }}-routed-out.json
+    - name: tenant dictionary
+      debug: msg="{{ vars.tenant }}"
+
+    - name: create {{ tenant.name }} routed out for OSPF
+      template: src={{ templates }}/out-tenant-routed-out-ospf.j2 dest={{ dynamic }}/out-{{ tenant.name }}-routed-out.json
+      when: ("{{ tenant.protocol }}" == "OSPF")
+
+    - name: create {{ tenant.name }} OSPF int policy
+      template: src={{ templates }}/ospfIfPol-ospf-policy-p2p.j2 dest={{ dynamic }}/ospfIfPol-ospf-policy-p2p.json
+      when: ("{{ tenant.protocol }}" == "OSPF")
+    - name: install {{ tenant.name }} OSPF int policy
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/ospfIfPol-ospf-policy-p2p.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      when: ("{{ tenant.protocol }}" == "OSPF")
+
+    - name: create {{ tenant.name }} routed out for EIGRP
+      template: src={{ templates }}/out-tenant-routed-out-eigrp.j2 dest={{ dynamic }}/out-{{ tenant.name }}-routed-out.json
+      when: ("{{ tenant.protocol }}" == "EIGRP")
+
+    - name: create {{ tenant.name }} routed out for Static
+      template: src={{ templates }}/out-tenant-routed-out-static.j2 dest={{ dynamic }}/out-{{ tenant.name }}-routed-out.json
+      when: ("{{ tenant.protocol }}" == "Static")
+
+
+
     - name: install {{ tenant.name }} routed out
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/out-{{ enant.name }}-routed-out.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/out-{{ tenant.name }}-routed-out.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}

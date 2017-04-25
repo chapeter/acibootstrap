@@ -11,40 +11,32 @@
       {
         "infraRsAccPortP": {
           "attributes": {
-            "dn": "uni/infra/nprof-leaf_101_102/rsaccPortP-[uni/infra/accportprof-e1-2]",
-            "tDn": "uni/infra/accportprof-e1-2"
+            "dn": "uni/infra/nprof-leaf_101_102/rsaccPortP-[uni/infra/accportprof-L2-out-switch]",
+            "tDn": "uni/infra/accportprof-L2-out-switch"
           }
         }
       },
       {
         "infraRsAccPortP": {
           "attributes": {
-            "dn": "uni/infra/nprof-leaf_101_102/rsaccPortP-[uni/infra/accportprof-e1-20]",
-            "tDn": "uni/infra/accportprof-e1-20"
+            "dn": "uni/infra/nprof-leaf_101_102/rsaccPortP-[uni/infra/accportprof-L3-router-out]",
+            "tDn": "uni/infra/accportprof-L3-router-out"
           }
         }
       },
       {
         "infraRsAccPortP": {
           "attributes": {
-            "dn": "uni/infra/nprof-leaf_101_102/rsaccPortP-[uni/infra/accportprof-e1-21]",
-            "tDn": "uni/infra/accportprof-e1-21"
+            "dn": "uni/infra/nprof-leaf_101_102/rsaccPortP-[uni/infra/accportprof-ucs-fi-a]",
+            "tDn": "uni/infra/accportprof-ucs-fi-a"
           }
         }
       },
       {
         "infraRsAccPortP": {
           "attributes": {
-            "dn": "uni/infra/nprof-leaf_101_102/rsaccPortP-[uni/infra/accportprof-e1-22]",
-            "tDn": "uni/infra/accportprof-e1-22"
-          }
-        }
-      },
-      {
-        "infraRsAccPortP": {
-          "attributes": {
-            "dn": "uni/infra/nprof-leaf_101_102/rsaccPortP-[uni/infra/accportprof-e1-23]",
-            "tDn": "uni/infra/accportprof-e1-23"
+            "dn": "uni/infra/nprof-leaf_101_102/rsaccPortP-[uni/infra/accportprof-ucs-fi-b]",
+            "tDn": "uni/infra/accportprof-ucs-fi-b"
           }
         }
       },

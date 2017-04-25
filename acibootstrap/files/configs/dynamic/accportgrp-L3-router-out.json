@@ -25,7 +25,7 @@
       {
         "infraRsHIfPol": {
           "attributes": {
-            "tnFabricHIfPolName": "10G-auto"
+            "tnFabricHIfPolName": "1G-auto"
           }
         }
       },

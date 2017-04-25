@@ -61,8 +61,8 @@ def index():
             apic_ip = vars['apic_ip']
             apic_user = vars['apic_user']
         except:
-            apic_ip = none
-            apic_user = none
+            apic_ip = None
+            apic_user = None
 
 
     return """
