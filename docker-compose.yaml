@@ -1,7 +1,7 @@
 version: '2'
 services:
   acibootstrap:
-    image: chapeter/acibootstrap-dev
+    image: chapeter/acibootstrap
     build: .
     volumes:
       - ./:/opt/acibootstrap

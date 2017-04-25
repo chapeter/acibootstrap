@@ -1,0 +1,207 @@
+{
+  "l3extOut": {
+    "attributes": {
+      "descr": "installed by ACIBOOTSTRAP",
+      "dn": "uni/tn-{{ tenant.name }}/out-{{ tenant.name }}-routed-out",
+      "enforceRtctrl": "export",
+      "name": "{{ tenant.name }}-routed-out",
+      "ownerKey": "",
+      "ownerTag": "",
+      "targetDscp": "unspecified"
+    },
+    "children": [
+      {
+        "l3extRsL3DomAtt": {
+          "attributes": {
+            "tDn": "uni/l3dom-router"
+          }
+        }
+      },
+      {
+        "l3extRsEctx": {
+          "attributes": {
+            "tnFvCtxName": "default"
+          }
+        }
+      },
+      {
+        "l3extLNodeP": {
+          "attributes": {
+            "configIssues": "",
+            "descr": "installed by ACIBOOTSTRAP",
+            "name": "{{ tenant.name }}-border-leaf",
+            "ownerKey": "",
+            "ownerTag": "",
+            "tag": "yellow-green",
+            "targetDscp": "unspecified"
+          },
+          "children": [
+            {
+              "l3extRsNodeL3OutAtt": {
+                "attributes": {
+                  "rtrId": "{{ tenant.102.router_id }}",
+                  "rtrIdLoopBack": "yes",
+                  "tDn": "topology/pod-1/node-102"
+                },
+                "children": [
+                  {
+                    "l3extInfraNodeP": {
+                      "attributes": {
+                        "descr": "installed by ACIBOOTSTRAP",
+                        "fabricExtCtrlPeering": "no",
+                        "name": "",
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "l3extRsNodeL3OutAtt": {
+                "attributes": {
+                  "rtrId": "{{ tenant.101.router_id }}",
+                  "rtrIdLoopBack": "yes",
+                  "tDn": "topology/pod-1/node-101"
+                },
+                "children": [
+                  {
+                    "l3extInfraNodeP": {
+                      "attributes": {
+                        "descr": "installed by ACIBOOTSTRAP",
+                        "fabricExtCtrlPeering": "no",
+                        "name": "",
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "l3extLIfP": {
+                "attributes": {
+                  "descr": "installed by ACIBOOTSTRAP",
+                  "name": "{{ tenant.name }}-routed-interfaces",
+                  "ownerKey": "",
+                  "ownerTag": "",
+                  "tag": "yellow-green"
+                },
+                "children": [
+                  {
+                    "l3extRsPathL3OutAtt": {
+                      "attributes": {
+                        "addr": "{{ tenant.102.r_address }}",
+                        "descr": "installed by ACIBOOTSTRAP",
+                        "encap": "vlan-{{ tenant.102.encap }}",
+                        "encapScope": "local",
+                        "ifInstT": "sub-interface",
+                        "llAddr": "::",
+                        "mode": "regular",
+                        "mtu": "inherit",
+                        "tDn": "topology/pod-1/paths-102/pathep-[eth1/2]",
+                        "targetDscp": "unspecified"
+                      }
+                    }
+                  },
+                  {
+                    "l3extRsPathL3OutAtt": {
+                      "attributes": {
+                        "addr": "{{ tenant.101.r_address }}",
+                        "descr": "installed by ACIBOOTSTRAP",
+                        "encap": "vlan-{{ tenant.101.encap }}",
+                        "encapScope": "local",
+                        "ifInstT": "sub-interface",
+                        "llAddr": "::",
+                        "mode": "regular",
+                        "mtu": "inherit",
+                        "tDn": "topology/pod-1/paths-101/pathep-[eth1/2]",
+                        "targetDscp": "unspecified"
+                      }
+                    }
+                  },
+                  {
+                    "l3extRsNdIfPol": {
+                      "attributes": {
+                        "tnNdIfPolName": ""
+                      }
+                    }
+                  },
+                  {
+                    "l3extRsIngressQosDppPol": {
+                      "attributes": {
+                        "tnQosDppPolName": ""
+                      }
+                    }
+                  },
+                  {
+                    "l3extRsEgressQosDppPol": {
+                      "attributes": {
+                        "tnQosDppPolName": ""
+                      }
+                    }
+                  },
+                  {
+                    "eigrpIfP": {
+                      "attributes": {
+                        "descr": "installed by ACIBOOTSTRAP",
+                        "name": "",
+                      },
+                      "children": [
+                        {
+                          "eigrpRsIfPol": {
+                            "attributes": {
+                              "tnEigrpIfPolName": "default"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "l3extInstP": {
+          "attributes": {
+            "descr": "installed by ACIBOOTSTRAP",
+            "matchT": "AtleastOne",
+            "name": "CATCH_ALL",
+            "prefGrMemb": "exclude",
+            "prio": "unspecified",
+            "targetDscp": "unspecified"
+          },
+          "children": [
+            {
+              "l3extSubnet": {
+                "attributes": {
+                  "aggregate": "",
+                  "descr": "installed by ACIBOOTSTRAP",
+                  "ip": "0.0.0.0/0",
+                  "name": "",
+                  "scope": "import-security"
+                }
+              }
+            },
+            {
+              "fvRsCustQosPol": {
+                "attributes": {
+                  "tnQosCustomPolName": ""
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "eigrpExtP": {
+          "attributes": {
+            "asn": "{{ tenant.eigrp.as }}",
+            "descr": "installed by ACIBOOTSTRAP",
+          }
+        }
+      }
+    ]
+  }
+}

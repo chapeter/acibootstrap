@@ -294,7 +294,47 @@
       aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/subnet-{{ item.name }}-internal.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
       with_items: "{{ tenant.private_subnets}}"
 
+    ## Setup VMM with EPGs
+    - name: create VMM domain attachment to EPGs
+      template: src={{ templates }}/rsdomAtt-[uni-vmmp-VMware-dom-vds].j2 dest={{ dynamic }}/rsdomAtt-[uni-vmmp-{{ item }}-VMware-dom-vds].json
+      with_items:
+        - APP
+        - DB
+        - WEB
+    - name: install VMM domain attachment to EPGs
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/rsdomAtt-[uni-vmmp-{{ item }}-VMware-dom-vds].json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      with_items:
+        - APP
+        - DB
+        - WEB
 
+
+
+    ## Install L3 outs for POC tenant
+
+    - name: create {{ tenant.name }} routed out for OSPF
+      template: src={{ templates }}/out-tenant-routed-out-ospf.j2 dest={{ dynamic }}/out-{{ tenant.name }}-routed-out.json
+      when: ("{{ tenant.protocol }}" == "OSPF")
+
+    - name: create {{ tenant.name }} OSPF int policy
+      template: src={{ templates }}/ospfIfPol-ospf-policy-p2p.j2 dest={{ dynamic }}/ospfIfPol-ospf-policy-p2p.json
+      when: ("{{ tenant.protocol }}" == "OSPF")
+    - name: install {{ tenant.name }} OSPF int policy
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/ospfIfPol-ospf-policy-p2p.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      when: ("{{ tenant.protocol }}" == "OSPF")
+
+    - name: create {{ tenant.name }} routed out for EIGRP
+      template: src={{ templates }}/out-tenant-routed-out-eigrp.j2 dest={{ dynamic }}/out-{{ tenant.name }}-routed-out.json
+      when: ("{{ tenant.protocol }}" == "EIGRP")
+
+    - name: create {{ tenant.name }} routed out for Static
+      template: src={{ templates }}/out-tenant-routed-out-static.j2 dest={{ dynamic }}/out-{{ tenant.name }}-routed-out.json
+      when: ("{{ tenant.protocol }}" == "Static")
+
+
+
+    - name: install {{ tenant.name }} routed out
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/out-{{ tenant.name }}-routed-out.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
 #- name: ACIBOOTSTRAP Local Cleanup
 #  hosts: localhost

@@ -100,3 +100,4 @@ nbactions.xml
 *.git/
 
 *.DS_Store
+acibootstrap/dynamic/
