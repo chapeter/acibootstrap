@@ -15,6 +15,7 @@ fh.setFormatter(formatter)
 ch.setFormatter(formatter)
 logger.addHandler(fh)
 logger.addHandler(ch)
+
 logger.critical('*' * 25)
 logger.critical('acibootstrap is starting')
 logger.critical('*' * 25)
