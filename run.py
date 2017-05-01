@@ -16,11 +16,11 @@ def tests():
 
 @app.route("/")
 def main():
+    #    <a href="http://0.0.0.0:5001/tests">Run tests.yaml</a>
     return '''
     <!doctype html>
     <title>ACI BOOTSTRAP</title>
-    <a href="http://0.0.0.0:5001/run">Run ACI Bootstrap</a>
-    <a href="http://0.0.0.0:5001/tests">Run tests.yaml</a>
+    <button onclick="window.location.href='/run'">Run</button>
     '''
 
 

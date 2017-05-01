@@ -4,7 +4,7 @@
 ACIBOOTSTRAP is an application designed to help speed up ACI deployments by automating the common configuration elements of setting up ACI and building out a standardized port map for the fabric
 
 ## Prerequisites
-Before running ACIBOOTSTRAP, the user must ensure that the APIC controllers have been setup through their initial setup wizard.  
+Before running ACIBOOTSTRAP, the user must ensure that the APIC controllers have been setup through their initial setup wizard.
 
 Users need to fill the acibootstrap Excel sheet here: [acibootstrap/files/vars/acibootstrap.xlsx](acibootstrap/files/vars/acibootstrap.xlsx)
 
@@ -23,7 +23,9 @@ Users need to fill the acibootstrap Excel sheet here: [acibootstrap/files/vars/a
 | port | device | info | related info |
 |:---:|---|---| --- |
 | 1 | l2-out| |
-| 2 | L3-out| Speed Defined in XLSX|
+| 2 | L3-out| Speed Defined in XLSX |
+| 3 | L2 extention vpc | 10g Used for ACI migrate
+| 4 | L2 extention vpc | 10g Used for ACI migrate
 | 20 | UCS-FI A| vpc-1 |
 | 21 | UCS-FI A| vpc-1 |
 | 22 | UCS-FI B| vpc-2 |
@@ -44,9 +46,9 @@ Users need to fill the acibootstrap Excel sheet here: [acibootstrap/files/vars/a
 | 43 | Rack Servers | 1g |
 | 44 | Rack Servers | 1g |
 | 45 | Rack Servers | 1g |
-| 46 | apic3 | 1g |
-| 47 | apic2 | 1g |
-| 48 | apic1 | 1g |
+| 46 | apic3 | 10g |
+| 47 | apic2 | 10g |
+| 48 | apic1 | 10g |
 
 
 
@@ -54,9 +56,9 @@ Users need to fill the acibootstrap Excel sheet here: [acibootstrap/files/vars/a
 ## To Do
 * [ ] Fabric Discovery
 * [ ] Download file section
-* [ ] Routed out selection for demo tenant
+* [x] Routed out selection for demo tenant
 * [ ] Delivery packaging
-* [ ] VMM attachment to EPG
+* [x] VMM attachment to EPG
 
 
 
@@ -64,35 +66,10 @@ Users need to fill the acibootstrap Excel sheet here: [acibootstrap/files/vars/a
 
 
 
-## Directory Structure
-```
-.
-├── ansible
-│   ├── aci-ansible
-│   ├── ansible-aci
-│   ├── library
-│   └── vars
-├── files
-│   ├── cobra
-│   ├── configs
-│   ├── hosts
-│   └── wiper.ini
-├── images
-├── Dockerfile
-├── README.md
-├── acibootstrap-cleanup.yaml
-├── acibootstrap.retry
-├── acibootstrap.xlsx
-├── acibootstrap.yaml
-├── scratchpad.md
-├── scratchpad.pdf
-├── tests.retry
-└── tests.yaml
-```
 
 ### Important files
 * ```ansible/```: files needed to be referenced for ansible
-  * ```library/``` which contains the used modules needed for acibootstrap playbooks  
+  * ```library/``` which contains the used modules needed for acibootstrap playbooks
   * ```vars/``` contains the variables used in the acibootstrap playbooks.  All other directories are for development purposes only
 
 * ```files/```

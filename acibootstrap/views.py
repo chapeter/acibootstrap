@@ -1,15 +1,16 @@
 import os
-from flask import Flask, request, redirect, url_for
+from flask import Flask, request, redirect, url_for, render_template
 from werkzeug import secure_filename
 import yaml
 import subprocess
 import sys
+from acibootstrap import app
 
-UPLOAD_FOLDER = 'acibootstrap/files/vars/'
+UPLOAD_FOLDER = 'files/vars/'
 ALLOWED_EXTENSIONS = set(['xlsx'])
 
-app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+#app = Flask(__name__)
+#app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -43,6 +44,9 @@ def writeHosts():
 
     return
 
+@app.route("/portmap")
+def portmap():
+    return render_template('portmap.html')
 
 
 
@@ -52,7 +56,7 @@ def index():
         file = request.files['file']
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            file.save(os.path.join('acibootstrap/files/vars/', filename))
             subprocess.call("acibootstrap/importvars.py")
             writeHosts()
             return redirect(url_for('index'))
@@ -92,7 +96,3 @@ def index():
     <br><br>
     <iframe src="http://0.0.0.0:8001" width="1200" height="650" frameBorder="0"></iframe>
     """ % (apic_ip, apic_user)
-
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True)
