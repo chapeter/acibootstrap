@@ -4,24 +4,17 @@ __email__ = 'chapeter@cisco.com'
 
 import openpyxl
 import yaml
-
-workbook = openpyxl.load_workbook("acibootstrap/files/vars/acibootstrap.xlsx", data_only=True)
-
-print(workbook.sheetnames)
-
-fabric_pol = workbook["fabric_pol"]
-vcenter = workbook["vcenter"]
-poc_tenant = workbook["poc_tenant"]
-mgmt = workbook["mgmt"]
+import sys
 
 
-def getFabricPolicyVariables():
+
+def getFabricPolicyVariables(fabric_pol):
     fabric_pol_vars = {}
     for row in fabric_pol.rows:
         fabric_pol_vars[row[0].value] = row[1].value
     return fabric_pol_vars
 
-def getVMMVars():
+def getVMMVars(vcenter):
     vmm_vars = {}
     vmm_vars['vmmpool'] = 'vmmpool'
     vmm_vars['vmmpool_start'] = vcenter['A3'].value
@@ -33,7 +26,7 @@ def getVMMVars():
 
     return vmm_vars
 
-def getMGMTVars():
+def getMGMTVars(mgmt):
     mgmt_vars = {}
     mgmt_vars['oob_from'] = mgmt['B3'].value
     mgmt_vars['oob_to'] = mgmt['C3'].value
@@ -44,7 +37,7 @@ def getMGMTVars():
 
     return mgmt_vars
 
-def getPocTenantVariables():
+def getPocTenantVariables(poc_tenant):
     tenant_name = poc_tenant['B2'].value
     poc_tenant_vars = {
         'tenant': {
@@ -104,14 +97,30 @@ def mergeDicts(x, y):
     z.update(y)
     return z
 
-fabric_pol_vars = getFabricPolicyVariables()
-poc_tenant_vars = getPocTenantVariables()
-vmm_vars = getVMMVars()
-mgmt_vars = getMGMTVars()
 
-a = mergeDicts(fabric_pol_vars, poc_tenant_vars)
-b = mergeDicts(a, vmm_vars)
-c = mergeDicts(b, mgmt_vars)
+def importvars():
+    workbook = openpyxl.load_workbook("acibootstrap/files/vars/acibootstrap.xlsx", data_only=True)
 
+    sys.stderr.write(str(workbook.sheetnames))
 
-saveYAML(c)
+    fabric_pol = workbook["fabric_pol"]
+    vcenter = workbook["vcenter"]
+    poc_tenant = workbook["poc_tenant"]
+    mgmt = workbook["mgmt"]
+
+    sys.stderr.write("\nfabric fabric_pol_vars\n")
+    fabric_pol_vars = getFabricPolicyVariables(fabric_pol)
+    sys.stderr.write("\nreading poc tenant vars\n")
+    poc_tenant_vars = getPocTenantVariables(poc_tenant)
+    sys.stderr.write("\nreading vmm vars\n")
+    vmm_vars = getVMMVars(vcenter)
+    sys.stderr.write("\nreading mgmt vars\n")
+    mgmt_vars = getMGMTVars(mgmt)
+
+    sys.stderr.write("\nmerging dictionaries\n")
+    a = mergeDicts(fabric_pol_vars, poc_tenant_vars)
+    b = mergeDicts(a, vmm_vars)
+    c = mergeDicts(b, mgmt_vars)
+
+    sys.stderr.write("\nsaving variables to YAML file\n")
+    saveYAML(c)
