@@ -9,7 +9,7 @@ services:
       - 5000:5000
       - 5001:5001
       - 8001:8001
-  acimigrate:
-    image: imapex/acimigrate
-    ports:
-      - 8000:8000
+#  acimigrate:
+#    image: imapex/acimigrate
+#    ports:
+#      - 8000:8000
