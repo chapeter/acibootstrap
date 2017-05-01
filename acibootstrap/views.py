@@ -45,6 +45,10 @@ def writeHosts():
 
     return
 
+@app.route("/run", methods=['GET'])
+def run():
+    subprocess.call("./acibootstrap.sh")
+
 @app.route("/portmap")
 def portmap():
     return render_template('portmap.html')

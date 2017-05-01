@@ -14271,3 +14271,170 @@ expressions bare.
 2017-05-01 19:47:49,649 p=22 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
 2017-05-01 19:47:49,650 p=22 u=root |  PLAY RECAP ******************************************************************** 
 2017-05-01 19:47:49,650 p=22 u=root |  10.94.238.5                : ok=86   changed=1    unreachable=0    failed=0   
+2017-05-01 21:26:46,241 p=16 u=root |   
+2017-05-01 21:26:46,242 p=16 u=root |  /usr/bin/ansible-playbook -i acibootstrap/files/vars/hosts -M ansible/library/ acibootstrap.yaml -v
+2017-05-01 21:26:46,243 p=16 u=root |   
+2017-05-01 21:26:46,389 p=16 u=root |   [WARNING]: It is unnecessary to use '{{' in loops, leave variables in loop
+expressions bare.
+
+2017-05-01 21:26:46,506 p=16 u=root |  PLAY [ACIBOOTSTRAP Fabric Entities] ******************************************* 
+2017-05-01 21:26:46,530 p=16 u=root |  TASK: [debug] ***************************************************************** 
+2017-05-01 21:26:46,545 p=16 u=root |  ok: [10.94.238.5] => {
+    "msg": "{'delegate_to': None, 'failed_when': None, 'domain': 'cisco.com', 'oob_gw': '10.94.238.1/24', 'protocol': 'https', 'ucs_fi': [{'name': 'ucs-fi-a', 'port': '20'}, {'name': 'ucs-fi-a', 'port': '21'}, {'name': 'ucs-fi-b', 'port': '22'}, {'name': 'ucs-fi-b', 'port': '23'}], 'vcenter_ip': '10.94.238.58', 'dynamic': 'acibootstrap/files/configs/dynamic', 'oob_to': '10.94.238.104', 'oob_from': '10.94.238.100', 'static': 'acibootstrap/files/configs/static', 'router_speed': '1G-auto', 'tz': 'n240_America-New_York', 'apic_ip': '10.94.238.5', 'apic_pass': 'cisco123', 'playbook_dir': '/opt/acibootstrap', 'vmmpool_end': 2099, 'bgp_as': 100, 'l2_out_switch_speed': '10G-auto', 'vcenter_user': 'administrator@vsphere.local', 'dns': '171.70.168.183', 'Variable': 'Value', 'vrf_name': 'default', 'vcenter_dc': 'aci-poc', 'apic_user': 'admin', 'stp_bpdu': ['bpdu-filter', 'bpdu-guard'], 'templates': 'acibootstrap/files/configs/templates', 'inventory_file': 'acibootstrap/files/vars/hosts', 'ntp': '10.50.171.9', 'vcenter_pass': 'C!sco123', 'always_run': False, 'rack_servers': [{'speed': '10G', 'port': '39'}, {'speed': '10G', 'port': '40'}, {'speed': '10G', 'port': '41'}, {'speed': '1G', 'port': '42'}, {'speed': '1G', 'port': '43'}, {'speed': '1G', 'port': '44'}, {'speed': '1G', 'port': '45'}], 'rack_servers_vpc': [{'speed': '10G', 'port': '30'}, {'speed': '10G', 'port': '31'}, {'speed': '10G', 'port': '32'}, {'speed': '10G', 'port': '33'}, {'speed': '1G', 'port': '34'}, {'speed': '1G', 'port': '35'}, {'speed': '1G', 'port': '36'}, {'speed': '1G', 'port': '37'}, {'speed': '1G', 'port': '38'}], 'ignore_errors': False, 'vmmpool': 'vmmpool', 'tenant': {'protocol': 'Static', 101: {'router_id': '1.101.1.2', 'static_prefix': '0.0.0.0/0', 'r_address': '10.10.10.1/30', 'static_nexthop': '10.10.10.2', 'encap': 2110}, 102: {'router_id': '1.102.1.2', 'static_prefix': '0.0.0.0/0', 'r_address': '10.10.11.1/30', 'static_nexthop': '10.10.11.2', 'encap': 2110}, 'private_subnets': [{'name': 7, 'address': '2.2.2.2/24'}, {'name': 8, 'address': '3.3.3.3/24'}, {'name': 9, 'address': '4.4.4.4/24'}], 'eigrp': {}, 'static': {}, 'ospf': {}, 'external_subnets': [{'name': 6, 'address': '1.1.1.1/24'}], 'name': 'POC-3tier-L3'}, 'changed_when': None, 'descr': 'installed by ACIBOOTSTRAP', 'register': None, 'inventory_dir': '/opt/acibootstrap/acibootstrap/files/vars', 'status': 'created,modified', 'vlan_pools': [{'start': '2120', 'end': '2129', 'name': 'common-l2-out'}, {'start': '2110', 'end': '2119', 'name': 'L3-router-out'}], 'vmmpool_start': 2000, 'role_names': [], 'play_hosts': ['10.94.238.5'], 'speeds': ['10G', '1G', '100M']}"
+}
+2017-05-01 21:26:46,546 p=16 u=root |  TASK: [Gather Controller ID's] ************************************************ 
+2017-05-01 21:26:47,271 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": ["1"], "status": 200}
+2017-05-01 21:26:47,272 p=16 u=root |  TASK: [Gather Leaf ID's] ****************************************************** 
+2017-05-01 21:26:47,998 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": [], "status": 200}
+2017-05-01 21:26:47,998 p=16 u=root |  TASK: [Get list of Spine ID's] ************************************************ 
+2017-05-01 21:26:48,717 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": [], "status": 200}
+2017-05-01 21:26:48,717 p=16 u=root |  TASK: [install CDP_ENABLE] **************************************************** 
+2017-05-01 21:26:49,450 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:26:49,451 p=16 u=root |  TASK: [install CDP_DISABLE] *************************************************** 
+2017-05-01 21:26:50,187 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:26:50,188 p=16 u=root |  TASK: [install LLDP_ENABLE] *************************************************** 
+2017-05-01 21:26:50,915 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:26:50,916 p=16 u=root |  TASK: [install LLDP_DISABLE] ************************************************** 
+2017-05-01 21:26:51,636 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:26:51,637 p=16 u=root |  TASK: [install Port Channel LACP_ACTIVE] ************************************** 
+2017-05-01 21:26:52,360 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:26:52,361 p=16 u=root |  TASK: [install Port Channel MAC_PINNING] ************************************** 
+2017-05-01 21:26:53,127 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:26:53,128 p=16 u=root |  TASK: [create Port Channel Mode On] ******************************************* 
+2017-05-01 21:26:53,226 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "gid": 0, "group": "root", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/lacplagp-MODE_ON.json", "size": 276, "state": "file", "uid": 0}
+2017-05-01 21:26:53,227 p=16 u=root |  TASK: [install Port Channel Mode On] ****************************************** 
+2017-05-01 21:26:53,955 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:26:53,956 p=16 u=root |  TASK: [create Link Level policies] ******************************************** 
+2017-05-01 21:26:54,049 p=16 u=root |  ok: [10.94.238.5] => (item=10G) => {"changed": false, "gid": 0, "group": "root", "item": "10G", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/custom/hintfpol-10G.json", "size": 196, "state": "file", "uid": 0}
+2017-05-01 21:26:54,141 p=16 u=root |  ok: [10.94.238.5] => (item=1G) => {"changed": false, "gid": 0, "group": "root", "item": "1G", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/custom/hintfpol-1G.json", "size": 193, "state": "file", "uid": 0}
+2017-05-01 21:26:54,233 p=16 u=root |  ok: [10.94.238.5] => (item=100M) => {"changed": false, "gid": 0, "group": "root", "item": "100M", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/custom/hintfpol-100M.json", "size": 199, "state": "file", "uid": 0}
+2017-05-01 21:26:54,235 p=16 u=root |  TASK: [install Link Level policies] ******************************************* 
+2017-05-01 21:26:54,948 p=16 u=root |  ok: [10.94.238.5] => (item=10G) => {"changed": false, "item": "10G", "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:26:55,672 p=16 u=root |  ok: [10.94.238.5] => (item=1G) => {"changed": false, "item": "1G", "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:26:56,415 p=16 u=root |  ok: [10.94.238.5] => (item=100M) => {"changed": false, "item": "100M", "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:26:56,416 p=16 u=root |  TASK: [create STP BPDU policies] ********************************************** 
+2017-05-01 21:26:56,505 p=16 u=root |  ok: [10.94.238.5] => (item=bpdu-filter) => {"changed": false, "gid": 0, "group": "root", "item": "bpdu-filter", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/ifPol-bpdu-filter_ON.json", "size": 206, "state": "file", "uid": 0}
+2017-05-01 21:26:56,587 p=16 u=root |  ok: [10.94.238.5] => (item=bpdu-guard) => {"changed": false, "gid": 0, "group": "root", "item": "bpdu-guard", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/ifPol-bpdu-guard_ON.json", "size": 203, "state": "file", "uid": 0}
+2017-05-01 21:26:56,588 p=16 u=root |  TASK: [install STP BPDU policies] ********************************************* 
+2017-05-01 21:26:57,308 p=16 u=root |  ok: [10.94.238.5] => (item=bpdu-filter) => {"changed": false, "item": "bpdu-filter", "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:26:58,032 p=16 u=root |  ok: [10.94.238.5] => (item=bpdu-guard) => {"changed": false, "item": "bpdu-guard", "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:26:58,033 p=16 u=root |  TASK: [create STP ON policy] ************************************************** 
+2017-05-01 21:26:58,119 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "gid": 0, "group": "root", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/ifPol-stp-ON.json", "size": 179, "state": "file", "uid": 0}
+2017-05-01 21:26:58,120 p=16 u=root |  TASK: [install STP ON policy] ************************************************* 
+2017-05-01 21:26:58,845 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:26:58,846 p=16 u=root |  TASK: [Ensure we got spine list (for debugging only)] ************************* 
+2017-05-01 21:26:58,853 p=16 u=root |  ok: [10.94.238.5] => {
+    "spines.response": []
+}
+2017-05-01 21:26:58,853 p=16 u=root |  TASK: [Create Fabric BGP RR policy] ******************************************* 
+2017-05-01 21:26:58,859 p=16 u=root |  skipping: [10.94.238.5]
+2017-05-01 21:26:58,859 p=16 u=root |  TASK: [Install Fabric BGP RR policy] ****************************************** 
+2017-05-01 21:26:58,864 p=16 u=root |  skipping: [10.94.238.5]
+2017-05-01 21:26:58,864 p=16 u=root |  TASK: [create date/time default] ********************************************** 
+2017-05-01 21:26:58,955 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "gid": 0, "group": "root", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/format-default.json", "size": 201, "state": "file", "uid": 0}
+2017-05-01 21:26:58,957 p=16 u=root |  TASK: [install date/time default (setting tz)] ******************************** 
+2017-05-01 21:26:59,691 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:26:59,692 p=16 u=root |  TASK: [create time default policy] ******************************************** 
+2017-05-01 21:26:59,783 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "gid": 0, "group": "root", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/time-default.json", "size": 449, "state": "file", "uid": 0}
+2017-05-01 21:26:59,783 p=16 u=root |  TASK: [install time default policy] ******************************************* 
+2017-05-01 21:27:00,542 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:00,543 p=16 u=root |  TASK: [create dns domain policy] ********************************************** 
+2017-05-01 21:27:00,629 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "gid": 0, "group": "root", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/dom-cisco.com.json", "size": 149, "state": "file", "uid": 0}
+2017-05-01 21:27:00,630 p=16 u=root |  TASK: [install dns domain policy] ********************************************* 
+2017-05-01 21:27:01,353 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:01,354 p=16 u=root |  TASK: [create dns provider policy] ******************************************** 
+2017-05-01 21:27:01,443 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "gid": 0, "group": "root", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/prov-171.70.168.183.json", "size": 134, "state": "file", "uid": 0}
+2017-05-01 21:27:01,444 p=16 u=root |  TASK: [install dns provider policy] ******************************************* 
+2017-05-01 21:27:02,178 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:02,178 p=16 u=root |  TASK: [set dns default policy to use oob-default] ***************************** 
+2017-05-01 21:27:02,911 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:02,911 p=16 u=root |  TASK: [set Fabric L2 MTU policy to 9000] ************************************** 
+2017-05-01 21:27:03,667 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:03,667 p=16 u=root |  TASK: [install VPC policy] **************************************************** 
+2017-05-01 21:27:04,447 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:04,448 p=16 u=root |  TASK: [create ALLOW_ALL filter] *********************************************** 
+2017-05-01 21:27:04,538 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "gid": 0, "group": "root", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/flt-ALLOW_ALL.json", "size": 532, "state": "file", "uid": 0}
+2017-05-01 21:27:04,539 p=16 u=root |  TASK: [install ALLOW_ALL filter] ********************************************** 
+2017-05-01 21:27:05,273 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:05,274 p=16 u=root |  TASK: [create web filter] ***************************************************** 
+2017-05-01 21:27:05,359 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "gid": 0, "group": "root", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/flt-web.json", "size": 806, "state": "file", "uid": 0}
+2017-05-01 21:27:05,360 p=16 u=root |  TASK: [install web filter] **************************************************** 
+2017-05-01 21:27:06,097 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:06,098 p=16 u=root |  TASK: [create vmm pool] ******************************************************* 
+2017-05-01 21:27:06,185 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "gid": 0, "group": "root", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/vlans-vmmpool-dynamic.json", "size": 510, "state": "file", "uid": 0}
+2017-05-01 21:27:06,186 p=16 u=root |  TASK: [install vmm pool] ****************************************************** 
+2017-05-01 21:27:06,902 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:06,903 p=16 u=root |  TASK: [install svr bm vlan pool] ********************************************** 
+2017-05-01 21:27:07,637 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:07,638 p=16 u=root |  TASK: [install ucs physical domain] ******************************************* 
+2017-05-01 21:27:08,365 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:08,366 p=16 u=root |  TASK: [install ucs attachable entity profile] ********************************* 
+2017-05-01 21:27:09,095 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:09,096 p=16 u=root |  TASK: [install VPC interface policy group for UCS FI A] *********************** 
+2017-05-01 21:27:09,886 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:09,887 p=16 u=root |  TASK: [install interface policy for UCS-FI-A] ********************************* 
+2017-05-01 21:27:10,608 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:10,608 p=16 u=root |  TASK: [install VPC interface policy group for UCS FI B] *********************** 
+2017-05-01 21:27:11,475 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:11,476 p=16 u=root |  TASK: [install interface policy for UCS-FI-B] ********************************* 
+2017-05-01 21:27:12,215 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:12,216 p=16 u=root |  TASK: [create interface selectors for UCS-FI-A and UCS-FI-B] ****************** 
+2017-05-01 21:27:12,336 p=16 u=root |  changed: [10.94.238.5] => (item={'name': 'ucs-fi-a', 'port': '20'}) => {"changed": true, "dest": "acibootstrap/files/configs/dynamic/hports-e1-port-typ-range-temp.json", "gid": 0, "group": "root", "item": {"name": "ucs-fi-a", "port": "20"}, "md5sum": "adf845340ebad58e9e5c657ed61e0731", "mode": "0644", "owner": "root", "size": 722, "src": "/root/.ansible/tmp/ansible-tmp-1493674032.23-178811929819339/source", "state": "file", "uid": 0}
+2017-05-01 21:27:12,450 p=16 u=root |  changed: [10.94.238.5] => (item={'name': 'ucs-fi-a', 'port': '21'}) => {"changed": true, "dest": "acibootstrap/files/configs/dynamic/hports-e1-port-typ-range-temp.json", "gid": 0, "group": "root", "item": {"name": "ucs-fi-a", "port": "21"}, "md5sum": "20b41da8b3df0fa64174d44b6ab18193", "mode": "0644", "owner": "root", "size": 722, "src": "/root/.ansible/tmp/ansible-tmp-1493674032.34-49241638406914/source", "state": "file", "uid": 0}
+2017-05-01 21:27:12,556 p=16 u=root |  changed: [10.94.238.5] => (item={'name': 'ucs-fi-b', 'port': '22'}) => {"changed": true, "dest": "acibootstrap/files/configs/dynamic/hports-e1-port-typ-range-temp.json", "gid": 0, "group": "root", "item": {"name": "ucs-fi-b", "port": "22"}, "md5sum": "fb795556f00857e19f913e2ec7ad7447", "mode": "0644", "owner": "root", "size": 722, "src": "/root/.ansible/tmp/ansible-tmp-1493674032.45-165400346968257/source", "state": "file", "uid": 0}
+2017-05-01 21:27:12,662 p=16 u=root |  changed: [10.94.238.5] => (item={'name': 'ucs-fi-b', 'port': '23'}) => {"changed": true, "dest": "acibootstrap/files/configs/dynamic/hports-e1-port-typ-range-temp.json", "gid": 0, "group": "root", "item": {"name": "ucs-fi-b", "port": "23"}, "md5sum": "bf53fdc51cc8cdf28852072cf54877ed", "mode": "0644", "owner": "root", "size": 722, "src": "/root/.ansible/tmp/ansible-tmp-1493674032.56-145704091310201/source", "state": "file", "uid": 0}
+2017-05-01 21:27:12,663 p=16 u=root |  TASK: [install interface selectors for UCS-FI-A and UCS-FI-B] ***************** 
+2017-05-01 21:27:13,397 p=16 u=root |  ok: [10.94.238.5] => (item={'name': 'ucs-fi-a', 'port': '20'}) => {"changed": false, "item": {"name": "ucs-fi-a", "port": "20"}, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:14,139 p=16 u=root |  ok: [10.94.238.5] => (item={'name': 'ucs-fi-a', 'port': '21'}) => {"changed": false, "item": {"name": "ucs-fi-a", "port": "21"}, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:14,864 p=16 u=root |  ok: [10.94.238.5] => (item={'name': 'ucs-fi-b', 'port': '22'}) => {"changed": false, "item": {"name": "ucs-fi-b", "port": "22"}, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:15,598 p=16 u=root |  ok: [10.94.238.5] => (item={'name': 'ucs-fi-b', 'port': '23'}) => {"changed": false, "item": {"name": "ucs-fi-b", "port": "23"}, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:15,599 p=16 u=root |  TASK: [install L3-router-out vlan pool] *************************************** 
+2017-05-01 21:27:16,322 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:16,322 p=16 u=root |  TASK: [install L3 router L3 Domain] ******************************************* 
+2017-05-01 21:27:17,052 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:17,053 p=16 u=root |  TASK: [install L3 router Attachable Entity Profile] *************************** 
+2017-05-01 21:27:17,781 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:17,782 p=16 u=root |  TASK: [create interface policy group for L3 router] *************************** 
+2017-05-01 21:27:17,870 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "gid": 0, "group": "root", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/accportgrp-L3-router-out.json", "size": 2403, "state": "file", "uid": 0}
+2017-05-01 21:27:17,870 p=16 u=root |  TASK: [install interface policy group for L3 router] ************************** 
+2017-05-01 21:27:18,656 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:18,657 p=16 u=root |  TASK: [install interface policy for E1/2 (L3 router)] ************************* 
+2017-05-01 21:27:19,437 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:19,437 p=16 u=root |  TASK: [create L2-out vlan pool] *********************************************** 
+2017-05-01 21:27:19,535 p=16 u=root |  ok: [10.94.238.5] => (item={'start': '2120', 'end': '2129', 'name': 'common-l2-out'}) => {"changed": false, "gid": 0, "group": "root", "item": {"end": "2129", "name": "common-l2-out", "start": "2120"}, "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/vlans-pool-common-l2-out.json", "size": 522, "state": "file", "uid": 0}
+2017-05-01 21:27:19,628 p=16 u=root |  ok: [10.94.238.5] => (item={'start': '2110', 'end': '2119', 'name': 'L3-router-out'}) => {"changed": false, "gid": 0, "group": "root", "item": {"end": "2119", "name": "L3-router-out", "start": "2110"}, "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/vlans-pool-L3-router-out.json", "size": 522, "state": "file", "uid": 0}
+2017-05-01 21:27:19,628 p=16 u=root |  TASK: [install L2-out vlan pool] ********************************************** 
+2017-05-01 21:27:20,371 p=16 u=root |  ok: [10.94.238.5] => (item={'start': '2120', 'end': '2129', 'name': 'common-l2-out'}) => {"changed": false, "item": {"end": "2129", "name": "common-l2-out", "start": "2120"}, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:21,107 p=16 u=root |  ok: [10.94.238.5] => (item={'start': '2110', 'end': '2119', 'name': 'L3-router-out'}) => {"changed": false, "item": {"end": "2119", "name": "L3-router-out", "start": "2110"}, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:21,107 p=16 u=root |  TASK: [install L2-out switch Bridged Domain] ********************************** 
+2017-05-01 21:27:21,866 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:21,867 p=16 u=root |  TASK: [install L2-out switch Attachable Entity profile] *********************** 
+2017-05-01 21:27:22,593 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:22,593 p=16 u=root |  TASK: [create interface policy group for L2-out switch] *********************** 
+2017-05-01 21:27:22,682 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "gid": 0, "group": "root", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/accportgrp-L2-out-switch.json", "size": 2411, "state": "file", "uid": 0}
+2017-05-01 21:27:22,683 p=16 u=root |  TASK: [install interface policy group for L2-out switch] ********************** 
+2017-05-01 21:27:23,469 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:23,470 p=16 u=root |  TASK: [install interface policy for E1/1 (L2-out-switch)] ********************* 
+2017-05-01 21:27:24,258 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:24,259 p=16 u=root |  TASK: [create interface policy groups for each speed of server] *************** 
+2017-05-01 21:27:24,350 p=16 u=root |  ok: [10.94.238.5] => (item=10G) => {"changed": false, "gid": 0, "group": "root", "item": "10G", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/accportgrp-10G-server.json", "size": 2408, "state": "file", "uid": 0}
+2017-05-01 21:27:24,437 p=16 u=root |  ok: [10.94.238.5] => (item=1G) => {"changed": false, "gid": 0, "group": "root", "item": "1G", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/accportgrp-1G-server.json", "size": 2405, "state": "file", "uid": 0}
+2017-05-01 21:27:24,521 p=16 u=root |  ok: [10.94.238.5] => (item=100M) => {"changed": false, "gid": 0, "group": "root", "item": "100M", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/accportgrp-100M-server.json", "size": 2411, "state": "file", "uid": 0}
+2017-05-01 21:27:24,522 p=16 u=root |  TASK: [install interface policy groups for each speed of server] ************** 
+2017-05-01 21:27:25,307 p=16 u=root |  ok: [10.94.238.5] => (item=10G) => {"changed": false, "item": "10G", "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:26,087 p=16 u=root |  ok: [10.94.238.5] => (item=1G) => {"changed": false, "item": "1G", "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:26,897 p=16 u=root |  ok: [10.94.238.5] => (item=100M) => {"changed": false, "item": "100M", "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:26,898 p=16 u=root |  TASK: [install rack server block interface profile] *************************** 
+2017-05-01 21:27:27,618 p=16 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:27,619 p=16 u=root |  TASK: [create rack server interface selectors] ******************************** 
+2017-05-01 21:27:27,711 p=16 u=root |  ok: [10.94.238.5] => (item={'speed': '10G', 'port': '39'}) => {"changed": false, "gid": 0, "group": "root", "item": {"port": "39", "speed": "10G"}, "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/hports-e1-39-type-range.json", "size": 733, "state": "file", "uid": 0}
+2017-05-01 21:27:27,792 p=16 u=root |  ok: [10.94.238.5] => (item={'speed': '10G', 'port': '40'}) => {"changed": false, "gid": 0, "group": "root", "item": {"port": "40", "speed": "10G"}, "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/hports-e1-40-type-range.json", "size": 733, "state": "file", "uid": 0}
+2017-05-01 21:27:27,879 p=16 u=root |  ok: [10.94.238.5] => (item={'speed': '10G', 'port': '41'}) => {"changed": false, "gid": 0, "group": "root", "item": {"port": "41", "speed": "10G"}, "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/hports-e1-41-type-range.json", "size": 733, "state": "file", "uid": 0}
+2017-05-01 21:27:27,970 p=16 u=root |  ok: [10.94.238.5] => (item={'speed': '1G', 'port': '42'}) => {"changed": false, "gid": 0, "group": "root", "item": {"port": "42", "speed": "1G"}, "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/hports-e1-42-type-range.json", "size": 732, "state": "file", "uid": 0}
+2017-05-01 21:27:28,052 p=16 u=root |  ok: [10.94.238.5] => (item={'speed': '1G', 'port': '43'}) => {"changed": false, "gid": 0, "group": "root", "item": {"port": "43", "speed": "1G"}, "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/hports-e1-43-type-range.json", "size": 732, "state": "file", "uid": 0}
+2017-05-01 21:27:28,137 p=16 u=root |  ok: [10.94.238.5] => (item={'speed': '1G', 'port': '44'}) => {"changed": false, "gid": 0, "group": "root", "item": {"port": "44", "speed": "1G"}, "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/hports-e1-44-type-range.json", "size": 732, "state": "file", "uid": 0}
+2017-05-01 21:27:28,222 p=16 u=root |  ok: [10.94.238.5] => (item={'speed': '1G', 'port': '45'}) => {"changed": false, "gid": 0, "group": "root", "item": {"port": "45", "speed": "1G"}, "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/dynamic/hports-e1-45-type-range.json", "size": 732, "state": "file", "uid": 0}
+2017-05-01 21:27:28,223 p=16 u=root |  TASK: [install rack server interface selectors] ******************************* 
+2017-05-01 21:27:28,953 p=16 u=root |  ok: [10.94.238.5] => (item={'speed': '10G', 'port': '39'}) => {"changed": false, "item": {"port": "39", "speed": "10G"}, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:29,678 p=16 u=root |  ok: [10.94.238.5] => (item={'speed': '10G', 'port': '40'}) => {"changed": false, "item": {"port": "40", "speed": "10G"}, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-01 21:27:30,450 p=16 u=root |  ok: [10.94.238.5] => (item={'speed': '10G', 'port': '41'}) => {"changed": false, "item": {"port": "41", "speed": "10G"}, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
