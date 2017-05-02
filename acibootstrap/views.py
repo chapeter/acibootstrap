@@ -88,11 +88,17 @@ def index():
     <style>
 
     section{
-        margin: 10px;
+        background-color:#ddd;
+        padding-top: 10px;
+        padding-left:50px;
+
     }
 
     header{
-        text-align: center
+        text-align: center;
+        background-color: grey;
+        color:#fff;
+        padding: 10px
     }
 
     </style>
@@ -113,8 +119,9 @@ def index():
        APIC IP: %s <br>
        APIC User: %s <br>
     </p>
-    </section>
     <iframe src="http://0.0.0.0:5001" width="300" height="40" frameBorder="0"></iframe>
+    </section>
+
     <br><br>
     <iframe src="http://0.0.0.0:8001" width="1200" height="650" frameBorder="0"></iframe>
     """ % (apic_ip, apic_user)
