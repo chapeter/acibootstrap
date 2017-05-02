@@ -20,7 +20,19 @@ def main():
     return '''
     <!doctype html>
     <title>ACI BOOTSTRAP</title>
-    <button onclick="window.location.href='/run'">Run</button>
+    <link rel="stylesheet" href="http://localhost:5000/static/css/bootstrap.min.css" />
+    <style>
+        section{
+            background-color:#ddd;
+        }
+    </style>
+    <body>
+    <section>
+    <button onclick="window.location.href='/run'" class="btn btn-primary">Run</button>
+    </section>
+    </body>
+    </html>
+
     '''
 
 
