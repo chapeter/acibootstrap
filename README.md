@@ -14,6 +14,8 @@ Users need to fill the acibootstrap Excel sheet here: [acibootstrap/files/vars/a
 1. Cable and connect switches and APICs to each other
 2. Connect Switches and APICs to OOB network
 3. Fill out the acibootstrap Excel workbook: [acibootstrap.xlsx](acibootstrap/files/vars/acibootstrap.xlsx)
+4. Go through the APIC's setup wizard
+5. Do Fabric Discovery and use naming scheme of 1XX for leaf and 2XX for spine devices, starting with 01
 4. Run acibootstrap
 5. Upload Excel workbook to acibootstrap
 6. Run

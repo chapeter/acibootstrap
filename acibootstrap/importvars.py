@@ -99,6 +99,7 @@ def mergeDicts(x, y):
 
 
 def importvars():
+
     workbook = openpyxl.load_workbook("acibootstrap/files/vars/acibootstrap.xlsx", data_only=True)
 
     sys.stderr.write(str(workbook.sheetnames))
