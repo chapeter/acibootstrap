@@ -55,12 +55,7 @@ Users need to fill the acibootstrap Excel sheet here: [acibootstrap/files/vars/a
 
 
 
-## To Do
-* [ ] Fabric Discovery
-* [ ] Download file section
-* [x] Routed out selection for demo tenant
-* [ ] Delivery packaging
-* [x] VMM attachment to EPG
+
 
 
 
@@ -72,12 +67,12 @@ Users need to fill the acibootstrap Excel sheet here: [acibootstrap/files/vars/a
 ### Important files
 * ```ansible/```: files needed to be referenced for ansible
   * ```library/``` which contains the used modules needed for acibootstrap playbooks
-  * ```vars/``` contains the variables used in the acibootstrap playbooks.  All other directories are for development purposes only
+
 
 * ```files/```
-  * ```cobra/```: currently not used, but contains the associated cobra files for the ACI images we may put in ```files/images/```
   * ```configs/```: this is one of the most critial components of acibootstrap.  This contains the template type configs we will be pushing via ansible.
     * ```templates/```: these are the base templates that we use to create the files we push to the ACI fabric
     * ```dynamic/```: files built from template files go here.  They will be converted into .json with real values and placed here
     * ```custom/```: depricated.
     * ```static/```: files not needed to be templitized and dynamically created
+  * ```vars/``` contains the variables used in the acibootstrap playbooks.  All other directories are for development purposes only
