@@ -61,7 +61,9 @@ def index():
             filename = secure_filename(file.filename)
             file.save(os.path.join('acibootstrap/files/vars/', filename))
             importvars()
+            sys.stderr.write("\nwriting Hosts file\n")
             writeHosts()
+            sys.stderr.write("\nredirecting back to home\n")
             return redirect(url_for('index'))
 
     with open("acibootstrap/files/vars/acibootstrap_vars.yml", 'r') as file:
@@ -77,7 +79,7 @@ def index():
 
     return """
     <!doctype html>
-
+    <body>
     <link rel="stylesheet" href="static/css/bootstrap-theme.min.css" />
     <link rel="stylesheet" href="static/css/bootstrap.min.css" />
     <link rel="stylesheet" href="static/css/my.css" />
@@ -113,15 +115,18 @@ def index():
     <p>Upload acibootstrap.xlsx here</p>
     <form action="" method=post enctype=multipart/form-data>
       <p><input type=file name=file> <br>
-      <input type=submit value=Upload></p>
+          <p>
+             APIC IP: %s <br>
+             APIC User: %s <br>
+          </p>
+      <input type=submit value=Upload class="btn btn-primary"></p>
     </form>
-    <p>
-       APIC IP: %s <br>
-       APIC User: %s <br>
-    </p>
-    <iframe src="http://0.0.0.0:5001" width="300" height="40" frameBorder="0"></iframe>
+
+    <iframe src="http://0.0.0.0:5001" width="300" height="34" frameBorder="0"></iframe>
+
     </section>
 
     <br><br>
     <iframe src="http://0.0.0.0:8001" width="1200" height="650" frameBorder="0"></iframe>
+    </body>
     """ % (apic_ip, apic_user)
