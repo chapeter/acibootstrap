@@ -4,19 +4,19 @@
     {
       "fvTenant": {
         "attributes": {
-          "descr": "{{ descr }}",
-          "dn": "uni/tn-{{ item.tenant_name }}",
-          "name": "{{ item.tenant_name }}",
+          "descr": "installed by ACIBOOTSTRAP",
+          "dn": "uni/tn-POC-3tier-L3",
+          "name": "POC-3tier-L3",
 
           "ownerKey": "",
           "ownerTag": "",
-          "status":"{{ status }}"
+          "status":"created,modified"
         },
         "children": [
           {
             "vzBrCP": {
               "attributes": {
-                "descr": "{{ descr }}",
+                "descr": "installed by ACIBOOTSTRAP",
                 "name": "POC-WEB",
 
                 "ownerKey": "",
@@ -30,7 +30,7 @@
                   "vzSubj": {
                     "attributes": {
                       "consMatchT": "AtleastOne",
-                      "descr": "{{ descr }}",
+                      "descr": "installed by ACIBOOTSTRAP",
                       "name": "POC-WEB-OPEN",
 
                       "prio": "unspecified",
@@ -56,7 +56,7 @@
           {
             "vzBrCP": {
               "attributes": {
-                "descr": "{{ descr }}",
+                "descr": "installed by ACIBOOTSTRAP",
                 "name": "POC-APP",
 
                 "ownerKey": "",
@@ -70,7 +70,7 @@
                   "vzSubj": {
                     "attributes": {
                       "consMatchT": "AtleastOne",
-                      "descr": "{{ descr }}",
+                      "descr": "installed by ACIBOOTSTRAP",
                       "name": "POC-APP-OPEN",
 
                       "prio": "unspecified",
@@ -96,7 +96,7 @@
           {
             "vzBrCP": {
               "attributes": {
-                "descr": "{{ descr }}",
+                "descr": "installed by ACIBOOTSTRAP",
                 "name": "POC-DB",
 
                 "ownerKey": "",
@@ -110,7 +110,7 @@
                   "vzSubj": {
                     "attributes": {
                       "consMatchT": "AtleastOne",
-                      "descr": "{{ descr }}",
+                      "descr": "installed by ACIBOOTSTRAP",
                       "name": "POC-DB-OPEN",
 
                       "prio": "unspecified",
@@ -141,7 +141,7 @@
           {
             "fvCtx": {
               "attributes": {
-                "descr": "{{ descr }}",
+                "descr": "installed by ACIBOOTSTRAP",
                 "knwMcastAct": "permit",
                 "name": "default",
 
@@ -154,7 +154,7 @@
                 {
                   "vzAny": {
                     "attributes": {
-                      "descr": "{{ descr }}",
+                      "descr": "installed by ACIBOOTSTRAP",
                       "matchT": "AtleastOne",
                       "name": ""
                     }
@@ -195,7 +195,7 @@
             "fvBD": {
               "attributes": {
                 "arpFlood": "no",
-                "descr": "{{ descr }}",
+                "descr": "installed by ACIBOOTSTRAP",
                 "epMoveDetectMode": "",
                 "ipLearning": "yes",
                 "limitIpLearnToSubnets": "no",

@@ -89,49 +89,13 @@ def getPocTenantVariables(poc_tenant):
     return poc_tenant_vars
 
 def saveYAML(var):
-    with open('acibootstrap/files/vars/acibootstrap_vars.yml', 'w') as outfile:
-        yaml.safe_dump(var, outfile, default_flow_style=False)
-
-def saveSSYAML(var):
-    with open('acibootstrap/files/vars/acibootstrap_vars_ss.yml', 'w') as outfile:
+    with open('files/vars/acibootstrap_vars_ss.yml', 'w') as outfile:
         yaml.safe_dump(var, outfile, default_flow_style=False)
 
 def mergeDicts(x, y):
     z = x.copy()
     z.update(y)
     return z
-
-
-def importvars():
-
-    workbook = openpyxl.load_workbook("acibootstrap/files/vars/acibootstrap.xlsx", data_only=True)
-
-    sys.stderr.write(str(workbook.sheetnames))
-
-    fabric_pol = workbook["fabric_pol"]
-    vcenter = workbook["vcenter"]
-    poc_tenant = workbook["poc_tenant"]
-    mgmt = workbook["mgmt"]
-
-    sys.stderr.write("\nfabric fabric_pol_vars\n")
-    fabric_pol_vars = getFabricPolicyVariables(fabric_pol)
-    sys.stderr.write("\nreading poc tenant vars\n")
-    poc_tenant_vars = getPocTenantVariables(poc_tenant)
-    sys.stderr.write("\nreading vmm vars\n")
-    vmm_vars = getVMMVars(vcenter)
-    sys.stderr.write("\nreading mgmt vars\n")
-    mgmt_vars = getMGMTVars(mgmt)
-
-    sys.stderr.write("\nmerging dictionaries\n")
-    a = mergeDicts(fabric_pol_vars, poc_tenant_vars)
-    b = mergeDicts(a, vmm_vars)
-    c = mergeDicts(b, mgmt_vars)
-
-    sys.stderr.write("\nsaving variables to YAML file\n")
-    saveYAML(c)
-
-
-
 
 def buildTenantVars(raw_vars, key_list):
 
@@ -199,7 +163,7 @@ def scrapeSheet(var_sheet):
     return raw_vars
 
 def importvars_ss():
-    workbook = openpyxl.load_workbook("acibootstrap/files/vars/ACI-Bootstrap-Tool.xlsx", data_only=True)
+    workbook = openpyxl.load_workbook("files/vars/ACI-Bootstrap-Tool.xlsx", data_only=True)
     var_sheet = workbook['ACI-Bootstrap-Tool']
     raw_vars = scrapeSheet(var_sheet)
 
@@ -220,11 +184,11 @@ def importvars_ss():
     raw_vars['vcenter_dc'] = raw_vars['vcenter_datacenter']
     raw_vars['vmmpool_start'] = int(raw_vars['vmm_vlan_pool_start'])
     raw_vars['vmmpool_end'] = int(raw_vars['vmm_vlan_pool_end'])
-    raw_vars['dns'] = raw_vars['dns_pri']
-    raw_vars['l2_out_switch_speed'] = raw_vars['l2-out-switch-speed']
     for k in list(raw_vars.keys()):
       if k.startswith(tuple(tn_key_list)) or k.startswith('switch_oob_pool_') or k.startswith('vcenter_datacenter') or k.startswith('vmm_'):
         raw_vars.pop(k)
 
 
-    saveSSYAML(raw_vars)
+    saveYAML(raw_vars)
+
+importvars()

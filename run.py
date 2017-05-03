@@ -11,7 +11,7 @@ def run():
 
 @app.route("/tests")
 def tests():
-    subprocess.call("./acibootstrap-tests.sh")
+    subprocess.call("./acibootstrap-test.sh")
     return redirect("http://0.0.0.0:5001", code=302)
 
 @app.route("/")
@@ -29,6 +29,7 @@ def main():
     <body>
     <section>
     <button onclick="window.location.href='/run'" class="btn btn-primary">Run</button>
+    <button onclick="window.location.href='/tests'" class="btn btn-primary">Tests</button>
     </section>
     </body>
     </html>
