@@ -5,6 +5,7 @@ templates: acibootstrap/files/configs/templates
 static: acibootstrap/files/configs/static
 descr: "installed by ACIBOOTSTRAP"
 vrf_name: "default"
+vmmpool: "vmmpool"
 speeds:
   - 10G
   - 1G

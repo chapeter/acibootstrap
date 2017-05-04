@@ -11,12 +11,14 @@ def run():
 
 @app.route("/tests")
 def tests():
-    subprocess.call("./acibootstrap-tests.sh")
+    subprocess.call("./acibootstrap-test.sh")
     return redirect("http://0.0.0.0:5001", code=302)
 
 @app.route("/")
 def main():
     #    <a href="http://0.0.0.0:5001/tests">Run tests.yaml</a>
+    #    <button onclick="window.location.href='/tests'" class="btn btn-primary">Tests</button>
+
     return '''
     <!doctype html>
     <title>ACI BOOTSTRAP</title>

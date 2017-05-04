@@ -89,49 +89,13 @@ def getPocTenantVariables(poc_tenant):
     return poc_tenant_vars
 
 def saveYAML(var):
-    with open('acibootstrap/files/vars/acibootstrap_vars.yml', 'w') as outfile:
-        yaml.safe_dump(var, outfile, default_flow_style=False)
-
-def saveSSYAML(var):
-    with open('acibootstrap/files/vars/acibootstrap_vars_ss.yml', 'w') as outfile:
+    with open('files/vars/acibootstrap_vars_ss.yml', 'w') as outfile:
         yaml.safe_dump(var, outfile, default_flow_style=False)
 
 def mergeDicts(x, y):
     z = x.copy()
     z.update(y)
     return z
-
-
-def importvars():
-
-    workbook = openpyxl.load_workbook("acibootstrap/files/vars/acibootstrap.xlsx", data_only=True)
-
-    sys.stderr.write(str(workbook.sheetnames))
-
-    fabric_pol = workbook["fabric_pol"]
-    vcenter = workbook["vcenter"]
-    poc_tenant = workbook["poc_tenant"]
-    mgmt = workbook["mgmt"]
-
-    sys.stderr.write("\nfabric fabric_pol_vars\n")
-    fabric_pol_vars = getFabricPolicyVariables(fabric_pol)
-    sys.stderr.write("\nreading poc tenant vars\n")
-    poc_tenant_vars = getPocTenantVariables(poc_tenant)
-    sys.stderr.write("\nreading vmm vars\n")
-    vmm_vars = getVMMVars(vcenter)
-    sys.stderr.write("\nreading mgmt vars\n")
-    mgmt_vars = getMGMTVars(mgmt)
-
-    sys.stderr.write("\nmerging dictionaries\n")
-    a = mergeDicts(fabric_pol_vars, poc_tenant_vars)
-    b = mergeDicts(a, vmm_vars)
-    c = mergeDicts(b, mgmt_vars)
-
-    sys.stderr.write("\nsaving variables to YAML file\n")
-    saveYAML(c)
-
-
-
 
 def buildTenantVars(raw_vars, key_list):
 
@@ -147,7 +111,6 @@ def buildTenantVars(raw_vars, key_list):
     #Gather Tenant variables
 
     tn_data = []
-    tn_count = 0
     for tn in tn_list:
         tn_dict = {}
         #Get the data into a list and remove the _x
@@ -156,8 +119,8 @@ def buildTenantVars(raw_vars, key_list):
 
         external_subnets = []
         internal_subnets = []
-        tn_dict[101] = {'encap': int(tn_dict['vlan_id']), 'r_address':tn_dict['leaf201_routed_addr'], 'router_id':'1.0.0.{}'.format(str(tn_count))}
-        tn_dict[102] =  {'encap': int(tn_dict['vlan_id']), 'r_address':tn_dict['leaf202_routed_addr'], 'router_id':'1.0.0.{}'.format(str(tn_count + 1))}
+        tn_dict[201] = {'encap': int(tn_dict['vlan_id']), 'r_address':tn_dict['leaf201_routed_addr'], 'router_id':tn_dict['leaf201_routed_addr']}
+        tn_dict[202] =  {'encap': int(tn_dict['vlan_id']), 'r_address':tn_dict['leaf202_routed_addr'], 'router_id':tn_dict['leaf202_routed_addr']}
         tn_dict['eigrp'] = {}
         tn_dict['ospf'] = {}
         tn_dict['static'] = {}
@@ -189,7 +152,7 @@ def buildTenantVars(raw_vars, key_list):
           if str(k).startswith('ntwk') or str(k).endswith('_routed_addr') or str(k).startswith('vlan') or str(k).startswith('routed_out_') or str(k).startswith('ospf_') or str(k).startswith('eigrp_'):
             tn_dict.pop(k)
         tn_data.append(tn_dict)
-        tn_count = tn_count + 2
+
     return tn_data
 
 def scrapeSheet(var_sheet):
@@ -200,7 +163,7 @@ def scrapeSheet(var_sheet):
     return raw_vars
 
 def importvars_ss():
-    workbook = openpyxl.load_workbook("acibootstrap/files/vars/ACI-Bootstrap-Tool.xlsx", data_only=True)
+    workbook = openpyxl.load_workbook("files/vars/ACI-Bootstrap-Tool.xlsx", data_only=True)
     var_sheet = workbook['ACI-Bootstrap-Tool']
     raw_vars = scrapeSheet(var_sheet)
 
@@ -221,12 +184,11 @@ def importvars_ss():
     raw_vars['vcenter_dc'] = raw_vars['vcenter_datacenter']
     raw_vars['vmmpool_start'] = int(raw_vars['vmm_vlan_pool_start'])
     raw_vars['vmmpool_end'] = int(raw_vars['vmm_vlan_pool_end'])
-    raw_vars['dns'] = raw_vars['dns_pri']
-    raw_vars['l2_out_switch_speed'] = raw_vars['l2-out-switch-speed']
-    raw_vars['vcenter_pass'] = raw_vars['vcenter_password']
     for k in list(raw_vars.keys()):
       if k.startswith(tuple(tn_key_list)) or k.startswith('switch_oob_pool_') or k.startswith('vcenter_datacenter') or k.startswith('vmm_'):
         raw_vars.pop(k)
 
 
-    saveSSYAML(raw_vars)
+    saveYAML(raw_vars)
+
+importvars()

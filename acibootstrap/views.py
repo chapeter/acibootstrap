@@ -5,7 +5,7 @@ import yaml
 import subprocess
 import sys
 from acibootstrap import app
-from acibootstrap.importvars import importvars
+from acibootstrap.importvars import importvars, importvars_ss
 
 UPLOAD_FOLDER = 'files/vars/'
 ALLOWED_EXTENSIONS = set(['xlsx'])
@@ -19,7 +19,7 @@ def allowed_file(filename):
 
 
 def writeHosts():
-    with open("acibootstrap/files/vars/acibootstrap_vars.yml", 'r') as file:
+    with open("acibootstrap/files/vars/acibootstrap_vars_ss.yml", 'r') as file:
         try:
             vars = yaml.load(file)
             apic_ip = vars['apic_ip']
@@ -60,13 +60,23 @@ def index():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join('acibootstrap/files/vars/', filename))
-            importvars()
+            #importvars()
+            importvars_ss()
             sys.stderr.write("\nwriting Hosts file\n")
             writeHosts()
             sys.stderr.write("\nredirecting back to home\n")
             return redirect(url_for('index'))
 
-    with open("acibootstrap/files/vars/acibootstrap_vars.yml", 'r') as file:
+    # with open("acibootstrap/files/vars/acibootstrap_vars.yml", 'r') as file:
+    #     try:
+    #         vars = yaml.load(file)
+    #         apic_ip = vars['apic_ip']
+    #         apic_user = vars['apic_user']
+    #     except:
+    #         apic_ip = None
+    #         apic_user = None
+
+    with open("acibootstrap/files/vars/acibootstrap_vars_ss.yml", 'r') as file:
         try:
             vars = yaml.load(file)
             apic_ip = vars['apic_ip']
@@ -74,7 +84,6 @@ def index():
         except:
             apic_ip = None
             apic_user = None
-
 
 
     return """
@@ -118,6 +127,7 @@ def index():
           <p>
              APIC IP: %s <br>
              APIC User: %s <br>
+             <hr>
           </p>
       <input type=submit value=Upload class="btn btn-primary"></p>
     </form>
