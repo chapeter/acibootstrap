@@ -147,6 +147,7 @@ def buildTenantVars(raw_vars, key_list):
     #Gather Tenant variables
 
     tn_data = []
+    tn_count = 0
     for tn in tn_list:
         tn_dict = {}
         #Get the data into a list and remove the _x
@@ -155,8 +156,8 @@ def buildTenantVars(raw_vars, key_list):
 
         external_subnets = []
         internal_subnets = []
-        tn_dict[201] = {'encap': int(tn_dict['vlan_id']), 'r_address':tn_dict['leaf201_routed_addr'], 'router_id':tn_dict['leaf201_routed_addr']}
-        tn_dict[202] =  {'encap': int(tn_dict['vlan_id']), 'r_address':tn_dict['leaf202_routed_addr'], 'router_id':tn_dict['leaf202_routed_addr']}
+        tn_dict[101] = {'encap': int(tn_dict['vlan_id']), 'r_address':tn_dict['leaf201_routed_addr'], 'router_id':'1.0.0.{}'.format(str(tn_count))}
+        tn_dict[102] =  {'encap': int(tn_dict['vlan_id']), 'r_address':tn_dict['leaf202_routed_addr'], 'router_id':'1.0.0.{}'.format(str(tn_count + 1))}
         tn_dict['eigrp'] = {}
         tn_dict['ospf'] = {}
         tn_dict['static'] = {}
@@ -188,7 +189,7 @@ def buildTenantVars(raw_vars, key_list):
           if str(k).startswith('ntwk') or str(k).endswith('_routed_addr') or str(k).startswith('vlan') or str(k).startswith('routed_out_') or str(k).startswith('ospf_') or str(k).startswith('eigrp_'):
             tn_dict.pop(k)
         tn_data.append(tn_dict)
-
+        tn_count = tn_count + 2
     return tn_data
 
 def scrapeSheet(var_sheet):
@@ -222,6 +223,7 @@ def importvars_ss():
     raw_vars['vmmpool_end'] = int(raw_vars['vmm_vlan_pool_end'])
     raw_vars['dns'] = raw_vars['dns_pri']
     raw_vars['l2_out_switch_speed'] = raw_vars['l2-out-switch-speed']
+    raw_vars['vcenter_pass'] = raw_vars['vcenter_password']
     for k in list(raw_vars.keys()):
       if k.startswith(tuple(tn_key_list)) or k.startswith('switch_oob_pool_') or k.startswith('vcenter_datacenter') or k.startswith('vmm_'):
         raw_vars.pop(k)

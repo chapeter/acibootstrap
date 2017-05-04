@@ -17,6 +17,8 @@ def tests():
 @app.route("/")
 def main():
     #    <a href="http://0.0.0.0:5001/tests">Run tests.yaml</a>
+    #    <button onclick="window.location.href='/tests'" class="btn btn-primary">Tests</button>
+
     return '''
     <!doctype html>
     <title>ACI BOOTSTRAP</title>
@@ -29,7 +31,6 @@ def main():
     <body>
     <section>
     <button onclick="window.location.href='/run'" class="btn btn-primary">Run</button>
-    <button onclick="window.location.href='/tests'" class="btn btn-primary">Tests</button>
     </section>
     </body>
     </html>

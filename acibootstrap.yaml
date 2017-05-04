@@ -6,7 +6,7 @@
   connection: local
   gather_facts: no
   vars_files:
-    - acibootstrap/files/vars/acibootstrap_vars.yml
+    - acibootstrap/files/vars/acibootstrap_vars_ss.yml
     - acibootstrap/files/vars/static_vars.yml
 
 
@@ -95,8 +95,13 @@
     - name: install time default policy
       aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/time-default.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
+    - name: del dns default policy
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/dnsp-default-delete.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+    - name: set dns default policy to use oob-default
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/dnsp-default.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
     - name: create dns domain policy
       template: src={{ templates }}/dom-.j2 dest={{ dynamic }}/dom-{{ domain }}.json
+
     - name: install dns domain policy
       aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/dom-{{ domain }}.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
@@ -274,68 +279,92 @@
 
 
 
-    # Install L3 POC tenant.name
-    - name: create {{ tenant.name }}-POC tenant
-      template: src={{ templates }}/tn-poc-L3.j2 dest={{ dynamic }}/tn-{{ tenant.name }}-POC.json
-    - name: install {{ tenant.name }}-POC tenant
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/tn-{{tenant.name}}-POC.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      # Install L3 POC tenant.name
+    - name: create POC Tenants
+      template: src={{ templates }}/tn-poc-L3.j2 dest={{ dynamic }}/tn-{{ item.name }}-POC.json
+      with_items: "{{ tenant }}"
 
-    - name: create External subnets for {{ tenant.name }}-POC
-      template: src={{ templates }}/subnet-POC-external.j2 dest={{ dynamic }}/subnet-{{ item.name }}-external.json
-      with_items: "{{ tenant.external_subnets }}"
+    - name: install POC Tenants
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/tn-{{item.name}}-POC.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      with_items: "{{ tenant }}"
+
+    - name: create External subnets for POC tenants
+      template: src={{ templates }}/subnet-POC-external.j2 dest={{ dynamic }}/subnet-{{ item.0.name }}-{{ item.1.name }}-external.json
+      with_subelements:
+        - "{{ tenant }}"
+        - "external_subnets"
     - name: install External subnets
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/subnet-{{ item.name }}-external.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
-      with_items: "{{ tenant.external_subnets }}"
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/subnet-{{ item.0.name }}-{{ item.1.name }}-external.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      with_subelements:
+        - "{{ tenant }}"
+        - "external_subnets"
 
-    - name: create Internal subnets for {{ tenant.name }}-POC
-      template: src={{ templates }}/subnet-POC-private.j2 dest={{ dynamic }}/subnet-{{ item.name }}-internal.json
-      with_items: "{{ tenant.private_subnets }}"
+    - name: create Internal subnets for POC Tenants
+      template: src={{ templates }}/subnet-POC-private.j2 dest={{ dynamic }}/subnet-{{ item.0.name }}-{{ item.1.name }}-internal.json
+      with_subelements:
+        - "{{ tenant }}"
+        - "internal_subnets"
+
     - name: install Internal subnets
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/subnet-{{ item.name }}-internal.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
-      with_items: "{{ tenant.private_subnets}}"
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/subnet-{{ item.0.name }}-{{ item.1.name }}-internal.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      with_subelements:
+        - "{{ tenant }}"
+        - "internal_subnets"
+
 
     ## Setup VMM with EPGs
     - name: create VMM domain attachment to EPGs
-      template: src={{ templates }}/rsdomAtt-[uni-vmmp-VMware-dom-vds].j2 dest={{ dynamic }}/rsdomAtt-[uni-vmmp-{{ item }}-VMware-dom-vds].json
-      with_items:
-        - APP
-        - DB
-        - WEB
+      template: src={{ templates }}/rsdomAtt-[uni-vmmp-VMware-dom-vds].j2 dest={{ dynamic }}/rsdomAtt-[uni-vmmp-{{ item.0.name }}-{{ item.1 }}-VMware-dom-vds].json
+      with_nested:
+        - "{{ tenant }}"
+        - '[ "APP", "DB", "WEB" ]'
+
     - name: install VMM domain attachment to EPGs
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/rsdomAtt-[uni-vmmp-{{ item }}-VMware-dom-vds].json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
-      with_items:
-        - APP
-        - DB
-        - WEB
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/rsdomAtt-[uni-vmmp-{{ item.0.name }}-{{ item.1 }}-VMware-dom-vds].json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      with_nested:
+        - "{{ tenant }}"
+        - '[ "APP", "DB", "WEB" ]'
+
 
 
 
     ## Install L3 outs for POC tenant
 
-    - name: create {{ tenant.name }} routed out for OSPF
-      template: src={{ templates }}/out-tenant-routed-out-ospf.j2 dest={{ dynamic }}/out-{{ tenant.name }}-routed-out.json
-      when: ("{{ tenant.protocol }}" == "OSPF")
+    - name: create {{ item.name }} routed out for OSPF
+      template: src={{ templates }}/out-tenant-routed-out-ospf.j2 dest={{ dynamic }}/out-{{ item.name }}-routed-out.json
+      with_items:
+        - "{{ tenant }}"
+      when: ("{{ item.protocol }}" == "OSPF")
 
-    - name: create {{ tenant.name }} OSPF int policy
-      template: src={{ templates }}/ospfIfPol-ospf-policy-p2p.j2 dest={{ dynamic }}/ospfIfPol-ospf-policy-p2p.json
-      when: ("{{ tenant.protocol }}" == "OSPF")
-    - name: install {{ tenant.name }} OSPF int policy
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/ospfIfPol-ospf-policy-p2p.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
-      when: ("{{ tenant.protocol }}" == "OSPF")
+    - name: create {{ item.name }} OSPF int policy
+      template: src={{ templates }}/ospfIfPol-ospf-policy-p2p.j2 dest={{ dynamic }}/ospfIfPol-ospf-policy-p2p-{{ item.name }}.json
+      with_items:
+        - "{{ tenant }}"
+      when: ("{{ item.protocol }}" == "OSPF")
 
-    - name: create {{ tenant.name }} routed out for EIGRP
-      template: src={{ templates }}/out-tenant-routed-out-eigrp.j2 dest={{ dynamic }}/out-{{ tenant.name }}-routed-out.json
-      when: ("{{ tenant.protocol }}" == "EIGRP")
+    - name: install OSPF interface policy
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/ospfIfPol-ospf-policy-p2p-{{ item.name }}.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      with_items:
+         - "{{ tenant }}"
+      when: ("{{ item.protocol }}" == "OSPF")
 
-    - name: create {{ tenant.name }} routed out for Static
-      template: src={{ templates }}/out-tenant-routed-out-static.j2 dest={{ dynamic }}/out-{{ tenant.name }}-routed-out.json
-      when: ("{{ tenant.protocol }}" == "Static")
+    - name: create {{ item.name }} routed out for EIGRP
+      template: src={{ templates }}/out-tenant-routed-out-eigrp.j2 dest={{ dynamic }}/out-{{ item.name }}-routed-out.json
+      with_items:
+        - "{{ tenant }}"
+      when: ("{{ item.protocol }}" == "EIGRP")
+
+    - name: create {{ item.name }} routed out for Static
+      template: src={{ templates }}/out-tenant-routed-out-static.j2 dest={{ dynamic }}/out-{{ item.name }}-routed-out.json
+      with_items:
+        - "{{ tenant }}"
+      when: ("{{ item.protocol }}" == "Static")
 
 
-
-    - name: install {{ tenant.name }} routed out
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/out-{{ tenant.name }}-routed-out.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
-
+    - name: install {{ item.name }} routed out
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/out-{{ item.name }}-routed-out.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      with_items:
+        - "{{ tenant }}"
 #- name: ACIBOOTSTRAP Local Cleanup
 #  hosts: localhost
 #  gather_facts: no

@@ -2,9 +2,9 @@
   "l3extOut": {
     "attributes": {
       "descr": "installed by ACIBOOTSTRAP",
-      "dn": "uni/tn-{{ tenant.name }}/out-{{ tenant.name }}-routed-out",
+      "dn": "uni/tn-{{ item.name }}/out-{{ item.name }}-routed-out",
       "enforceRtctrl": "export",
-      "name": "{{ tenant.name }}-routed-out",
+      "name": "{{ item.name }}-routed-out",
       "ownerKey": "",
       "ownerTag": "",
       "targetDscp": "unspecified"
@@ -22,7 +22,7 @@
           "attributes": {
             "configIssues": "",
             "descr": "installed by ACIBOOTSTRAP",
-            "name": "{{ tenant.name }}-border-leaf",
+            "name": "{{ item.name }}-border-leaf",
             "ownerKey": "",
             "ownerTag": "",
             "tag": "yellow-green",
@@ -32,7 +32,7 @@
             {
               "l3extRsNodeL3OutAtt": {
                 "attributes": {
-                  "rtrId": "{{ tenant.101.router_id }}",
+                  "rtrId": "{{ item.101.router_id }}",
                   "rtrIdLoopBack": "yes",
                   "tDn": "topology/pod-1/node-101"
                 },
@@ -42,7 +42,7 @@
                       "attributes": {
                         "aggregate": "no",
                         "descr": "{{ descr }}",
-                        "ip": "{{ tenant.101.static_prefix }}",
+                        "ip": "{{ item.101.static_prefix }}",
                         "name": "",
                         "pref": "1",
                         "rtCtrl": ""
@@ -53,7 +53,7 @@
                             "attributes": {
                               "descr": "{{ descr }}",
                               "name": "",
-                              "nhAddr": "{{ tenant.101.static_nexthop }}",
+                              "nhAddr": "{{ item.101.static_nexthop }}",
                               "pref": "unspecified",
                               "type": "prefix"
                             }
@@ -68,7 +68,7 @@
             {
               "l3extRsNodeL3OutAtt": {
                 "attributes": {
-                  "rtrId": "{{ tenant.102.router_id}}",
+                  "rtrId": "{{ item.102.router_id}}",
                   "rtrIdLoopBack": "yes",
                   "tDn": "topology/pod-1/node-102"
                 },
@@ -78,7 +78,7 @@
                       "attributes": {
                         "aggregate": "no",
                         "descr": "{{ descr }}",
-                        "ip": "{{ tenant.102.static_prefix }}",
+                        "ip": "{{ item.102.static_prefix }}",
                         "name": "",
                         "pref": "1",
                         "rtCtrl": ""
@@ -89,7 +89,7 @@
                             "attributes": {
                               "descr": "{{ descr }}",
                               "name": "",
-                              "nhAddr": "{{ tenant.102.static_nexthop}}",
+                              "nhAddr": "{{ item.102.static_nexthop}}",
                               "pref": "unspecified",
                               "type": "prefix"
                             }
@@ -105,7 +105,7 @@
               "l3extLIfP": {
                 "attributes": {
                   "descr": "installed by ACIBOOTSTRAP",
-                  "name": "{{ tenant.name }}-routed-interfaces",
+                  "name": "{{ item.name }}-routed-interfaces",
                   "ownerKey": "",
                   "ownerTag": "",
                   "tag": "yellow-green"
@@ -135,9 +135,9 @@
                   {
                     "l3extRsPathL3OutAtt": {
                       "attributes": {
-                        "addr": "{{ tenant.102.r_address }}",
+                        "addr": "{{ item.102.r_address }}",
                         "descr": "installed by ACIBOOTSTRAP",
-                        "encap": "vlan-{{ tenant.102.encap }}",
+                        "encap": "vlan-{{ item.102.encap }}",
                         "encapScope": "local",
                         "ifInstT": "sub-interface",
                         "llAddr": "::",
@@ -151,9 +151,9 @@
                   {
                     "l3extRsPathL3OutAtt": {
                       "attributes": {
-                        "addr": "{{ tenant.101.r_address }}",
+                        "addr": "{{ item.101.r_address }}",
                         "descr": "installed by ACIBOOTSTRAP",
-                        "encap": "vlan-{{ tenant.101.encap }}",
+                        "encap": "vlan-{{ item.101.encap }}",
                         "encapScope": "local",
                         "ifInstT": "sub-interface",
                         "llAddr": "::",

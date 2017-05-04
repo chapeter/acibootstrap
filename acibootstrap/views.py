@@ -19,7 +19,7 @@ def allowed_file(filename):
 
 
 def writeHosts():
-    with open("acibootstrap/files/vars/acibootstrap_vars.yml", 'r') as file:
+    with open("acibootstrap/files/vars/acibootstrap_vars_ss.yml", 'r') as file:
         try:
             vars = yaml.load(file)
             apic_ip = vars['apic_ip']
@@ -60,14 +60,23 @@ def index():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join('acibootstrap/files/vars/', filename))
-            importvars()
+            #importvars()
             importvars_ss()
             sys.stderr.write("\nwriting Hosts file\n")
             writeHosts()
             sys.stderr.write("\nredirecting back to home\n")
             return redirect(url_for('index'))
 
-    with open("acibootstrap/files/vars/acibootstrap_vars.yml", 'r') as file:
+    # with open("acibootstrap/files/vars/acibootstrap_vars.yml", 'r') as file:
+    #     try:
+    #         vars = yaml.load(file)
+    #         apic_ip = vars['apic_ip']
+    #         apic_user = vars['apic_user']
+    #     except:
+    #         apic_ip = None
+    #         apic_user = None
+
+    with open("acibootstrap/files/vars/acibootstrap_vars_ss.yml", 'r') as file:
         try:
             vars = yaml.load(file)
             apic_ip = vars['apic_ip']
@@ -75,15 +84,6 @@ def index():
         except:
             apic_ip = None
             apic_user = None
-
-    with open("acibootstrap/files/vars/acibootstrap_vars_ss.yml", 'r') as file:
-        try:
-            vars = yaml.load(file)
-            test_apic_ip = vars['apic_ip']
-            test_apic_user = vars['apic_user']
-        except:
-            test_apic_ip = None
-            test_apic_user = None
 
 
     return """
@@ -128,8 +128,6 @@ def index():
              APIC IP: %s <br>
              APIC User: %s <br>
              <hr>
-             Test APIC IP: %s <br>
-             Test User: %s
           </p>
       <input type=submit value=Upload class="btn btn-primary"></p>
     </form>
@@ -141,4 +139,4 @@ def index():
     <br><br>
     <iframe src="http://0.0.0.0:8001" width="1200" height="650" frameBorder="0"></iframe>
     </body>
-    """ % (apic_ip, apic_user, test_apic_ip, test_apic_user)
+    """ % (apic_ip, apic_user)
