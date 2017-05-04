@@ -1,0 +1,1 @@
+{"stpIfPol":{"attributes":{"ctrl":"bpdu-guard","descr":"installed by ACIBOOTSTRAP","dn":"uni/infra/ifPol-bpdu-guard-ON","name":"bpdu-guard-ON","ownerKey":"","ownerTag":"", "status":"created,modified"}}}

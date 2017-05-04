@@ -50,6 +50,10 @@ def writeHosts():
 def portmap():
     return render_template('portmap.html')
 
+@app.route("/var_template")
+def varTemplate():
+    return render_template('ACI-Bootstrap-Tool.xlsx')
+
 
 
 @app.route("/", methods=['GET', 'POST'])
