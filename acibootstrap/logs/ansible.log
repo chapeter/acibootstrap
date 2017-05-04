@@ -17905,3 +17905,70 @@ expressions bare.
 2017-05-04 01:44:58,634 p=5537 u=root |  ok: [10.94.238.5] => (item={'protocol': 'OSPF', 101: {'router_id': '1.0.0.2', 'r_address': '10.1.1.1/30', 'encap': 2110}, 102: {'router_id': '1.0.0.3', 'r_address': '10.1.2.1/30', 'encap': 2110}, 'tenant_name': 'tenant-1', 'internal_subnets': [{'name': 'ntwk_three', 'address': '3.3.3.3/24'}], 'eigrp': {}, 'static': {}, 'ospf': {'area_id': 1, 'area_type': 'nssa'}, 'external_subnets': [{'name': 'ntwk_two', 'address': '2.2.2.2/24'}, {'name': 'ntwk_one', 'address': '1.1.1.1/24'}], 'name': 'tenant-1'}) => {"changed": false, "item": {"101": {"encap": 2110, "r_address": "10.1.1.1/30", "router_id": "1.0.0.2"}, "102": {"encap": 2110, "r_address": "10.1.2.1/30", "router_id": "1.0.0.3"}, "eigrp": {}, "external_subnets": [{"address": "2.2.2.2/24", "name": "ntwk_two"}, {"address": "1.1.1.1/24", "name": "ntwk_one"}], "internal_subnets": [{"address": "3.3.3.3/24", "name": "ntwk_three"}], "name": "tenant-1", "ospf": {"area_id": 1, "area_type": "nssa"}, "protocol": "OSPF", "static": {}, "tenant_name": "tenant-1"}, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
 2017-05-04 01:44:58,635 p=5537 u=root |  PLAY RECAP ******************************************************************** 
 2017-05-04 01:44:58,636 p=5537 u=root |  10.94.238.5                : ok=92   changed=1    unreachable=0    failed=0   
+2017-05-04 15:24:20,041 p=24 u=root |   
+2017-05-04 15:24:20,041 p=24 u=root |  /usr/bin/ansible-playbook -i acibootstrap/files/vars/hosts -M ansible/library/ acibootstrap.yaml -v
+2017-05-04 15:24:20,042 p=24 u=root |   
+2017-05-04 15:24:20,180 p=24 u=root |   [WARNING]: It is unnecessary to use '{{' in loops, leave variables in loop
+expressions bare.
+
+2017-05-04 15:24:20,323 p=24 u=root |  PLAY [ACIBOOTSTRAP Fabric Entities] ******************************************* 
+2017-05-04 15:24:20,339 p=24 u=root |  TASK: [debug] ***************************************************************** 
+2017-05-04 15:24:20,354 p=24 u=root |  ok: [10.94.238.5] => {
+    "msg": "{'delegate_to': None, 'templates': 'acibootstrap/files/configs/templates', 'protocol': 'https', 'ucs_fi': [{'name': 'ucs-fi-a', 'port': '20'}, {'name': 'ucs-fi-a', 'port': '21'}, {'name': 'ucs-fi-b', 'port': '22'}, {'name': 'ucs-fi-b', 'port': '23'}], 'dynamic': 'acibootstrap/files/configs/dynamic', 'static': 'acibootstrap/files/configs/static', 'descr': 'installed by ACIBOOTSTRAP', 'playbook_dir': '/opt/acibootstrap', 'rack_servers_vpc': [{'speed': '10G', 'port': '30'}, {'speed': '10G', 'port': '31'}, {'speed': '10G', 'port': '32'}, {'speed': '10G', 'port': '33'}, {'speed': '1G', 'port': '34'}, {'speed': '1G', 'port': '35'}, {'speed': '1G', 'port': '36'}, {'speed': '1G', 'port': '37'}, {'speed': '1G', 'port': '38'}], 'stp_bpdu': ['bpdu-filter', 'bpdu-guard'], 'failed_when': None, 'status': 'created,modified', 'inventory_file': 'acibootstrap/files/vars/hosts', 'always_run': False, 'rack_servers': [{'speed': '10G', 'port': '39'}, {'speed': '10G', 'port': '40'}, {'speed': '10G', 'port': '41'}, {'speed': '1G', 'port': '42'}, {'speed': '1G', 'port': '43'}, {'speed': '1G', 'port': '44'}, {'speed': '1G', 'port': '45'}], 'ignore_errors': False, 'vmmpool': 'vmmpool', 'changed_when': None, 'register': None, 'inventory_dir': '/opt/acibootstrap/acibootstrap/files/vars', 'vrf_name': 'default', 'vlan_pools': [{'start': '2120', 'end': '2129', 'name': 'common-l2-out'}, {'start': '2110', 'end': '2119', 'name': 'L3-router-out'}], 'role_names': [], 'play_hosts': ['10.94.238.5'], 'speeds': ['10G', '1G', '100M']}"
+}
+2017-05-04 15:24:20,355 p=24 u=root |  TASK: [Gather Controller ID's] ************************************************ 
+2017-05-04 15:24:21,096 p=24 u=root |  ok: [10.94.238.5] => {"changed": false, "response": ["1"], "status": 200}
+2017-05-04 15:24:21,097 p=24 u=root |  TASK: [Gather Leaf ID's] ****************************************************** 
+2017-05-04 15:24:21,830 p=24 u=root |  ok: [10.94.238.5] => {"changed": false, "response": [], "status": 200}
+2017-05-04 15:24:21,831 p=24 u=root |  TASK: [Get list of Spine ID's] ************************************************ 
+2017-05-04 15:24:22,560 p=24 u=root |  ok: [10.94.238.5] => {"changed": false, "response": [], "status": 200}
+2017-05-04 15:24:22,561 p=24 u=root |  TASK: [install CDP_ENABLE] **************************************************** 
+2017-05-04 15:24:23,270 p=24 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-04 15:24:23,271 p=24 u=root |  TASK: [install CDP_DISABLE] *************************************************** 
+2017-05-04 15:24:24,005 p=24 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-04 15:24:24,006 p=24 u=root |  TASK: [install LLDP_ENABLE] *************************************************** 
+2017-05-04 15:24:24,737 p=24 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-04 15:24:24,738 p=24 u=root |  TASK: [install LLDP_DISABLE] ************************************************** 
+2017-05-04 15:24:25,465 p=24 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-04 15:24:25,466 p=24 u=root |  TASK: [install Port Channel LACP_ACTIVE] ************************************** 
+2017-05-04 15:24:26,186 p=24 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-04 15:24:26,187 p=24 u=root |  TASK: [install Port Channel MAC_PINNING] ************************************** 
+2017-05-04 15:24:26,905 p=24 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-04 15:24:26,905 p=24 u=root |  TASK: [create Port Channel Mode On] ******************************************* 
+2017-05-04 15:24:27,003 p=24 u=root |  changed: [10.94.238.5] => {"changed": true, "dest": "acibootstrap/files/configs/dynamic/lacplagp-MODE_ON.json", "gid": 0, "group": "root", "md5sum": "5c3609b29dff60785dd0841107c68471", "mode": "0644", "owner": "root", "size": 276, "src": "/root/.ansible/tmp/ansible-tmp-1493911466.91-232564103605592/source", "state": "file", "uid": 0}
+2017-05-04 15:24:27,003 p=24 u=root |  TASK: [install Port Channel Mode On] ****************************************** 
+2017-05-04 15:24:27,729 p=24 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-04 15:24:27,730 p=24 u=root |  TASK: [create Link Level policies] ******************************************** 
+2017-05-04 15:24:27,818 p=24 u=root |  ok: [10.94.238.5] => (item=10G) => {"changed": false, "gid": 0, "group": "root", "item": "10G", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/custom/hintfpol-10G.json", "size": 196, "state": "file", "uid": 0}
+2017-05-04 15:24:27,903 p=24 u=root |  ok: [10.94.238.5] => (item=1G) => {"changed": false, "gid": 0, "group": "root", "item": "1G", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/custom/hintfpol-1G.json", "size": 193, "state": "file", "uid": 0}
+2017-05-04 15:24:27,985 p=24 u=root |  ok: [10.94.238.5] => (item=100M) => {"changed": false, "gid": 0, "group": "root", "item": "100M", "mode": "0644", "owner": "root", "path": "acibootstrap/files/configs/custom/hintfpol-100M.json", "size": 199, "state": "file", "uid": 0}
+2017-05-04 15:24:27,986 p=24 u=root |  TASK: [install Link Level policies] ******************************************* 
+2017-05-04 15:24:28,697 p=24 u=root |  ok: [10.94.238.5] => (item=10G) => {"changed": false, "item": "10G", "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-04 15:24:29,413 p=24 u=root |  ok: [10.94.238.5] => (item=1G) => {"changed": false, "item": "1G", "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-04 15:24:30,118 p=24 u=root |  ok: [10.94.238.5] => (item=100M) => {"changed": false, "item": "100M", "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-04 15:24:30,119 p=24 u=root |  TASK: [create STP BPDU policies] ********************************************** 
+2017-05-04 15:24:30,217 p=24 u=root |  changed: [10.94.238.5] => (item=bpdu-filter) => {"changed": true, "dest": "acibootstrap/files/configs/dynamic/ifPol-bpdu-filter_ON.json", "gid": 0, "group": "root", "item": "bpdu-filter", "md5sum": "2ba796034e61fa8b299f4d5322845e69", "mode": "0644", "owner": "root", "size": 206, "src": "/root/.ansible/tmp/ansible-tmp-1493911470.13-249656976480610/source", "state": "file", "uid": 0}
+2017-05-04 15:24:30,310 p=24 u=root |  changed: [10.94.238.5] => (item=bpdu-guard) => {"changed": true, "dest": "acibootstrap/files/configs/dynamic/ifPol-bpdu-guard_ON.json", "gid": 0, "group": "root", "item": "bpdu-guard", "md5sum": "05e3af0f8fe978ba994969706b40f54d", "mode": "0644", "owner": "root", "size": 203, "src": "/root/.ansible/tmp/ansible-tmp-1493911470.22-275164105605762/source", "state": "file", "uid": 0}
+2017-05-04 15:24:30,310 p=24 u=root |  TASK: [install STP BPDU policies] ********************************************* 
+2017-05-04 15:24:31,017 p=24 u=root |  ok: [10.94.238.5] => (item=bpdu-filter) => {"changed": false, "item": "bpdu-filter", "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-04 15:24:31,737 p=24 u=root |  ok: [10.94.238.5] => (item=bpdu-guard) => {"changed": false, "item": "bpdu-guard", "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-04 15:24:31,738 p=24 u=root |  TASK: [create STP ON policy] ************************************************** 
+2017-05-04 15:24:31,832 p=24 u=root |  changed: [10.94.238.5] => {"changed": true, "dest": "acibootstrap/files/configs/dynamic/ifPol-stp-ON.json", "gid": 0, "group": "root", "md5sum": "2e3d0992213ad02967668ec0bea0d0a1", "mode": "0644", "owner": "root", "size": 179, "src": "/root/.ansible/tmp/ansible-tmp-1493911471.74-247986139892908/source", "state": "file", "uid": 0}
+2017-05-04 15:24:31,832 p=24 u=root |  TASK: [install STP ON policy] ************************************************* 
+2017-05-04 15:24:32,617 p=24 u=root |  ok: [10.94.238.5] => {"changed": false, "response": "{\"totalCount\":\"0\",\"imdata\":[]}", "status": 200}
+2017-05-04 15:24:32,618 p=24 u=root |  TASK: [Ensure we got spine list (for debugging only)] ************************* 
+2017-05-04 15:24:32,626 p=24 u=root |  ok: [10.94.238.5] => {
+    "spines.response": []
+}
+2017-05-04 15:24:32,626 p=24 u=root |  TASK: [Create Fabric BGP RR policy] ******************************************* 
+2017-05-04 15:24:32,632 p=24 u=root |  skipping: [10.94.238.5]
+2017-05-04 15:24:32,633 p=24 u=root |  TASK: [Install Fabric BGP RR policy] ****************************************** 
+2017-05-04 15:24:32,638 p=24 u=root |  skipping: [10.94.238.5]
+2017-05-04 15:24:32,638 p=24 u=root |  TASK: [create date/time default] ********************************************** 
+2017-05-04 15:24:32,653 p=24 u=root |  fatal: [10.94.238.5] => {'msg': "AnsibleUndefinedVariable: One or more undefined variables: 'tz' is undefined", 'failed': True}
+2017-05-04 15:24:32,653 p=24 u=root |  fatal: [10.94.238.5] => {'msg': "AnsibleUndefinedVariable: One or more undefined variables: 'tz' is undefined", 'failed': True}
+2017-05-04 15:24:32,653 p=24 u=root |  FATAL: all hosts have already failed -- aborting
+2017-05-04 15:24:32,654 p=24 u=root |  PLAY RECAP ******************************************************************** 
+2017-05-04 15:24:32,655 p=24 u=root |             to retry, use: --limit @/root/acibootstrap.yaml.retry
+
+2017-05-04 15:24:32,656 p=24 u=root |  10.94.238.5                : ok=19   changed=3    unreachable=1    failed=0   

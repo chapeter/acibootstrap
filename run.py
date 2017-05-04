@@ -7,12 +7,12 @@ app = Flask(__name__)
 @app.route("/run", methods=['GET'])
 def run():
     subprocess.call("./acibootstrap.sh")
-    return redirect("http://0.0.0.0:5001", code=302)
+    return redirect("/", code=302)
 
 @app.route("/tests")
 def tests():
     subprocess.call("./acibootstrap-test.sh")
-    return redirect("http://0.0.0.0:5001", code=302)
+    return redirect("/", code=302)
 
 @app.route("/")
 def main():

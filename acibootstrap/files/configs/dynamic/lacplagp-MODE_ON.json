@@ -1,0 +1,1 @@
+{"lacpLagPol":{"attributes":{"ctrl":"fast-sel-hot-stdby,graceful-conv,susp-individual","descr":"created by ACIBOOTSTRAP","dn":"uni/infra/lacplagp-MODE_ON","maxLinks":"16","minLinks":"1","mode":"off","name":"MODE_ON","ownerKey":"","ownerTag":"", "status":"created,modified"}}}

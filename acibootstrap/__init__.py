@@ -20,7 +20,7 @@ logger.critical('*' * 25)
 logger.critical('acibootstrap is starting')
 logger.critical('*' * 25)
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 
 #bootstrap = Bootstrap(app)
 
