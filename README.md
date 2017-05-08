@@ -69,13 +69,26 @@ acibootstrap requires a clean config of ACI.  To demo it is best to use against 
 | 48 | apic1 | 10g |
 
 
-
-
-
-
-
-
 ## Manual Work that needs to be done AFTER acibootstrap
 Once acibootstrap is complete, you will be left with all the OOB mgmt taken care of, physical connections to devices listed in the port-map done, vmm integration, a sample tenant, and EPG's advertised into vCenter.
 
 Likley you will want to setup more tenants to show off ACI.  You may also want to setup some new EPG's or Tenants
+
+
+
+
+# Nerdy Stuff
+## Architecture
+acibootstrap is primarily an Ansible playbook used to configure Cisco ACI fabric.
+
+For easy deployment and viewing I include a web wrapper around this playbook.  At the heart of acibootstrap we have 3 main webservers:
+1. Flask to host the main application and the main webpage you see
+2. Flask application that hosts the "Run" Button
+3. Tornado server running tailon to monitor logs
+
+I had to host the "RUN" button in a seperate webserver so that the main page would not refresh and clear the tailon screen.  Likely doing some threading work in Python could have fixed this as well.
+
+
+
+## Ansible
+Most of the ansible work I have was based off of Jason Edelman's aci-rest module from his repo [aci-ansible](https://github.com/jedelman8/aci-ansible).  Much of my learning came from Joel King's [ansible-aci](https://github.com/joelwking/ansible-aci) repo.  I stuck mainly to Jason's aci-rest as it was handeling JSON.  But I looked at the custom modules from Joel to create a few that I wrote that you'll find in: ```acibootstrap/ansible/libary```.  Data parsing in Ansible was a mystery to me...handling nested Dictionarys with lists seemed impossible so I re-built how data was sent to Ansible with a few of these modules.
