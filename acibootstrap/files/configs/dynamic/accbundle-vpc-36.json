@@ -1,0 +1,133 @@
+{
+  "infraAccBndlGrp": {
+    "attributes": {
+      "descr": "installed by ACIBOOTSTRAP",
+      "dn": "uni/infra/funcprof/accbundle-vpc-36",
+      "lagT": "node",
+      "name": "vpc-36",
+      "ownerKey": "",
+      "ownerTag": ""
+    },
+    "children": [
+      {
+        "infraRsL2IfPol": {
+          "attributes": {
+            "tnL2IfPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsQosPfcIfPol": {
+          "attributes": {
+            "tnQosPfcIfPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsHIfPol": {
+          "attributes": {
+            "tnFabricHIfPolName": "1G-auto"
+          }
+        }
+      },
+      {
+        "infraRsL2PortSecurityPol": {
+          "attributes": {
+            "tnL2PortSecurityPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsMonIfInfraPol": {
+          "attributes": {
+            "tnMonInfraPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsStpIfPol": {
+          "attributes": {
+            "tnStpIfPolName": "bpdu-guard-ON"
+          }
+        }
+      },
+      {
+        "infraRsQosSdIfPol": {
+          "attributes": {
+            "tnQosSdIfPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsAttEntP": {
+          "attributes": {
+            "tDn": "uni/infra/attentp-svr"
+          }
+        }
+      },
+      {
+        "infraRsMcpIfPol": {
+          "attributes": {
+            "tnMcpIfPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsLacpPol": {
+          "attributes": {
+            "tnLacpLagPolName": "MAC_PINNING"
+          }
+        }
+      },
+      {
+        "infraRsQosDppIfPol": {
+          "attributes": {
+            "tnQosDppPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsQosIngressDppIfPol": {
+          "attributes": {
+            "tnQosDppPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsStormctrlIfPol": {
+          "attributes": {
+            "tnStormctrlIfPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsQosEgressDppIfPol": {
+          "attributes": {
+            "tnQosDppPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsFcIfPol": {
+          "attributes": {
+            "tnFcIfPolName": ""
+          }
+        }
+      },
+      {
+        "infraRsLldpIfPol": {
+          "attributes": {
+            "tnLldpIfPolName": "LLDP_ENABLE"
+          }
+        }
+      },
+      {
+        "infraRsCdpIfPol": {
+          "attributes": {
+            "tnCdpIfPolName": "CDP_ENABLE"
+          }
+        }
+      }
+    ]
+  }
+}

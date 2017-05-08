@@ -1,0 +1,439 @@
+{
+  "totalCount": "1",
+  "imdata": [
+    {
+      "fvTenant": {
+        "attributes": {
+          "descr": "installed by ACIBOOTSTRAP",
+          "dn": "uni/tn-tenant-1",
+          "name": "tenant-1",
+
+          "ownerKey": "",
+          "ownerTag": "",
+          "status":"created,modified"
+        },
+        "children": [
+          {
+            "vzBrCP": {
+              "attributes": {
+                "descr": "installed by ACIBOOTSTRAP",
+                "name": "POC-WEB",
+
+                "ownerKey": "",
+                "ownerTag": "",
+                "prio": "unspecified",
+                "scope": "context",
+                "targetDscp": "unspecified"
+              },
+              "children": [
+                {
+                  "vzSubj": {
+                    "attributes": {
+                      "consMatchT": "AtleastOne",
+                      "descr": "installed by ACIBOOTSTRAP",
+                      "name": "POC-WEB-OPEN",
+
+                      "prio": "unspecified",
+                      "provMatchT": "AtleastOne",
+                      "revFltPorts": "yes",
+                      "targetDscp": "unspecified"
+                    },
+                    "children": [
+                      {
+                        "vzRsSubjFiltAtt": {
+                          "attributes": {
+                            "directives": "",
+                            "tnVzFilterName": "ALLOW_ALL"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "vzBrCP": {
+              "attributes": {
+                "descr": "installed by ACIBOOTSTRAP",
+                "name": "POC-APP",
+
+                "ownerKey": "",
+                "ownerTag": "",
+                "prio": "unspecified",
+                "scope": "context",
+                "targetDscp": "unspecified"
+              },
+              "children": [
+                {
+                  "vzSubj": {
+                    "attributes": {
+                      "consMatchT": "AtleastOne",
+                      "descr": "installed by ACIBOOTSTRAP",
+                      "name": "POC-APP-OPEN",
+
+                      "prio": "unspecified",
+                      "provMatchT": "AtleastOne",
+                      "revFltPorts": "yes",
+                      "targetDscp": "unspecified"
+                    },
+                    "children": [
+                      {
+                        "vzRsSubjFiltAtt": {
+                          "attributes": {
+                            "directives": "",
+                            "tnVzFilterName": "ALLOW_ALL"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "vzBrCP": {
+              "attributes": {
+                "descr": "installed by ACIBOOTSTRAP",
+                "name": "POC-DB",
+
+                "ownerKey": "",
+                "ownerTag": "",
+                "prio": "unspecified",
+                "scope": "context",
+                "targetDscp": "unspecified"
+              },
+              "children": [
+                {
+                  "vzSubj": {
+                    "attributes": {
+                      "consMatchT": "AtleastOne",
+                      "descr": "installed by ACIBOOTSTRAP",
+                      "name": "POC-DB-OPEN",
+
+                      "prio": "unspecified",
+                      "provMatchT": "AtleastOne",
+                      "revFltPorts": "yes",
+                      "targetDscp": "unspecified"
+                    },
+                    "children": [
+                      {
+                        "vzRsSubjFiltAtt": {
+                          "attributes": {
+                            "directives": "",
+                            "tnVzFilterName": "ALLOW_ALL"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "vnsSvcCont": {
+              "attributes": {}
+            }
+          },
+          {
+            "fvCtx": {
+              "attributes": {
+                "descr": "installed by ACIBOOTSTRAP",
+                "knwMcastAct": "permit",
+                "name": "default",
+
+                "ownerKey": "",
+                "ownerTag": "",
+                "pcEnfDir": "ingress",
+                "pcEnfPref": "enforced"
+              },
+              "children": [
+                {
+                  "vzAny": {
+                    "attributes": {
+                      "descr": "installed by ACIBOOTSTRAP",
+                      "matchT": "AtleastOne",
+                      "name": ""
+                    }
+                  }
+                },
+                {
+                  "fvRsOspfCtxPol": {
+                    "attributes": {
+                      "tnOspfCtxPolName": ""
+                    }
+                  }
+                },
+                {
+                  "fvRsCtxToEpRet": {
+                    "attributes": {
+                      "tnFvEpRetPolName": ""
+                    }
+                  }
+                },
+                {
+                  "fvRsCtxToExtRouteTagPol": {
+                    "attributes": {
+                      "tnL3extRouteTagPolName": ""
+                    }
+                  }
+                },
+                {
+                  "fvRsBgpCtxPol": {
+                    "attributes": {
+                      "tnBgpCtxPolName": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "fvBD": {
+              "attributes": {
+                "arpFlood": "no",
+                "descr": "installed by ACIBOOTSTRAP",
+                "epMoveDetectMode": "",
+                "ipLearning": "yes",
+                "limitIpLearnToSubnets": "no",
+                "llAddr": "::",
+                "mcastAllow": "no",
+                "multiDstPktAct": "bd-flood",
+                "name": "BACK-END",
+
+                "ownerKey": "",
+                "ownerTag": "",
+                "type": "regular",
+                "unicastRoute": "yes",
+                "unkMacUcastAct": "proxy",
+                "unkMcastAct": "flood",
+                "vmac": "not-applicable"
+              },
+              "children": [
+                {
+                  "fvRsIgmpsn": {
+                    "attributes": {
+                      "tnIgmpSnoopPolName": ""
+                    }
+                  }
+                },
+                {
+                  "fvRsCtx": {
+                    "attributes": {
+                      "tnFvCtxName": "default"
+                    }
+                  }
+                },
+                {
+                  "fvRsBdToEpRet": {
+                    "attributes": {
+                      "resolveAct": "resolve",
+                      "tnFvEpRetPolName": ""
+                    }
+                  }
+                },
+                {
+                  "fvRsBDToNdP": {
+                    "attributes": {
+                      "tnNdIfPolName": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "fvBD": {
+              "attributes": {
+                "arpFlood": "no",
+                "descr": "",
+                "epMoveDetectMode": "",
+                "ipLearning": "yes",
+                "limitIpLearnToSubnets": "no",
+                "llAddr": "::",
+                "mcastAllow": "no",
+                "multiDstPktAct": "bd-flood",
+                "name": "FRONT-END",
+
+                "ownerKey": "",
+                "ownerTag": "",
+                "type": "regular",
+                "unicastRoute": "yes",
+                "unkMacUcastAct": "proxy",
+                "unkMcastAct": "flood",
+                "vmac": "not-applicable"
+              },
+              "children": [
+                {
+                  "fvRsIgmpsn": {
+                    "attributes": {
+                      "tnIgmpSnoopPolName": ""
+                    }
+                  }
+                },
+                {
+                  "fvRsCtx": {
+                    "attributes": {
+                      "tnFvCtxName": "default"
+                    }
+                  }
+                },
+                {
+                  "fvRsBdToEpRet": {
+                    "attributes": {
+                      "resolveAct": "resolve",
+                      "tnFvEpRetPolName": ""
+                    }
+                  }
+                },
+                {
+                  "fvRsBDToNdP": {
+                    "attributes": {
+                      "tnNdIfPolName": ""
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "fvRsTenantMonPol": {
+              "attributes": {
+                "tnMonEPGPolName": ""
+              }
+            }
+          },
+          {
+            "fvAp": {
+              "attributes": {
+                "descr": "",
+                "name": "POC-3tier",
+
+                "ownerKey": "",
+                "ownerTag": "",
+                "prio": "unspecified"
+              },
+              "children": [
+                {
+                  "fvAEPg": {
+                    "attributes": {
+                      "descr": "",
+
+                      "isAttrBasedEPg": "no",
+                      "matchT": "AtleastOne",
+                      "name": "DB",
+
+                      "pcEnfPref": "unenforced",
+                      "prio": "unspecified"
+                    },
+                    "children": [
+                      {
+                        "fvRsProv": {
+                          "attributes": {
+                            "matchT": "AtleastOne",
+                            "prio": "unspecified",
+                            "tnVzBrCPName": "POC-DB"
+                          }
+                        }
+                      },
+                      {
+                        "fvRsBd": {
+                          "attributes": {
+                            "tnFvBDName": "BACK-END"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "fvAEPg": {
+                    "attributes": {
+                      "descr": "",
+
+                      "isAttrBasedEPg": "no",
+                      "matchT": "AtleastOne",
+                      "name": "APP",
+
+                      "pcEnfPref": "unenforced",
+                      "prio": "unspecified"
+                    },
+                    "children": [
+                      {
+                        "fvRsProv": {
+                          "attributes": {
+                            "matchT": "AtleastOne",
+                            "prio": "unspecified",
+                            "tnVzBrCPName": "POC-APP"
+                          }
+                        }
+                      },
+                      {
+                        "fvRsCons": {
+                          "attributes": {
+                            "prio": "unspecified",
+                            "tnVzBrCPName": "POC-DB"
+                          }
+                        }
+                      },
+                      {
+                        "fvRsBd": {
+                          "attributes": {
+                            "tnFvBDName": "BACK-END"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "fvAEPg": {
+                    "attributes": {
+                      "descr": "",
+
+                      "isAttrBasedEPg": "no",
+                      "matchT": "AtleastOne",
+                      "name": "WEB",
+
+                      "pcEnfPref": "unenforced",
+                      "prio": "unspecified"
+                    },
+                    "children": [
+                      {
+                        "fvRsProv": {
+                          "attributes": {
+                            "matchT": "AtleastOne",
+                            "prio": "unspecified",
+                            "tnVzBrCPName": "POC-WEB"
+                          }
+                        }
+                      },
+                      {
+                        "fvRsCons": {
+                          "attributes": {
+                            "prio": "unspecified",
+                            "tnVzBrCPName": "POC-APP"
+                          }
+                        }
+                      },
+                      {
+                        "fvRsBd": {
+                          "attributes": {
+                            "tnFvBDName": "FRONT-END"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
