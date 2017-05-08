@@ -6,22 +6,38 @@ ACIBOOTSTRAP is an application designed to help speed up ACI deployments by auto
 ## Prerequisites
 Before running ACIBOOTSTRAP, the user must ensure that the APIC controllers have been setup through their initial setup wizard.
 
-Users need to fill the acibootstrap Excel sheet here: [acibootstrap/files/vars/acibootstrap.xlsx](acibootstrap/files/vars/acibootstrap.xlsx)
 
 
+## Demo acibootstrap
+acibootstrap requires a clean config of ACI.  To demo it is best to use against the ACI simulator.  This means it can all be done locally.  If you plan to do this many times; snapshot your fabric after a clean install.
 
-## Using acibootstrap
+### Demo Using the Simulator
+1. Install Simulator OVA
+2. Go through APIC setup wizard
+3. Fill out the [ACI-Bootstrap-Tool](acibootstrap/files/vars/ACI-Bootstrap-Tool.xlsx), or fill out the Smartsheet webform if you have access
+4. Start acibootstrap via:
+  ```docker run -d -p 5000:5000 -p 5001:5001 -p 8001:8001 imapex/acibootstrap```
+5. Open acibootstrap web page: ```http://0.0.0.0/5000```
+6. Upload ACI-Bootstrap-Tool Excel sheet via webpage
+7. Ensure APIC IP and user are correct, then press ```Run```
+8. Watch the magic
+
+
+### Demo Using a Real ACI Fabric
 1. Cable and connect switches and APICs to each other
 2. Connect Switches and APICs to OOB network
-3. Fill out the acibootstrap Excel workbook: [acibootstrap.xlsx](acibootstrap/files/vars/acibootstrap.xlsx)
-4. Go through the APIC's setup wizard
-5. Do Fabric Discovery and use naming scheme of 1XX for leaf and 2XX for spine devices, starting with 01
-4. Run acibootstrap
-5. Upload Excel workbook to acibootstrap
-6. Run
+3. Connect physical equipment as listed in the Port-Map
+2. Go through APIC setup wizard
+3. Fill out the [ACI-Bootstrap-Tool](acibootstrap/files/vars/ACI-Bootstrap-Tool.xlsx), or fill out the Smartsheet webform if you have access
+5. Do Fabric Discovery and use naming scheme of 1XX for leaf and 2XX for spine devices, starting with 101/201
+4. Start acibootstrap via:
+  ```docker run -d -p 5000:5000 -p 5001:5001 -p 8001:8001 imapex/acibootstrap```
+5. Open acibootstrap web page: ```http://0.0.0.0/5000```
+6. Upload ACI-Bootstrap-Tool Excel sheet via webpage
+7. Ensure APIC IP and user are correct, then press ```Run```
+8. Watch the magic
 
-
-## Port map
+#### Port map
 | port | device | info | related info |
 |:---:|---|---| --- |
 | 1 | l2-out| |
@@ -60,19 +76,6 @@ Users need to fill the acibootstrap Excel sheet here: [acibootstrap/files/vars/a
 
 
 ## Manual Work that needs to be done AFTER acibootstrap
+Once acibootstrap is complete, you will be left with all the OOB mgmt taken care of, physical connections to devices listed in the port-map done, vmm integration, a sample tenant, and EPG's advertised into vCenter.
 
-
-
-
-### Important files
-* ```ansible/```: files needed to be referenced for ansible
-  * ```library/``` which contains the used modules needed for acibootstrap playbooks
-
-
-* ```files/```
-  * ```configs/```: this is one of the most critial components of acibootstrap.  This contains the template type configs we will be pushing via ansible.
-    * ```templates/```: these are the base templates that we use to create the files we push to the ACI fabric
-    * ```dynamic/```: files built from template files go here.  They will be converted into .json with real values and placed here
-    * ```custom/```: depricated.
-    * ```static/```: files not needed to be templitized and dynamically created
-  * ```vars/``` contains the variables used in the acibootstrap playbooks.  All other directories are for development purposes only
+Likley you will want to setup more tenants to show off ACI.  You may also want to setup some new EPG's or Tenants
