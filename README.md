@@ -28,14 +28,14 @@ acibootstrap requires a clean config of ACI.  To demo it is best to use against 
 2. Connect Switches and APICs to OOB network
 3. Connect physical equipment as listed in the Port-Map
 2. Go through APIC setup wizard
-3. Fill out the [ACI-Bootstrap-Tool](acibootstrap/files/vars/ACI-Bootstrap-Tool.xlsx), or fill out the Smartsheet webform if you have access
+3. Fill out the [ACI-Bootstrap-Tool](acibootstrap/files/vars/ACI-Bootstrap-Tool.xlsx) Excel Sheet, or fill out the Smartsheet webform if you have access
 5. Do Fabric Discovery and use naming scheme of 1XX for leaf and 2XX for spine devices, starting with 101/201
 4. Start acibootstrap via:
   ```docker run -d -p 5000:5000 -p 5001:5001 -p 8001:8001 imapex/acibootstrap```
 5. Open acibootstrap web page: ```http://0.0.0.0/5000```
 6. Upload ACI-Bootstrap-Tool Excel sheet via webpage
 7. Ensure APIC IP and user are correct, then press ```Run```
-8. Watch the magic
+8. Watch as acibootstrap configures your fabric
 
 #### Port map
 | port | device | info | related info |
@@ -92,3 +92,7 @@ I had to host the "RUN" button in a seperate webserver so that the main page wou
 
 ## Ansible
 Most of the ansible work I have was based off of Jason Edelman's aci-rest module from his repo [aci-ansible](https://github.com/jedelman8/aci-ansible).  Much of my learning came from Joel King's [ansible-aci](https://github.com/joelwking/ansible-aci) repo.  I stuck mainly to Jason's aci-rest as it was handeling JSON.  But I looked at the custom modules from Joel to create a few that I wrote that you'll find in: ```acibootstrap/ansible/libary```.  Data parsing in Ansible was a mystery to me...handling nested Dictionarys with lists seemed impossible so I re-built how data was sent to Ansible with a few of these modules.
+
+In general the process through the playbook is pretty simple.  Build json from jinja2 template using variables defined from Excel file.  Then push json to APIC.
+
+To add tasks simply configure your object in ACI, download json and templitize.  Templates reside in ```acibootstrap/files/configs/templates```.  Follow the same tasks to turn the jinja template into json and push to ACI.
