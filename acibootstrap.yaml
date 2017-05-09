@@ -145,9 +145,9 @@
     # Setup UCS FI Shared objects
     - name: install svr bm vlan pool
       aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/vlanns-[svr-bm-vlans]-dynamic.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
-    - name: install ucs physical domain
+    - name: install server physical domain
       aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/phys-svr.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
-    - name: install ucs attachable entity profile
+    - name: install server attachable entity profile
       aci_rest: action=post uri=api/mo/uni.json config_file={{ static }}/attentp-svr.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
 
     # Setup FI A
@@ -169,10 +169,10 @@
 
     # Push interfaces into policies
     - name: create interface selectors for UCS-FI-A and UCS-FI-B
-      template: src={{ templates }}/hports-e1-port-typ-range-temp.j2 dest={{ dynamic }}/hports-e1-port-typ-range-temp.json
+      template: src={{ templates }}/hports-e1-port-typ-range-temp.j2 dest={{ dynamic }}/hports-e1-port-typ-range-temp-{{ item.port }}.json
       with_items: "{{ ucs_fi }}"
     - name: install interface selectors for UCS-FI-A and UCS-FI-B
-      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/hports-e1-port-typ-range-temp.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
+      aci_rest: action=post uri=api/mo/uni.json config_file={{ dynamic }}/hports-e1-port-typ-range-temp-{{ item.port }}.json host={{ inventory_hostname }} username={{ user }} password={{ pass }} protocol={{ protocol }}
       with_items: "{{ ucs_fi }}"
 
 
