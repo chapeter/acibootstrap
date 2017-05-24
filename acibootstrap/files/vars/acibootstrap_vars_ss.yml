@@ -1,76 +1,53 @@
-Form Date Field: 2017-05-03 00:00:00
+Form Date Field: 2017-05-15 00:00:00
 apic_ip: 10.94.238.5
 apic_pass: cisco123
 apic_user: admin
 bgp_as: 100
 cse_userid: chapeter
-customer_name: test customer
+customer_name: demo-customer
 dns: 208.67.222.222
 dns_pri: 208.67.222.222
 dns_sec: 208.67.220.220
 domain: cisco.com
-l2-out-switch-speed: 10G-auto
-l2_out_switch_speed: 10G-auto
+l2-out-switch-speed: 1G-auto
+l2_out_switch_speed: 1G-auto
 ntp: 1.1.1.1
 oob_from: 10.94.238.150
 oob_gw: 10.94.238.1/24
-oob_to: 10.94.238.200
-router_speed: null
+oob_to: 10.94.238.160
+router_speed: 1G-auto
 tenant:
-- 101:
-    encap: 2111
-    r_address: 10.2.1.1/30
-    router_id: 1.0.0.0
-  102:
-    encap: 2111
-    r_address: 10.2.2.1/30
-    router_id: 1.0.0.1
-  eigrp:
-    as: 1
-  external_subnets:
-  - address: 1.1.1.1/24
-    name: ntwk_one
-  internal_subnets:
-  - address: 4.4.4.1/24
-    name: ntwk_four
-  - address: 3.3.3.1/24
-    name: ntwk_three
-  - address: 2.2.2.1/24
-    name: ntwk_two
-  name: tenant-2
-  ospf: {}
-  protocol: EIGRP
-  static: {}
-  tenant_name: tenant-2
 - 101:
     encap: 2110
     r_address: 10.1.1.1/30
-    router_id: 1.0.0.2
+    router_id: 1.0.0.0
   102:
     encap: 2110
     r_address: 10.1.2.1/30
-    router_id: 1.0.0.3
+    router_id: 1.0.0.1
   eigrp: {}
   external_subnets:
-  - address: 2.2.2.2/24
-    name: ntwk_two
-  - address: 1.1.1.1/24
+  - address: 10.94.238.1/24
     name: ntwk_one
   internal_subnets:
-  - address: 3.3.3.3/24
+  - address: 172.16.34.1/24
+    name: ntwk_four
+  - address: 172.16.33.1/24
     name: ntwk_three
-  name: tenant-1
+  - address: 172.16.32.1/24
+    name: ntwk_two
+  name: POV-3tier-L3_1
   ospf:
-    area_id: 1
+    area_id: 10
     area_type: nssa
   protocol: OSPF
   static: {}
-  tenant_name: tenant-1
+  tenant_name: POV-3tier-L3_1
 tz: n300_America-Chicago
-vcenter_dc: pov
-vcenter_ip: 10.94.238.50
-vcenter_pass: cisco
-vcenter_password: cisco
+vcenter_dc: demo-dc
+vcenter_ip: 10.94.238.58
+vcenter_pass: C!sco123
+vcenter_password: C!sco123
 vcenter_user: administrator@vsphere.local
 vmmpool_end: 2099
 vmmpool_start: 2000
