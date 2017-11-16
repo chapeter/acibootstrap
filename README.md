@@ -16,7 +16,7 @@ acibootstrap requires a clean config of ACI.  To demo it is best to use against 
 2. Go through APIC setup wizard
 3. Fill out the [ACI-Bootstrap-Tool](acibootstrap/files/vars/ACI-Bootstrap-Tool.xlsx), or fill out the Smartsheet webform if you have access
 4. Start acibootstrap via:
-  ```docker run -d -p 5000:5000 -p 5001:5001 -p 8001:8001 imapex/acibootstrap```
+  ```docker run -d -p 5000:5000 -p 5001:5001 -p 8001:8001 chapeter/acibootstrap```
 5. Open acibootstrap web page: ```http://0.0.0.0/5000```
 6. Upload ACI-Bootstrap-Tool Excel sheet via webpage
 7. Ensure APIC IP and user are correct, then press ```Run```
